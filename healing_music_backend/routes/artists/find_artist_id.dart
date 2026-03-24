@@ -21,14 +21,16 @@ Future<Response> onRequest(RequestContext context) async {
     );
 
     final artist = result
-        .map((row) => {
-              'id': row[0],
-              'full_name': row[1],
-              'avatar_url': row[2],
-              'follower_count': row[3],
-              'is_verified': row[4],
-              'created_at': row[5]?.toString(),
-            })
+        .map(
+          (row) => {
+            'id': row[0],
+            'full_name': row[1],
+            'avatar_url': row[2],
+            'follower_count': row[3],
+            'is_verified': row[4],
+            'created_at': row[5]?.toString(),
+          },
+        )
         .toList();
 
     if (artist.isEmpty) {

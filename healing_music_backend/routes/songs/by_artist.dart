@@ -44,23 +44,25 @@ Future<Response> onRequest(RequestContext context) async {
     // 2. Xử lý dữ liệu để loại bỏ các
     //kiểu dữ liệu không encodable (như DateTime)
     final songs = result
-        .map((row) => {
-              // songs fields
-              'song_id': row[0],
-              'title': row[1],
-              'image_url': row[2],
-              'audio_url': row[3],
-              'rank': row[4],
-              'duration_seconds': row[5],
-              'song_created_at': row[6]?.toString(),
+        .map(
+          (row) => {
+            // songs fields
+            'song_id': row[0],
+            'title': row[1],
+            'image_url': row[2],
+            'audio_url': row[3],
+            'rank': row[4],
+            'duration_seconds': row[5],
+            'song_created_at': row[6]?.toString(),
 
-              // artists fields
-              'artist_id': row[7],
-              'artist_name': row[8],
-              'avatar_url': row[9],
-              'follower_count': row[10],
-              'is_verified': row[11],
-            })
+            // artists fields
+            'artist_id': row[7],
+            'artist_name': row[8],
+            'avatar_url': row[9],
+            'follower_count': row[10],
+            'is_verified': row[11],
+          },
+        )
         .toList();
 
     // 3. Trả về kết quả thành công

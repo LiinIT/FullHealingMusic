@@ -44,19 +44,21 @@ Future<Response> onRequest(RequestContext context) async {
     );
 
     final songs = result
-        .map((row) => {
-              'song_id': row[0],
-              'title': row[1],
-              'image_url': row[2],
-              'audio_url': row[3],
-              'rank': row[4],
-              'duration_seconds': row[5],
-              'artist_id': row[6],
-              'full_name': row[7],
-              'avatar_url': row[8],
-              'follower_count': row[9],
-              'is_verified': row[10],
-            })
+        .map(
+          (row) => {
+            'song_id': row[0],
+            'title': row[1],
+            'image_url': row[2],
+            'audio_url': row[3],
+            'rank': row[4],
+            'duration_seconds': row[5],
+            'artist_id': row[6],
+            'full_name': row[7],
+            'avatar_url': row[8],
+            'follower_count': row[9],
+            'is_verified': row[10],
+          },
+        )
         .toList();
 
     return Response.json(
