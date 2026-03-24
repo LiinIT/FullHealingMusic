@@ -191,7 +191,7 @@ The middleware layer verifies the token and injects a `Connection` (PostgreSQL) 
 **Ngoc Khanh Ho**
 - GitHub: [@LiinIT](https://github.com/LiinIT)
 - Email: hongockhanh.it@gmail.com
-
+- Number: +84 387 138 599
 ---
 
 ## 📄 License
