@@ -25,7 +25,7 @@ Future<Response> getAllAlbum(Connection connect, dynamic userID) async {
       statusCode: 400,
       body: {
         'done': false,
-        'message': 'Missing isLightMode or User ID of Theme',
+        'message': 'Missing userID',
       },
     );
   }
@@ -34,23 +34,39 @@ Future<Response> getAllAlbum(Connection connect, dynamic userID) async {
     final result = await connect.execute(
       r'''
         SELECT
-          al.id,
-          al.user_id,
-          al.name,
-          al.cover_url,
+          id,
+          user_id,
+          name,
+          cover_url,
           created_at
         FROM 
-          albums al
+          albums 
         WHERE 
-          al.user_id = $1
+          user_id = $1
+        ORDER BY created_at DESC
         ''',
       parameters: [userID],
     );
-    return Response.json(body: {'arrAlbum': result});
+
+    // Convert rows to list of maps
+    final rows = result.toList();
+    final albums = rows
+        .map((row) => {
+              'id': row[0],
+              'user_id': row[1],
+              'name': row[2],
+              'cover_url': row[3],
+              'created_at': row[4]?.toString(),
+            })
+        .toList();
+
+    return Response.json(body: {'done': true, 'albums': albums});
   } catch (e) {
     return Response.json(
+      statusCode: 500,
       body: {
         'done': false,
+        'message': 'Failed to fetch albums',
       },
     );
   }
@@ -62,7 +78,7 @@ Future<Response> getAlbum(Connection connect, dynamic albumID) async {
       statusCode: 400,
       body: {
         'done': false,
-        'message': 'Missing isLightMode or User ID of Theme',
+        'message': 'Missing albumID',
       },
     );
   }
@@ -71,23 +87,46 @@ Future<Response> getAlbum(Connection connect, dynamic albumID) async {
     final result = await connect.execute(
       r'''
         SELECT
-          al.id,
-          al.user_id,
-          al.name,
-          al.cover_url,
+          id,
+          user_id,
+          name,
+          cover_url,
           created_at
         FROM 
-          albums al
+          albums 
         WHERE 
-          al.id = $1
+          id = $1
         ''',
       parameters: [albumID],
     );
-    return Response.json(body: {'isLightMode': result[0][0]});
+
+    final rows = result.toList();
+    if (rows.isEmpty) {
+      return Response.json(
+        statusCode: 404,
+        body: {
+          'done': false,
+          'message': 'Album not found',
+        },
+      );
+    }
+
+    final row = rows.first;
+    final album = {
+      'id': row[0],
+      'user_id': row[1],
+      'name': row[2],
+      'cover_url': row[3],
+      'created_at': row[4]?.toString(),
+    };
+
+    return Response.json(body: {'done': true, 'album': album});
   } catch (e) {
     return Response.json(
+      statusCode: 500,
       body: {
         'done': false,
+        'message': 'Failed to fetch album',
       },
     );
   }
@@ -103,25 +142,38 @@ Future<Response> addAlbum(
       statusCode: 400,
       body: {
         'done': false,
-        'message': 'Missing nameAlbum or User ID of Theme',
+        'message': 'Missing nameAlbum or User ID',
       },
     );
   }
 
   try {
-    await connect.execute(
+    final result = await connect.execute(
       r'''
-        INSERT INTO 
-           albums (user_id, name, created_at)
+        INSERT INTO albums (user_id, name, created_at)
         VALUES ($1, $2, $3)
-        ON CONFLICT DO NOTHING''',
+        ON CONFLICT (user_id, name) DO NOTHING
+        RETURNING id;
+      ''',
       parameters: [userID, nameAlbum, DateTime.now()],
     );
-    return Response.json(body: {'done': true});
-  } catch (e) {
+
+    final rows = result.toList();
+    final inserted = rows.isNotEmpty;
+    final int? newId = inserted ? rows.first[0] as int? : null;
+
+    return Response.json(body: {
+      'done': inserted,
+      if (inserted) 'id': newId,
+      if (!inserted) 'message': 'Album already exists',
+    });
+  } catch (e, stackTrace) {
+    print('Error adding album: $e\n$stackTrace');
     return Response.json(
+      statusCode: 500,
       body: {
         'done': false,
+        'message': 'Internal server error',
       },
     );
   }
