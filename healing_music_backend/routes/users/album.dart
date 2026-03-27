@@ -14,8 +14,13 @@ Future<Response> onRequest(RequestContext context) async {
       return addAlbum(connect, body['userID'], body['nameAlbum']);
     case 'getAlbum':
       return getAlbum(connect, body['albumID']);
-    default:
+    case 'getAllAlbum':
       return getAllAlbum(connect, body['userID']);
+    default:
+      return Response.json(
+        statusCode: 400,
+        body: {'done': false, 'message': 'Unknown action'},
+      );
   }
 }
 
