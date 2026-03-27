@@ -56,13 +56,15 @@ Future<Response> getAllAlbum(Connection connect, dynamic userID) async {
     // Convert rows to list of maps
     final rows = result.toList();
     final albums = rows
-        .map((row) => {
-              'id': row[0],
-              'user_id': row[1],
-              'name': row[2],
-              'cover_url': row[3],
-              'created_at': row[4]?.toString(),
-            })
+        .map(
+          (row) => {
+            'id': row[0],
+            'user_id': row[1],
+            'name': row[2],
+            'cover_url': row[3],
+            'created_at': row[4]?.toString(),
+          },
+        )
         .toList();
 
     return Response.json(body: {'done': true, 'albums': albums});
@@ -167,11 +169,13 @@ Future<Response> addAlbum(
     final inserted = rows.isNotEmpty;
     final int? newId = inserted ? rows.first[0] as int? : null;
 
-    return Response.json(body: {
-      'done': inserted,
-      if (inserted) 'id': newId,
-      if (!inserted) 'message': 'Album already exists',
-    });
+    return Response.json(
+      body: {
+        'done': inserted,
+        if (inserted) 'id': newId,
+        if (!inserted) 'message': 'Album already exists',
+      },
+    );
   } catch (e, stackTrace) {
     print('Error adding album: $e\n$stackTrace');
     return Response.json(
