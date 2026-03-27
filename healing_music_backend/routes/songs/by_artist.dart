@@ -58,7 +58,7 @@ Future<Response> onRequest(RequestContext context) async {
             // artists fields
             'artist_id': row[7],
             'artist_name': row[8],
-            'avatar_url': row[9],
+            'artist_avatar': row[9],
             'follower_count': row[10],
             'is_verified': row[11],
           },

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:dart_frog/dart_frog.dart';
 import 'package:http/http.dart' as http;
@@ -29,14 +30,20 @@ Future<Response> onRequest(RequestContext context) async {
       final id = data['data'][0]['artist']['id'].toString();
       final fullName = data['data'][0]['artist']['name'].toString();
       final avatarUrl = data['data'][0]['artist']['picture_xl'].toString();
+      final random = Random();
+      final int followerCount = 1000 + random.nextInt(1000000 - 1000 + 1);
+      final bool isVerified = followerCount > 500000;
 
       await conn.execute(
-        'INSERT INTO artists (id, full_name, avatar_url) '
-        r'VALUES ($1, $2, $3) '
-        'ON CONFLICT (id) DO UPDATE '
-        'SET full_name = EXCLUDED.full_name, '
-        'avatar_url = EXCLUDED.avatar_url;',
-        parameters: [id, fullName, avatarUrl],
+        r'''
+        INSERT INTO 
+          artists(id, full_name, avatar_url, follower_count, is_verified) 
+        VALUES 
+          ($1, $2, $3, $4, $5) 
+        ON CONFLICT (id) DO UPDATE 
+        SET full_name = EXCLUDED.full_name, 
+        avatar_url = EXCLUDED.avatar_url;''',
+        parameters: [id, fullName, avatarUrl, followerCount, isVerified],
       );
       count++;
       print('✅ ✅ ✅ Fill artist [action]: $fullName ');
