@@ -128,7 +128,6 @@ Future<Response> _handleGetAllHistory({
   required Connection connect,
 }) async {
   final userID = body['userID'] as String?;
-  print(userID);
   if (userID == null) {
     return Response.json(
       statusCode: 400,
