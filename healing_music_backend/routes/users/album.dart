@@ -12,6 +12,8 @@ Future<Response> onRequest(RequestContext context) async {
   switch (body['action']) {
     case 'addAlbum':
       return addAlbum(connect, body['userID'], body['nameAlbum']);
+    case 'addSongToAlbum':
+      return addSongToAlbum(connect, body['albumID'], body['songID']);
     case 'getAlbum':
       return getAlbum(connect, body['albumID']);
     case 'getAllAlbum':
@@ -21,6 +23,47 @@ Future<Response> onRequest(RequestContext context) async {
         statusCode: 400,
         body: {'done': false, 'message': 'Unknown action'},
       );
+  }
+}
+
+Future<Response> addSongToAlbum(
+  Connection connect,
+  dynamic albumID,
+  dynamic songID,
+) async {
+  if (albumID == null || songID == null) {
+    return Response.json(
+      statusCode: 400,
+      body: {
+        'done': false,
+        'message': 'Missing nameAlbum or User ID',
+      },
+    );
+  }
+
+  try {
+    final result = await connect.execute(
+      r'''
+        INSERT INTO 
+          album_songs (album_id, song_id, added_at)
+        VALUES ($1, $2, $3)
+        ON CONFLICT (album_id, song_id) DO NOTHING
+      ''',
+      parameters: [albumID, songID, DateTime.now()],
+    );
+
+    print('Add table => album_songs ($albumID, $songID, -now-)');
+
+    return Response.json(body: {'success': true});
+  } catch (e, stackTrace) {
+    print('Error adding album: $e\n$stackTrace');
+    return Response.json(
+      statusCode: 500,
+      body: {
+        'done': false,
+        'message': 'Internal server error',
+      },
+    );
   }
 }
 
@@ -39,23 +82,50 @@ Future<Response> getAllAlbum(Connection connect, dynamic userID) async {
     final result = await connect.execute(
       r'''
         SELECT
-          id,
-          user_id,
-          name,
-          cover_url,
-          created_at
-        FROM 
-          albums 
-        WHERE 
-          user_id = $1
-        ORDER BY created_at DESC
+          a.id,
+          a.user_id,
+          a.name,
+          a.cover_url,
+          a.created_at,
+          COALESCE(
+            JSON_AGG(
+              JSON_BUILD_OBJECT(
+                'id',               s.id,
+                'title',            s.title,
+                'artist_id',        s.artist_id,
+                'full_name',        ar.full_name,      
+                'avatar_url',       ar.avatar_url,     
+                'follower_count',   ar.follower_count, 
+                'is_verified',      ar.is_verified,    
+                'image_url',        s.image_url,
+                'audio_url',        s.audio_url,
+                'rank',             s.rank,
+                'duration_seconds', s.duration_seconds,
+                'created_at',       s.created_at
+              ) ORDER BY als.added_at ASC
+            ) FILTER (WHERE s.id IS NOT NULL),
+            '[]'
+          ) AS list_song
+        FROM
+          albums a
+        LEFT JOIN
+          album_songs als ON als.album_id = a.id
+        LEFT JOIN
+          songs s ON s.id = als.song_id
+        LEFT JOIN 
+          artists ar ON ar.id = s.artist_id  
+        WHERE
+          a.user_id = $1
+        GROUP BY
+          a.id, a.user_id, a.name, a.cover_url, a.created_at
+        ORDER BY
+          a.created_at DESC
         ''',
       parameters: [userID],
     );
 
-    // Convert rows to list of maps
-    final rows = result.toList();
-    final albums = rows
+    final albums = result
+        .toList()
         .map(
           (row) => {
             'id': row[0],
@@ -63,6 +133,7 @@ Future<Response> getAllAlbum(Connection connect, dynamic userID) async {
             'name': row[2],
             'cover_url': row[3],
             'created_at': row[4]?.toString(),
+            'listSong': row[5],
           },
         )
         .toList();
@@ -106,6 +177,8 @@ Future<Response> getAlbum(Connection connect, dynamic albumID) async {
         ''',
       parameters: [albumID],
     );
+
+    print('Get table => albums by ID = $albumID');
 
     final rows = result.toList();
     if (rows.isEmpty) {
@@ -168,6 +241,8 @@ Future<Response> addAlbum(
     final rows = result.toList();
     final inserted = rows.isNotEmpty;
     final int? newId = inserted ? rows.first[0] as int? : null;
+
+    print('Add table => albums ($userID, $nameAlbum, -now-)');
 
     return Response.json(
       body: {
