@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dart_frog/dart_frog.dart';
 import 'package:postgres/postgres.dart';
 
@@ -52,11 +54,9 @@ Future<Response> addSongToAlbum(
       parameters: [albumID, songID, DateTime.now()],
     );
 
-    print('Add table => album_songs ($albumID, $songID, -now-)');
-
     return Response.json(body: {'success': true});
   } catch (e, stackTrace) {
-    print('Error adding album: $e\n$stackTrace');
+    log('❌ Error adding album: $e\n$stackTrace', name: 'AlbumRoute');
     return Response.json(
       statusCode: 500,
       body: {
@@ -140,6 +140,7 @@ Future<Response> getAllAlbum(Connection connect, dynamic userID) async {
 
     return Response.json(body: {'done': true, 'albums': albums});
   } catch (e) {
+    log('❌ Error fetching albums: $e', name: 'AlbumRoute');
     return Response.json(
       statusCode: 500,
       body: {
@@ -178,8 +179,6 @@ Future<Response> getAlbum(Connection connect, dynamic albumID) async {
       parameters: [albumID],
     );
 
-    print('Get table => albums by ID = $albumID');
-
     final rows = result.toList();
     if (rows.isEmpty) {
       return Response.json(
@@ -202,6 +201,7 @@ Future<Response> getAlbum(Connection connect, dynamic albumID) async {
 
     return Response.json(body: {'done': true, 'album': album});
   } catch (e) {
+    log('❌ Error fetching album: $e', name: 'AlbumRoute');
     return Response.json(
       statusCode: 500,
       body: {
@@ -242,8 +242,6 @@ Future<Response> addAlbum(
     final inserted = rows.isNotEmpty;
     final int? newId = inserted ? rows.first[0] as int? : null;
 
-    print('Add table => albums ($userID, $nameAlbum, -now-)');
-
     return Response.json(
       body: {
         'done': inserted,
@@ -252,7 +250,7 @@ Future<Response> addAlbum(
       },
     );
   } catch (e, stackTrace) {
-    print('Error adding album: $e\n$stackTrace');
+    log('❌ Error adding album: $e\n$stackTrace', name: 'AlbumRoute');
     return Response.json(
       statusCode: 500,
       body: {

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dart_frog/dart_frog.dart';
 import 'package:postgres/postgres.dart';
 
@@ -5,6 +7,10 @@ Future<dynamic> onRequest(RequestContext context) async {
   final conn = context.read<Connection>();
 
   if (context.request.method != HttpMethod.post) {
+    log(
+      'Invalid HTTP method: ${context.request.method}',
+      name: 'HandleFavoriteRoute',
+    );
     return Response(statusCode: 405);
   }
   final body = await context.request.json();
@@ -26,6 +32,8 @@ Future<Response> _handleGetAllFavorite({
   final userID = body['userID'] as String?;
 
   if (userID == null) {
+    log('Missing userID in _handleGetAllFavorite',
+        name: '_handleGetAllFavorite');
     return Response.json(
       statusCode: 400,
       body: {'done': false, 'message': 'Missing userID'},
@@ -61,6 +69,10 @@ Future<Response> _handleGetAllFavorite({
     );
 
     if (result.isEmpty) {
+      log(
+        'No favorite songs found for user: $userID',
+        name: '_handleGetAllFavorite',
+      );
       return Response.json(
         body: {'done': true, 'isEmpty': true, 'songs': <dynamic>[]},
       );
@@ -92,6 +104,7 @@ Future<Response> _handleGetAllFavorite({
       body: {'done': true, 'isEmpty': false, 'songs': songs},
     );
   } catch (e) {
+    log(e.toString(), name: '_handleGetAllFavorite');
     return Response.json(
       statusCode: 500,
       body: {'done': false, 'message': 'ERROR => $e'},
@@ -126,6 +139,7 @@ Future<Response> _handleGetFavorite({
       },
     );
   } catch (e) {
+    log(e.toString(), name: '_handleGetFavorite');
     return Response.json(
       statusCode: 500,
       body: {'done': false, 'message': 'ERROR => $e'},
@@ -167,6 +181,7 @@ Future<Response> _handleToggleFavorite({
 
     return Response.json(body: {'done': true});
   } catch (e) {
+    log(e.toString(), name: '_handleToggleFavorite');
     return Response.json(
       body: {
         'done': false,
