@@ -58,6 +58,7 @@ Future<Response> setTheme(
   dynamic userID,
 ) async {
   if (isLightMode == null || userID == null) {
+    log('Missing isLightMode or User ID of Theme', name: 'setTheme');
     return Response.json(
       statusCode: 400,
       body: {

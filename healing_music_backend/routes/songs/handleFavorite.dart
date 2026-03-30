@@ -32,8 +32,10 @@ Future<Response> _handleGetAllFavorite({
   final userID = body['userID'] as String?;
 
   if (userID == null) {
-    log('Missing userID in _handleGetAllFavorite',
-        name: '_handleGetAllFavorite');
+    log(
+      'Missing userID in _handleGetAllFavorite',
+      name: '_handleGetAllFavorite',
+    );
     return Response.json(
       statusCode: 400,
       body: {'done': false, 'message': 'Missing userID'},
