@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dart_frog/dart_frog.dart';
 import 'package:postgres/postgres.dart';
 
@@ -75,7 +73,6 @@ Future<Response> onRequest(RequestContext context) async {
       },
     );
   } catch (e) {
-    log(e.toString(), name: 'GetSongsByArtistRoute');
     // Xử lý lỗi nếu truy vấn thất bại
     return Response.json(
       body: {'status': 'error', 'message': e.toString()},

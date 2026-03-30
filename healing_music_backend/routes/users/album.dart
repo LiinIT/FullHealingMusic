@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dart_frog/dart_frog.dart';
 import 'package:postgres/postgres.dart';
 
@@ -55,8 +53,7 @@ Future<Response> addSongToAlbum(
     );
 
     return Response.json(body: {'success': true});
-  } catch (e, stackTrace) {
-    log('❌ Error adding album: $e\n$stackTrace', name: 'AlbumRoute');
+  } catch (e) {
     return Response.json(
       statusCode: 500,
       body: {
@@ -140,7 +137,6 @@ Future<Response> getAllAlbum(Connection connect, dynamic userID) async {
 
     return Response.json(body: {'done': true, 'albums': albums});
   } catch (e) {
-    log('❌ Error fetching albums: $e', name: 'AlbumRoute');
     return Response.json(
       statusCode: 500,
       body: {
@@ -201,7 +197,6 @@ Future<Response> getAlbum(Connection connect, dynamic albumID) async {
 
     return Response.json(body: {'done': true, 'album': album});
   } catch (e) {
-    log('❌ Error fetching album: $e', name: 'AlbumRoute');
     return Response.json(
       statusCode: 500,
       body: {
@@ -249,8 +244,7 @@ Future<Response> addAlbum(
         if (!inserted) 'message': 'Album already exists',
       },
     );
-  } catch (e, stackTrace) {
-    log('❌ Error adding album: $e\n$stackTrace', name: 'AlbumRoute');
+  } catch (e) {
     return Response.json(
       statusCode: 500,
       body: {

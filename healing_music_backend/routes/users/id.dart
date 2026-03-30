@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dart_frog/dart_frog.dart';
 import 'package:postgres/postgres.dart';
 
@@ -58,7 +56,6 @@ Future<Response> onRequest(RequestContext context) async {
     );
   } catch (e) {
     // Xử lý lỗi nếu truy vấn thất bại
-    log('Error fetching user: $e', name: 'getUserByID');
     return Response.json(
       body: {'status': 'error', 'message': e.toString()},
       statusCode: 500,

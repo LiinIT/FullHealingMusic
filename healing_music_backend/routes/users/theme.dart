@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dart_frog/dart_frog.dart';
 import 'package:postgres/postgres.dart';
 
@@ -43,7 +41,6 @@ Future<Response> getTheme(Connection connect, dynamic userID) async {
     );
     return Response.json(body: {'isLightMode': result[0][0]});
   } catch (e) {
-    log(e.toString(), name: 'getTheme');
     return Response.json(
       body: {
         'done': false,
@@ -58,7 +55,6 @@ Future<Response> setTheme(
   dynamic userID,
 ) async {
   if (isLightMode == null || userID == null) {
-    log('Missing isLightMode or User ID of Theme', name: 'setTheme');
     return Response.json(
       statusCode: 400,
       body: {
@@ -79,7 +75,6 @@ Future<Response> setTheme(
     );
     return Response.json(body: {'done': true});
   } catch (e) {
-    log(e.toString(), name: 'setTheme');
     return Response.json(
       body: {
         'done': false,
