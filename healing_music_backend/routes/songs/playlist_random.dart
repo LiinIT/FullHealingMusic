@@ -4,9 +4,9 @@ import 'package:postgres/postgres.dart';
 Future<Response> onRequest(RequestContext context) async {
   final conn = context.read<Connection>();
 
-  if (context.request.method != HttpMethod.post) {
-    return Response(statusCode: 405);
-  }
+  // if (context.request.method != HttpMethod.post) {
+  //   return Response(statusCode: 405);
+  // }
 
   try {
     // 1. Truy vấn DB
