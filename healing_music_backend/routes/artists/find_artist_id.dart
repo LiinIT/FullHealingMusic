@@ -14,7 +14,13 @@ Future<Response> onRequest(RequestContext context) async {
   try {
     final result = await conn.execute(
       r'''
-        SELECT * 
+        SELECT 
+          id, 
+          full_name, 
+          avatar_url, 
+          follower_count, 
+          is_verified, 
+          created_at
         FROM artists 
         WHERE artists.id = $1 ''',
       parameters: [artistID],
