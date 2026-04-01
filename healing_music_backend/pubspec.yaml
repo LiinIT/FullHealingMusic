@@ -14,7 +14,6 @@ dependencies:
   postgres: ^3.5.9
   shelf: ^1.4.0
   shelf_static: ^1.1.2
-  path: ^1.8.3
 
 dev_dependencies:
   dart_frog_lint: ^0.1.0
