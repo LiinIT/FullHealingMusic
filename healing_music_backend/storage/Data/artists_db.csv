@@ -1,0 +1,11 @@
+id,full_name,avatar_url,bio,follower_count,is_verified,created_at
+1,CaoTri Official,https://randomuser.me/api/portraits/men/1.jpg,Nhà sản xuất âm nhạc và ca sĩ trẻ với nhiều sản phẩm Lofi chất lượng cao,15420,true,2023-01-15 08:30:00
+2,Nguyễn Vĩ,https://randomuser.me/api/portraits/men/2.jpg,Ca sĩ sở hữu giọng hát ấm áp thường xuyên hợp tác với CaoTri Official,8750,false,2023-02-20 10:15:00
+3,F47,https://randomuser.me/api/portraits/women/3.jpg,Nghệ sĩ cover với phong cách trẻ trung năng động,12340,false,2023-03-10 14:20:00
+4,Đặng Thanh Tuyền,https://randomuser.me/api/portraits/women/4.jpg,Giọng ca nội lực với nhiều bản cover được yêu thích,9820,false,2023-01-05 09:45:00
+5,Yamix Hầu Ca,https://randomuser.me/api/portraits/men/5.jpg,Rapper và nhạc sĩ với phong cách Lofi độc đáo,11250,false,2023-02-28 16:30:00
+6,Gấu,https://randomuser.me/api/portraits/women/6.jpg,Nữ ca sĩ trẻ với chất giọng ngọt ngào,7890,false,2023-03-15 11:00:00
+7,Hùng Quân,https://randomuser.me/api/portraits/men/7.jpg,Ca sĩ sáng tác với những ca khúc Lofi sâu lắng,14560,true,2023-01-20 13:15:00
+8,Mr T,https://randomuser.me/api/portraits/men/10.jpg,Rapper và producer với nhiều năm kinh nghiệm,20450,true,2022-12-10 08:00:00
+9,Yanbi,https://randomuser.me/api/portraits/men/9.jpg,Rapper nổi tiếng với phong cách âm nhạc đa dạng,38520,true,2022-11-05 10:30:00
+10,Duy Khiêm,https://randomuser.me/api/portraits/men/10.jpg,Ca sĩ trẻ với giọng hát truyền cảm,6540,false,2023-02-14 15:45:00
