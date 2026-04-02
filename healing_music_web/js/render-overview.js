@@ -17,8 +17,10 @@ function renderOverview() {
     // Top tracks
     const tops = document.getElementById('top-tracks');
     if (tops && DATA.songs.length > 0) {
-        tops.innerHTML = DATA.songs.slice(0, 5).map((s, i) => {
-            return `<div class="track-item">
+        tops.innerHTML = DATA.songs
+            .sort((a, b) => b.play_count - a.play_count)
+            .slice(0, 5).map((s, i) => {
+                return `<div class="track-item">
                 <div class="track-num">${s.rank || i + 1}</div>
                 <img src="${s.image_url || ''}" width="40" height="40" style="border-radius: 8px;">
                 <div class="track-info">
@@ -29,7 +31,7 @@ function renderOverview() {
                 </div>
                 <div class="track-plays">${formatNumber(s.play_count)} plays</div>
             </div>`;
-        }).join('');
+            }).join('');
     }
 
     // Mini chart bars

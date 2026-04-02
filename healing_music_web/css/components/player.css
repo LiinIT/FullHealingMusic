@@ -1,0 +1,89 @@
+.now-playing {
+    background: var(--gradient);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.now-playing::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.now-playing-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 8px;
+}
+
+.now-playing-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.now-playing-artist {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-bottom: 16px;
+}
+
+.progress-bar-wrap {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 99px;
+    height: 3px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: white;
+    border-radius: 99px;
+    width: 38%;
+    transition: width 0.5s linear;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ctrl-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.ctrl-btn:hover {
+    opacity: 1;
+}
+
+.ctrl-btn.main {
+    font-size: 22px;
+    opacity: 1;
+}
+
+.time-info {
+    margin-left: auto;
+    font-size: 11px;
+    opacity: 0.7;
+    font-variant-numeric: tabular-nums;
+}
