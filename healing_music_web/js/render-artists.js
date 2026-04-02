@@ -3,11 +3,13 @@ function renderArtists() {
     const grid = document.getElementById('artists-grid');
     if (grid && DATA.artists) {
         grid.innerHTML = DATA.artists.map(a => `
-            <div class="artist-card" onclick="showToast('👤 Xem hồ sơ: ${a.name}', 'info')">
-                <div class="artist-avatar">${a.icon}</div>
-                <div class="artist-name">${escapeHtml(a.name)}</div>
+            <div class="artist-card" onclick="showToast('👤 Xem hồ sơ: ${a.full_name}', 'info')">
+                <div class="artist-avatar">
+                    <img src="${a.avatar_url || ''}" width="40" height="40" style="border-radius: 8px;">
+                </div>
+                <div class="artist-name">${escapeHtml(a.full_name)}</div>
                 <div class="artist-songs">${a.songs} bài hát</div>
-                <div class="artist-followers">${a.followers} followers</div>
+                <div class="artist-followers">${a.follower_count} followers</div>
             </div>
         `).join('');
     }
@@ -25,12 +27,12 @@ function renderArtists() {
                         </div>
                     </div>
                 </td>
-                <td>${escapeHtml(a.artist)}</td>
+                <td>${escapeHtml(a.full_name)}</td>
                 <td>${a.songs} tracks</td>
                 <td>${a.plays}</td>
                 <td>
                     <div class="action-btns">
-                        <button class="btn-sm btn-view" onclick="showToast('Album: ${a.name}', 'info')">${ICONS.ui.view} View</button>
+                        <button class="btn-sm btn-view" onclick="showToast('Album: ${a.full_name}', 'info')">${ICONS.ui.view} View</button>
                         <button class="btn-sm btn-edit" onclick="showToast('Editing...', 'info')">${ICONS.ui.edit} Edit</button>
                     </div>
                 </td>

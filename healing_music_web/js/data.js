@@ -1,13 +1,5 @@
 // Static data (fallback khi API không có)
 const STATIC_DATA = {
-    artists: [
-        { id: 1, name: 'Sơn Tùng M-TP', followers: '148.6K', songs: 34, streams: '1.4B', icon: getArtistIcon({ name: 'Sơn Tùng M-TP' }) },
-        { id: 2, name: 'Taylor Swift', followers: '89.2K', songs: 12, streams: '890M', icon: getArtistIcon({ name: 'Taylor Swift' }) },
-        { id: 3, name: 'Ed Sheeran', followers: '62.1K', songs: 8, streams: '540M', icon: getArtistIcon({ name: 'Ed Sheeran' }) },
-        { id: 4, name: 'Maroon 5', followers: '41.5K', songs: 15, streams: '320M', icon: getArtistIcon({ name: 'Maroon 5' }) },
-        { id: 5, name: 'BigFlo & Oli', followers: '28.9K', songs: 21, streams: '210M', icon: getArtistIcon({ name: 'BigFlo & Oli' }) },
-        { id: 6, name: 'Indila', followers: '35.4K', songs: 7, streams: '280M', icon: getArtistIcon({ name: 'Indila' }) },
-    ],
     albums: [
         { id: 1, name: 'Sky Tour', artist: 'Sơn Tùng M-TP', songs: 10, year: 2019, plays: '5.3M', icon: getAlbumIcon({ name: 'Sky Tour' }) },
         { id: 2, name: 'my drill', artist: 'BigFlo & Oli', songs: 4, year: 2023, plays: '1.2M', icon: getAlbumIcon({ name: 'my drill' }) },
@@ -40,7 +32,6 @@ const STATIC_DATA = {
 };
 
 // Gán vào DATA
-DATA.artists = STATIC_DATA.artists;
 DATA.albums = STATIC_DATA.albums;
 DATA.users = STATIC_DATA.users;
 DATA.playlists = STATIC_DATA.playlists;

@@ -27,7 +27,7 @@ Future<Response> onRequest(RequestContext context) async {
 
     if (result.isEmpty) {
       return Response.json(
-        body: {'done': true, 'isEmpty': true, 'songs': <dynamic>[]},
+        body: {'done': true, 'isEmpty': true, 'artists': <dynamic>[]},
       );
     }
 

@@ -1,53 +1,58 @@
-<!-- Add Song Modal -->
 <div class="modal-overlay" id="modal-add-song">
     <div class="modal">
-        <div class="modal-title"><i class="fa-solid fa-plus"></i> Thêm Bài Hát Mới</div>
+        <div class="modal-title">🎵 Thêm Bài Hát</div>
+
         <div class="form-group">
             <label class="form-label">Tên bài hát *</label>
-            <input class="form-input" id="new-song-title" placeholder="Nhập tên bài hát...">
+            <input class="form-input" id="new-song-title" placeholder="VD: Chạy Ngay Đi">
         </div>
+
         <div class="form-group">
             <label class="form-label">Nghệ sĩ *</label>
-            <input class="form-input" id="new-song-artist" placeholder="Tên nghệ sĩ...">
+            <select class="form-input" id="new-song-artist-id">
+                <option value="">-- Chọn nghệ sĩ --</option>
+            </select>
         </div>
+        <!-- AUDIO -->
         <div class="form-group">
-            <label class="form-label">Album</label>
-            <input class="form-input" id="new-song-album" placeholder="Tên album (tuỳ chọn)">
-        </div>
-        <div class="form-group">
-            <label class="form-label">Audio URL</label>
-            <input class="form-input" placeholder="https://...mp3">
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-outline" onclick="closeModal('modal-add-song')">
-                <i class="fa-solid fa-xmark"></i> Huỷ
+            <label class="form-label">Audio File *</label>
+            <input type="file" id="audio-file-input" accept=".mp3,.wav,.flac,.m4a" onchange="handleAudioFile(this)"
+                style="display:none">
+            <button class="btn btn-outline" type="button" onclick="document.getElementById('audio-file-input').click()">
+                📁 Chọn file audio
             </button>
-            <button class="btn btn-primary" onclick="saveNewSong()">
-                <i class="fa-solid fa-check"></i> Lưu
-            </button>
+            <span id="audio-filename" style="display:block;font-size:12px;color:var(--text-muted);margin-top:6px">
+                Chưa chọn file
+            </span>
+            <audio id="audio-preview" controls style="width:100%;height:36px;margin-top:8px;display:none"></audio>
+            <input type="hidden" id="new-song-audio-url"> <!-- lưu URL -->
         </div>
-    </div>
-</div>
 
-<!-- Edit Song Modal -->
-<div class="modal-overlay" id="modal-edit-song">
-    <div class="modal">
-        <div class="modal-title"><i class="fa-solid fa-pen-to-square"></i> Chỉnh Sửa Bài Hát</div>
+        <!-- IMAGE -->
         <div class="form-group">
-            <label class="form-label">Tên bài hát</label>
-            <input class="form-input" id="edit-song-title">
+            <label class="form-label">Ảnh bìa</label>
+            <input type="file" id="image-file-input" accept=".jpg,.jpeg,.png,.webp" onchange="handleImageFile(this)"
+                style="display:none">
+            <button class="btn btn-outline" type="button" onclick="document.getElementById('image-file-input').click()">
+                🖼 Chọn ảnh bìa
+            </button>
+            <span id="image-filename" style="display:block;font-size:12px;color:var(--text-muted);margin-top:6px">
+                Chưa chọn file
+            </span>
+            <img id="image-preview" style="width:80px;height:80px;object-fit:cover;border-radius:8px;
+                margin-top:8px;display:none">
+            <input type="hidden" id="new-song-image-url"> <!-- lưu URL -->
         </div>
+
+        <!-- DURATION (readonly, tự điền) -->
         <div class="form-group">
-            <label class="form-label">Nghệ sĩ</label>
-            <input class="form-input" id="edit-song-artist">
+            <label class="form-label">Duration (giây)</label>
+            <input class="form-input" id="new-song-duration" type="number" readonly placeholder="Tự động khi chọn audio"
+                style="color:var(--text-muted)">
         </div>
         <div class="modal-footer">
-            <button class="btn btn-outline" onclick="closeModal('modal-edit-song')">
-                <i class="fa-solid fa-xmark"></i> Huỷ
-            </button>
-            <button class="btn btn-primary" onclick="saveEditSong()">
-                <i class="fa-solid fa-check"></i> Cập Nhật
-            </button>
+            <button class="btn btn-outline" onclick="closeModal('modal-add-song')">Huỷ</button>
+            <button class="btn btn-primary" onclick="addSong()">✅ Lưu</button>
         </div>
     </div>
 </div>
@@ -55,22 +60,55 @@
 <!-- Add Artist Modal -->
 <div class="modal-overlay" id="modal-add-artist">
     <div class="modal">
-        <div class="modal-title"><i class="fa-solid fa-microphone-lines"></i> Thêm Nghệ Sĩ</div>
+        <div class="modal-title">🎤 Thêm Nghệ Sĩ</div>
         <div class="form-group">
             <label class="form-label">Tên nghệ sĩ *</label>
-            <input class="form-input" id="new-artist-name" placeholder="Nhập tên nghệ sĩ...">
+            <input class="form-input" id="new-artist-name" placeholder="VD: Sơn Tùng M-TP">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Avatar URL</label>
+            <input class="form-input" id="new-artist-avatar" placeholder="https://...">
         </div>
         <div class="form-group">
             <label class="form-label">Bio</label>
-            <input class="form-input" placeholder="Mô tả ngắn...">
+            <input class="form-input" id="new-artist-bio" placeholder="Mô tả...">
         </div>
         <div class="modal-footer">
-            <button class="btn btn-outline" onclick="closeModal('modal-add-artist')">
-                <i class="fa-solid fa-xmark"></i> Huỷ
-            </button>
-            <button class="btn btn-primary" onclick="saveNewArtist()">
-                <i class="fa-solid fa-check"></i> Lưu
-            </button>
+            <button class="btn btn-outline" onclick="closeModal('modal-add-artist')">Huỷ</button>
+            <button class="btn btn-primary" onclick="addArtist()">✅ Lưu</button>
+        </div>
+    </div>
+</div>
+
+<!-- Add Album Modal -->
+<div class="modal-overlay" id="modal-add-album">
+    <div class="modal">
+        <div class="modal-title">💿 Thêm Album</div>
+        <div class="form-group">
+            <label class="form-label">Tên album *</label>
+            <input class="form-input" id="new-album-title" placeholder="VD: Sky Tour">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Artist ID *</label>
+            <input class="form-input" id="new-album-artist-id" type="number" placeholder="1">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Loại album</label>
+            <select class="form-input" id="new-album-type">
+                <option value="album">Album</option>
+                <option value="single">Single</option>
+                <option value="EP">EP</option>
+                <option value="live">Live</option>
+                <option value="compilation">Compilation</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Cover URL</label>
+            <input class="form-input" id="new-album-cover" placeholder="https://...">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('modal-add-album')">Huỷ</button>
+            <button class="btn btn-primary" onclick="addAlbum()">✅ Lưu</button>
         </div>
     </div>
 </div>
