@@ -1,0 +1,76 @@
+<!-- Add Song Modal -->
+<div class="modal-overlay" id="modal-add-song">
+    <div class="modal">
+        <div class="modal-title"><i class="fa-solid fa-plus"></i> Thêm Bài Hát Mới</div>
+        <div class="form-group">
+            <label class="form-label">Tên bài hát *</label>
+            <input class="form-input" id="new-song-title" placeholder="Nhập tên bài hát...">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Nghệ sĩ *</label>
+            <input class="form-input" id="new-song-artist" placeholder="Tên nghệ sĩ...">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Album</label>
+            <input class="form-input" id="new-song-album" placeholder="Tên album (tuỳ chọn)">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Audio URL</label>
+            <input class="form-input" placeholder="https://...mp3">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('modal-add-song')">
+                <i class="fa-solid fa-xmark"></i> Huỷ
+            </button>
+            <button class="btn btn-primary" onclick="saveNewSong()">
+                <i class="fa-solid fa-check"></i> Lưu
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Song Modal -->
+<div class="modal-overlay" id="modal-edit-song">
+    <div class="modal">
+        <div class="modal-title"><i class="fa-solid fa-pen-to-square"></i> Chỉnh Sửa Bài Hát</div>
+        <div class="form-group">
+            <label class="form-label">Tên bài hát</label>
+            <input class="form-input" id="edit-song-title">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Nghệ sĩ</label>
+            <input class="form-input" id="edit-song-artist">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('modal-edit-song')">
+                <i class="fa-solid fa-xmark"></i> Huỷ
+            </button>
+            <button class="btn btn-primary" onclick="saveEditSong()">
+                <i class="fa-solid fa-check"></i> Cập Nhật
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Add Artist Modal -->
+<div class="modal-overlay" id="modal-add-artist">
+    <div class="modal">
+        <div class="modal-title"><i class="fa-solid fa-microphone-lines"></i> Thêm Nghệ Sĩ</div>
+        <div class="form-group">
+            <label class="form-label">Tên nghệ sĩ *</label>
+            <input class="form-input" id="new-artist-name" placeholder="Nhập tên nghệ sĩ...">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Bio</label>
+            <input class="form-input" placeholder="Mô tả ngắn...">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('modal-add-artist')">
+                <i class="fa-solid fa-xmark"></i> Huỷ
+            </button>
+            <button class="btn btn-primary" onclick="saveNewArtist()">
+                <i class="fa-solid fa-check"></i> Lưu
+            </button>
+        </div>
+    </div>
+</div>

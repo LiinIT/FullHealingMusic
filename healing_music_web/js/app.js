@@ -1,16 +1,20 @@
 // Main initialization
 document.addEventListener('DOMContentLoaded', async () => {
+    // === THÊM ĐOẠN NÀY: Load HTML components ===
+    await HTML_LOADER.loadAll();
+    // === KẾT THÚC ===
+
     // Update topbar icons
     const searchBtn = document.querySelector('.topbar-search button');
     if (searchBtn) searchBtn.innerHTML = ICONS.ui.search;
 
-    const bellBtn = document.querySelector('.topbar-actions .btn-icon:nth-child(1)');
+    const bellBtn = document.querySelector('.topbar-actions .icon-btn:nth-child(1)');
     if (bellBtn) bellBtn.innerHTML = ICONS.ui.bell;
 
-    const themeBtn = document.querySelector('.topbar-actions .btn-icon:nth-child(2)');
+    const themeBtn = document.querySelector('.topbar-actions .icon-btn:nth-child(2)');
     if (themeBtn) themeBtn.innerHTML = ICONS.ui.moon;
 
-    const userBtn = document.querySelector('.topbar-actions .btn-icon:nth-child(3)');
+    const userBtn = document.querySelector('.topbar-actions .icon-btn:nth-child(3)');
     if (userBtn) userBtn.innerHTML = ICONS.ui.user;
 
     // Load data from API

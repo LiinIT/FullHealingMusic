@@ -1,0 +1,38 @@
+<!-- ════════════════ PAGE: SONGS ════════════════ -->
+<div class="page" id="page-songs">
+    <div class="page-search-bar">
+        <div class="search-input-wrap">
+            <span style="color:var(--text-muted)"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input id="songs-search" type="text" placeholder="Tìm bài hát, nghệ sĩ...">
+        </div>
+        <button class="btn btn-outline"><i class="fa-solid fa-filter"></i> Filter</button>
+        <button class="btn btn-primary" onclick="openModal('modal-add-song')">
+            <i class="fa-solid fa-plus"></i> Add Song
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title"><i class="fa-solid fa-music"></i> All Songs</span>
+            <span class="card-action" id="songs-count"></span>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Song</th>
+                        <th>Duration</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="songs-tbody"></tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+</div>

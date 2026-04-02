@@ -1,0 +1,46 @@
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        <div class="logo-icon"><i class="fa-solid fa-headphones-simple"></i></div>
+        <div class="logo-text">
+            <span>Healing</span> Music
+            <small>Admin Dashboard</small>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <div class="nav-section-label">Main</div>
+        <a class="nav-item" data-page="overview" onclick="navigate('overview')">
+            <span class="nav-icon"><i class="fa-solid fa-chart-column"></i></span> Overview
+        </a>
+        <a class="nav-item" data-page="songs" onclick="navigate('songs')">
+            <span class="nav-icon"><i class="fa-solid fa-music"></i></span> Songs
+            <span class="nav-badge" id="isong-count"></span>
+        </a>
+        <a class="nav-item" data-page="artists" onclick="navigate('artists')">
+            <span class="nav-icon"><i class="fa-solid fa-microphone-lines"></i></span> Artists & Albums
+        </a>
+        <a class="nav-item" data-page="users" onclick="navigate('users')">
+            <span class="nav-icon"><i class="fa-solid fa-users"></i></span> Users & Playlists
+            <span class="nav-badge">5</span>
+        </a>
+
+        <div class="nav-section-label" style="margin-top:8px">System</div>
+        <a class="nav-item" onclick="showToast('Settings chưa implement', 'info')">
+            <span class="nav-icon"><i class="fa-solid fa-gears"></i></span> Settings
+        </a>
+        <a class="nav-item" onclick="showToast('Analytics chưa implement', 'info')">
+            <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span> Analytics
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="user-card" onclick="showToast('Admin profile', 'info')">
+            <div class="user-avatar">NK</div>
+            <div class="user-info">
+                <div class="user-name">Ngoc Khanh</div>
+                <div class="user-role">Administrator</div>
+            </div>
+            <span style="color:var(--text-muted);font-size:14px"><i class="fa-solid fa-ellipsis"></i></span>
+        </div>
+    </div>
+</aside>

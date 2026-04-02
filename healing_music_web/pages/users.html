@@ -1,0 +1,38 @@
+<!-- ════════════════ PAGE: USERS ════════════════ -->
+<div class="page" id="page-users">
+    <div class="section-row">
+        <div class="section-title"><i class="fa-solid fa-users"></i> Users</div>
+        <button class="btn btn-primary" onclick="showToast('➕ Invite user', 'info')">
+            <i class="fa-solid fa-user-plus"></i> Invite User
+        </button>
+    </div>
+    <div class="card" style="margin-bottom:24px">
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Playlists</th>
+                        <th>Favorites</th>
+                        <th>Status</th>
+                        <th>Joined</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="users-tbody"></tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <button class="page-btn active">1</button>
+            <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <div class="section-row">
+        <div class="section-title"><i class="fa-solid fa-list-ul"></i> Playlists</div>
+    </div>
+    <div class="card">
+        <div class="playlist-grid" id="playlists-grid"></div>
+    </div>
+</div>

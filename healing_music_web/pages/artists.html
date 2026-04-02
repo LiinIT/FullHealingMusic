@@ -1,0 +1,35 @@
+<!-- ════════════════ PAGE: ARTISTS ════════════════ -->
+<div class="page" id="page-artists">
+    <div class="section-row">
+        <div class="section-title"><i class="fa-solid fa-microphone-lines"></i> Artists</div>
+        <button class="btn btn-primary" onclick="openModal('modal-add-artist')">
+            <i class="fa-solid fa-plus"></i> Add Artist
+        </button>
+    </div>
+    <div class="card" style="margin-bottom:24px">
+        <div class="artist-grid" id="artists-grid"></div>
+    </div>
+
+    <div class="section-row">
+        <div class="section-title"><i class="fa-solid fa-compact-disc"></i> Albums</div>
+        <button class="btn btn-outline" onclick="showToast('➕ Add album', 'info')">
+            <i class="fa-solid fa-plus"></i> Add Album
+        </button>
+    </div>
+    <div class="card">
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Album</th>
+                        <th>Artist</th>
+                        <th>Tracks</th>
+                        <th>Plays</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="albums-tbody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
