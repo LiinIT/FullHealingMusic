@@ -1,0 +1,50 @@
+// Render Users page
+function renderUsers() {
+    const tbody = document.getElementById('users-tbody');
+    if (tbody && DATA.users) {
+        tbody.innerHTML = DATA.users.map(u => `
+            <tr>
+                <td>
+                    <div class="song-row">
+                        <div class="user-row-avatar">${u.initials}</div>
+                        <div>
+                            <div class="song-name">${escapeHtml(u.name)}</div>
+                            <div class="song-artist">${u.username}</div>
+                        </div>
+                    </div>
+                </td>
+                <td>${escapeHtml(u.email)}</td>
+                <td>${u.playlists}</td>
+                <td>${u.favorites}</td>
+                <td><span class="status-dot ${u.status}">${u.status}</span></td>
+                <td>${u.joined}</td>
+                <td>
+                    <div class="action-btns">
+                        <button class="btn-sm btn-view" onclick="showToast('👤 ${u.name}', 'info')">${ICONS.ui.view} View</button>
+                        <button class="btn-sm btn-del" onclick="deleteUser(${u.id})">${ICONS.ui.ban} Ban</button>
+                    </div>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    const pgrid = document.getElementById('playlists-grid');
+    if (pgrid && DATA.playlists) {
+        pgrid.innerHTML = DATA.playlists.map(p => `
+            <div class="playlist-card">
+                <div class="playlist-cover">
+                    <span style="position:relative;z-index:1;font-size:36px">${p.icon}</span>
+                    <div class="playlist-cover-overlay"></div>
+                </div>
+                <div class="playlist-info">
+                    <div class="playlist-name">${escapeHtml(p.name)}</div>
+                    <div class="playlist-meta">
+                        <span><i class="fa-brands fa-soundcloud"></i> ${p.songs}</span>
+                        <span>${p.visibility === 'public' ? '<i class="fa-solid fa-globe"></i>' : '<i class="fa-solid fa-lock"></i>'} ${p.visibility}</span>
+                    </div>
+                    <div style="font-size:11px;color:var(--text-muted);margin-top:5px">${p.user}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+}

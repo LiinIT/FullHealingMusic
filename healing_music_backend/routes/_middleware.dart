@@ -2,10 +2,8 @@ import 'package:dart_frog/dart_frog.dart';
 import 'package:dotenv/dotenv.dart';
 import 'package:postgres/postgres.dart';
 
-// Biến global để giữ kết nối không bị đóng
 Connection? _dbConnection;
 final _env = DotEnv()..load();
-
 String _getEnv(String key) {
   final value = _env[key];
   if (value == null || value.isEmpty) {
@@ -14,8 +12,16 @@ String _getEnv(String key) {
   return value;
 }
 
+const _corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
 Handler middleware(Handler handler) {
   return (context) async {
+    if (context.request.method == HttpMethod.options) {
+      return Response(statusCode: 204, headers: _corsHeaders);
+    }
     _dbConnection ??= await Connection.open(
       Endpoint(
         host: _getEnv('DB_HOST'),
@@ -26,9 +32,11 @@ Handler middleware(Handler handler) {
       ),
       settings: const ConnectionSettings(sslMode: SslMode.disable),
     );
-
-    return handler
+    final response = await handler
         .use(provider<Connection>((_) => _dbConnection!))
         .call(context);
+    return response.copyWith(
+      headers: {...response.headers, ..._corsHeaders},
+    );
   };
 }
