@@ -3,28 +3,36 @@ function renderArtists() {
 
     // ─── ARTISTS ─────────────────────
     if (grid && Array.isArray(DATA.artists)) {
-        grid.innerHTML = DATA.artists.map(a => `
-            <div class="artist-card"
-                 onclick="showToast('👤 ${escapeHtml(a.full_name)}', 'info')">
+        grid.innerHTML = DATA.artists.map(a => {
 
-                <div class="artist-avatar">
-                    <img src="${a.avatar_url || 'https://via.placeholder.com/40'}"
-                         width="40" height="40">
-                </div>
+            const songCount = Array.isArray(DATA.songs)
+                ? DATA.songs.filter(s => s.artist_id === a.id).length
+                : 0;
 
-                <div class="artist-name">
-                    ${escapeHtml(a.full_name || 'Unknown')}
-                </div>
+            const avatar = a.avatar_url || 'https://via.placeholder.com/40';
 
-                <div class="artist-songs">
-                    ${a.song_count ?? 0} bài hát
-                </div>
+            return `
+                <div class="artist-card"
+                     onclick="showToast('👤 ${escapeHtml(a.full_name)}', 'info')">
 
-                <div class="artist-followers">
-                    ${a.follower_count ?? 0} followers
+                    <div class="artist-avatar"
+                         style="background-image: url('${avatar}')">
+                    </div>
+
+                    <div class="artist-name">
+                        ${escapeHtml(a.full_name || 'Unknown')}
+                    </div>
+
+                    <div class="artist-songs">
+                        ${songCount} bài hát
+                    </div>
+
+                    <div class="artist-followers">
+                        ${a.follower_count ?? 0} followers
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     // ─── ALBUMS ─────────────────────
@@ -91,7 +99,6 @@ async function addArtist() {
     const btn = event?.target;
 
     const fullName = document.getElementById('new-artist-name')?.value?.trim();
-    const avatarUrl = document.getElementById('new-artist-avatar')?.value?.trim();
     const bio = document.getElementById('new-artist-bio')?.value?.trim();
 
     if (!fullName) {
@@ -99,22 +106,25 @@ async function addArtist() {
         return;
     }
 
+    const fileImage = selectedFiles.artist.image;
+    let imageUrl = null;
+    if (fileImage) imageUrl = await uploadFile(fileImage);
+
     try {
         btn?.setAttribute('disabled', true);
 
-        const { success, data } = await postAPI('/artists/manage', {
+        const { success, data } = await postAPI('/artists/crud_artist', {
             action: 'addArtist',
             fullName,
-            avatarUrl: avatarUrl || 'https://i.pravatar.cc/150',
+            avatarUrl: imageUrl || 'https://i.pravatar.cc/150',
             bio: bio || '',
         });
 
         if (success && data.done) {
             showToast(`✅ Thêm nghệ sĩ thành công!`, 'success');
-
             // reset form
             document.getElementById('new-artist-name').value = '';
-            document.getElementById('new-artist-avatar').value = '';
+            document.getElementById('artist-image-preview').value = '';
             document.getElementById('new-artist-bio').value = '';
 
             closeModal('modal-add-artist');
@@ -127,7 +137,7 @@ async function addArtist() {
 
     } catch (e) {
         console.error(e);
-        showToast('❌ Lỗi server', 'error');
+        showToast(`❌ Đã có vấn đề gì đó xảy ra!!!`, 'error');
     } finally {
         btn?.removeAttribute('disabled');
     }

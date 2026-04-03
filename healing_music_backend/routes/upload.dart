@@ -39,7 +39,7 @@ Future<Response> onRequest(RequestContext context) async {
         filename.endsWith('.flac') ||
         filename.endsWith('.m4a');
 
-    final subfolder = isAudio ? 'audios' : 'images/song';
+    final subfolder = isAudio ? 'audios' : 'images';
 
     // Lưu file vào healing_music_web/public/
     final savePath = '../healing_music_web/public/$subfolder/$filename';

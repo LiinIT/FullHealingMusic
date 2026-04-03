@@ -23,7 +23,6 @@ function postAPI(endpoint, body) {
 
 
 // ─── LOAD DATA ───────────────────────────────────────────────────────────────
-// Chỉ khai báo 1 lần — bỏ bản trùng ở trên
 async function loadSongsFromAPI() {
     const { success, data } = await fetchAPI('/songs');
     if (success && data.songs) {

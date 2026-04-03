@@ -168,9 +168,23 @@
             <input class="form-input" id="new-artist-name" placeholder="VD: Sơn Tùng M-TP">
         </div>
 
+        <!-- IMAGE -->
         <div class="form-group">
-            <label class="form-label">Avatar URL</label>
-            <input class="form-input" id="new-artist-avatar" placeholder="https://...">
+            <label class="form-label">Ảnh bìa</label>
+
+            <input type="file" id="artist-image-file-input" onchange="handleImageFile('artist', this)" hidden>
+
+            <button class="btn btn-outline" onclick="document.getElementById('artist-image-file-input').click()">
+                Chọn ảnh
+            </button>
+
+            <span id="artist-image-filename"
+                style="font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
+                Chưa chọn file
+            </span>
+
+            <img id="artist-image-preview"
+                style="display:none;width:80px;height:80px;object-fit:cover;border-radius:8px;">
         </div>
 
         <div class="form-group">

@@ -25,12 +25,17 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: var(--gradient);
+
+    /* cover image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* fallback khi không có ảnh */
+    background-color: #222;
+
     margin: 0 auto 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
+
     box-shadow: 0 4px 16px rgba(255, 107, 74, 0.3);
 }
 

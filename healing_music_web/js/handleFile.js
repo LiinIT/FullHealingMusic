@@ -28,18 +28,43 @@ function handleImageFile(type, input) {
     const file = input.files[0];
     if (!file) return;
 
+    if (!selectedFiles[type]) {
+        selectedFiles[type] = {};
+    }
+
     selectedFiles[type].image = file;
 
-    const prefix = type === 'create' ? 'new' : 'edit';
+    let prefix = type;
+    switch (type) {
+        case 'create':
+            prefix = 'new';
+            break;
+        case 'edit':
+            prefix = 'edit';
+            break;
+        case 'artist':
+            prefix = 'artist';
+            break;
+    }
 
     const preview = document.getElementById(`${prefix}-image-preview`);
     const label = document.getElementById(`${prefix}-image-filename`);
 
+    // Kiểm tra xem phần tử có tồn tại không
+    if (!preview || !label) {
+        return;
+    }
+
     label.textContent = file.name;
 
+    // Tạo URL cho hình ảnh
     const blobUrl = URL.createObjectURL(file);
+
     preview.src = blobUrl;
+
+    // Hiển thị ảnh
     preview.style.display = 'block';
+
 }
 
 async function uploadFile(file) {
@@ -49,13 +74,12 @@ async function uploadFile(file) {
 
         const response = await fetch(`${CONFIG.API_BASE_URL}/upload`, {
             method: 'POST',
-            body: formData,  // KHÔNG set Content-Type thủ công
+            body: formData,
         });
 
         const data = await response.json();
 
         if (data.done) {
-            console.log('Uploaded:', data.url);
             return data.url;  // http://127.0.0.1:5500/public/audios/song.mp3
         }
 
