@@ -96,7 +96,6 @@ Future<Response> getAllAlbum(Connection connect, dynamic userID) async {
                 'is_verified',      ar.is_verified,    
                 'image_url',        s.image_url,
                 'audio_url',        s.audio_url,
-                'rank',             s.rank,
                 'duration_seconds', s.duration_seconds,
                 'created_at',       s.created_at
               ) ORDER BY als.added_at ASC

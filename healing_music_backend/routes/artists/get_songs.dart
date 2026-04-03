@@ -20,7 +20,6 @@ Future<Response> onRequest(RequestContext context) async {
           s.title,
           s.image_url,
           s.audio_url,
-          s.rank,
           s.duration_seconds,
           s.created_at      AS song_created_at,
 

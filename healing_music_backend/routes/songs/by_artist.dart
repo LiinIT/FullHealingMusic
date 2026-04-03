@@ -22,7 +22,6 @@ Future<Response> onRequest(RequestContext context) async {
           s.title,
           s.image_url,
           s.audio_url,
-          s.rank,
           s.duration_seconds,
           s.created_at      AS song_created_at,
 
@@ -51,16 +50,15 @@ Future<Response> onRequest(RequestContext context) async {
             'title': row[1],
             'image_url': row[2],
             'audio_url': row[3],
-            'rank': row[4],
-            'duration_seconds': row[5],
-            'song_created_at': row[6]?.toString(),
+            'duration_seconds': row[4],
+            'song_created_at': row[5]?.toString(),
 
             // artists fields
-            'artist_id': row[7],
-            'artist_name': row[8],
-            'artist_avatar': row[9],
-            'follower_count': row[10],
-            'is_verified': row[11],
+            'artist_id': row[6],
+            'artist_name': row[7],
+            'artist_avatar': row[8],
+            'follower_count': row[9],
+            'is_verified': row[10],
           },
         )
         .toList();

@@ -367,7 +367,6 @@ Future<Response> getAllAlbumsByArtist(
                 'track_number', aas.track_number,
                 'duration_seconds', s.duration_seconds,
                 'image_url', s.image_url,
-                'rank', s.rank
               ) ORDER BY aas.track_number ASC
             ) FILTER (WHERE s.id IS NOT NULL),
             '[]'
@@ -437,7 +436,6 @@ Future<Response> getSongsInAlbum(Connection connect, dynamic albumId) async {
           s.title,
           s.image_url,
           s.audio_url,
-          s.rank,
           s.duration_seconds,
           s.play_count,
           s.created_at,
@@ -469,17 +467,16 @@ Future<Response> getSongsInAlbum(Connection connect, dynamic albumId) async {
             'title': row[1],
             'image_url': row[2],
             'audio_url': row[3],
-            'rank': row[4],
-            'duration_seconds': row[5],
-            'play_count': row[6],
-            'created_at': row[7]?.toString(),
-            'track_number': row[8],
-            'added_at': row[9]?.toString(),
+            'duration_seconds': row[4],
+            'play_count': row[5],
+            'created_at': row[6]?.toString(),
+            'track_number': row[7],
+            'added_at': row[8]?.toString(),
             'artist': {
-              'id': row[10],
-              'full_name': row[11],
-              'avatar_url': row[12],
-              'is_verified': row[13],
+              'id': row[9],
+              'full_name': row[10],
+              'avatar_url': row[11],
+              'is_verified': row[12],
             },
           },
         )
