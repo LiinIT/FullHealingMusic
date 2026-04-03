@@ -1,11 +1,5 @@
 // Static data (fallback khi API không có)
 const STATIC_DATA = {
-    albums: [
-        { id: 1, name: 'Sky Tour', artist: 'Sơn Tùng M-TP', songs: 10, year: 2019, plays: '5.3M', icon: getAlbumIcon({ name: 'Sky Tour' }) },
-        { id: 2, name: 'my drill', artist: 'BigFlo & Oli', songs: 4, year: 2023, plays: '1.2M', icon: getAlbumIcon({ name: 'my drill' }) },
-        { id: 3, name: 'Reputation', artist: 'Taylor Swift', songs: 15, year: 2017, plays: '4.1M', icon: getAlbumIcon({ name: 'Reputation' }) },
-        { id: 4, name: 'Jordi', artist: 'Maroon 5', songs: 12, year: 2021, plays: '2.9M', icon: getAlbumIcon({ name: 'Jordi' }) },
-    ],
     users: [
         { id: 1, name: 'Ngoc Khanh', username: '@liinit', email: 'hongockhanh.it@gmail.com', playlists: 5, favorites: 34, joined: '2024-01-15', status: 'online', initials: 'NK' },
         { id: 2, name: 'Minh Tuan', username: '@mtuan', email: 'mtuan@gmail.com', playlists: 2, favorites: 18, joined: '2024-03-20', status: 'online', initials: 'MT' },

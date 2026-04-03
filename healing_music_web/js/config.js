@@ -14,6 +14,10 @@ let playerInterval = null;
 let progressPct = 38;
 let file_song = null;
 let file_img = null;
+let selectedFiles = {
+    create: { audio: null, image: null },
+    edit: { audio: null, image: null }
+};
 
 // Global DATA object (sẽ được fill từ API)
 window.DATA = window.DATA || {

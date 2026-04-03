@@ -158,31 +158,3 @@ const DATA = {
         { text: 'New album <strong>my drill</strong> indexed successfully', time: '3h ago', color: '#4ADE80', icon: ICONS.ui.check },
     ]
 };
-
-
-// fetch api to dart_frog
-const API_BASE_URL = 'http://localhost:8080'; // Mặc định Dart Frog chạy port 8080
-
-// ==================== HELPER FUNCTIONS ====================
-async function fetchAPI(endpoint) {
-    const url = `${API_BASE_URL}${endpoint}`;
-    const defaultOptions = {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
-    try {
-        const response = await fetch(url, defaultOptions);
-
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        return { success: true, data };
-    } catch (error) {
-        console.error('Fetch error:', error);
-        return { success: false, error: error.message };
-    }
-}

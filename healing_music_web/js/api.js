@@ -51,58 +51,39 @@ async function loadAlbumFromAPI() {
         renderAlbums(DATA.albums);
     }
 }
+async function openAddSongModal() {
+    resetAddSongForm();
 
+    const select = document.getElementById('new-song-artist-id');
+    if (select) loadOptionArtist(select);
 
-// ─── ADD SONG ────────────────────────────────────────────────────────────────
-async function addSong() {
-    const title = document.getElementById('new-song-title')?.value?.trim();
-    const artistId = document.getElementById('new-song-artist-id')?.value;
-    const audioUrl = document.getElementById('new-song-audio-url')?.value?.trim();
-    const imageUrl = document.getElementById('new-song-image-url')?.value?.trim();
-    const duration = document.getElementById('new-song-duration')?.value;
-
-    // Validate
-    if (!title) { showToast('⚠️ Tiêu đề là bắt buộc', 'error'); return; }
-    if (!artistId) { showToast('⚠️ Vui lòng chọn nghệ sĩ', 'error'); return; }
-    if (!audioUrl) { showToast('⚠️ Vui lòng chọn file audio', 'error'); return; }
-
-    const { success, data } = await postAPI('/songs/create_song', {
-        action: 'addSong',
-        title,
-        artistId: parseInt(artistId),
-        audioUrl,
-        imageUrl: imageUrl || null,
-        durationSeconds: duration ? parseInt(duration) : null,
-    });
-
-    if (success && data.done) {
-        closeModal('modal-add-song');
-        resetAddSongForm();
-        await uploadFile(file_song);
-        if (!audioUrl) { showToast('❌ Upload audio thất bại', 'error'); return; }
-
-        await uploadFile(file_img);
-        if (!audioUrl) { showToast('❌ Upload img thất bại', 'error'); return; }
-
-        await loadSongsFromAPI();
-        showToast(`✅ Thêm bài hát thành công! ID: ${data.id}`, 'success');
-    } else {
-        showToast(`❌ ${data?.message ?? 'Thêm thất bại'}`, 'error');
-    }
+    openModal('modal-add-song');
 }
 
 function resetAddSongForm() {
-    ['new-song-title', 'new-song-artist-id', 'new-song-duration',
-        'new-song-audio-url', 'new-song-image-url'].forEach(id => {
+    // reset input
+    ['new-song-title', 'new-song-artist-id', 'new-song-duration']
+        .forEach(id => {
             const el = document.getElementById(id);
             if (el) el.value = '';
         });
-    document.getElementById('audio-filename').innerHTML = 'Chưa chọn file';
-    document.getElementById('image-filename').innerHTML = 'Chưa chọn file';
-    document.getElementById('audio-preview').style.display = 'none';
-    document.getElementById('image-preview').style.display = 'none';
-    selectedAudioFile = null;
-    selectedImageFile = null;
+
+    // FIX ID đúng
+    const audioName = document.getElementById('new-audio-filename');
+    const imageName = document.getElementById('new-image-filename');
+    const audioPreview = document.getElementById('new-audio-preview');
+    const imagePreview = document.getElementById('new-image-preview');
+
+    if (audioName) audioName.innerHTML = 'Chưa chọn file';
+    if (imageName) imageName.innerHTML = 'Chưa chọn file';
+
+    if (audioPreview) audioPreview.style.display = 'none';
+    if (imagePreview) imagePreview.style.display = 'none';
+
+    // reset file state
+    if (typeof selectedFiles !== 'undefined') {
+        selectedFiles.create = { audio: null, image: null };
+    }
 }
 
 // ─── ADD ARTIST ──────────────────────────────────────────────────────────────

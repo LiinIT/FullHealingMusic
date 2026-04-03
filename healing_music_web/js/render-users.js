@@ -48,3 +48,15 @@ function renderUsers() {
         `).join('');
     }
 }
+
+
+// ─── DELETE USER ─────────────────────────────────────────────────────────────
+function deleteUser(id) {
+    if (!confirm('Bạn có chắc muốn ban user này?')) return;
+    const idx = DATA.users.findIndex(x => x.id === id);
+    if (idx > -1) {
+        DATA.users.splice(idx, 1);
+        renderUsers();
+        showToast('🚫 User đã bị ban', 'error');
+    }
+}

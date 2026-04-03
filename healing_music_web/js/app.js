@@ -59,75 +59,47 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // ─── HANDLE AUDIO FILE ───────────────────────────────────────────────────────
-function handleAudioFile(input) {
+function handleAudioFile(type, input) {
     const file = input.files[0];
-    file_song = input.files[0];
-    console.log(file_song);
-
     if (!file) return;
 
-    const filenameEl = document.getElementById('audio-filename');
-    const preview = document.getElementById('audio-preview');
-    const audioInput = document.getElementById('new-song-audio-url');
-    const durationInput = document.getElementById('new-song-duration');
+    selectedFiles[type].audio = file;
 
-    // Hiện tên file
+    const prefix = type === 'create' ? 'new' : 'edit';
+
+    const filenameEl = document.getElementById(`${prefix}-audio-filename`);
+    const preview = document.getElementById(`${prefix}-audio-preview`);
+    const durationInput = document.getElementById(`${prefix}-song-duration`);
+
     filenameEl.textContent = file.name;
 
-    // Blob URL để preview + đọc duration
     const blobUrl = URL.createObjectURL(file);
     preview.src = blobUrl;
     preview.style.display = 'block';
 
-    // Tự động đọc duration từ metadata
     preview.onloadedmetadata = () => {
-        const secs = Math.round(preview.duration);
-        durationInput.value = secs;
-        durationInput.dispatchEvent(new Event('input')); // cập nhật UI nếu có listener
+        durationInput.value = Math.round(preview.duration);
     };
-
-    // Lưu path convention: public/audios/filename.mp3
-    audioInput.value = `${CONFIG.WEB_BASE_URL}/${CONFIG.PUBLIC_AUDIO}/${file.name}`;
 }
 
 // ─── HANDLE IMAGE FILE ───────────────────────────────────────────────────────
-function handleImageFile(input) {
+function handleImageFile(type, input) {
     const file = input.files[0];
-    file_img = input.files[0];
-    console.log(file_img);
-
     if (!file) return;
 
-    const preview = document.getElementById('image-preview');
-    const imageInput = document.getElementById('new-song-image-url');
-    const label = document.getElementById('image-filename');
+    selectedFiles[type].image = file;
+
+    const prefix = type === 'create' ? 'new' : 'edit';
+
+    const preview = document.getElementById(`${prefix}-image-preview`);
+    const label = document.getElementById(`${prefix}-image-filename`);
 
     label.textContent = file.name;
 
-    // Preview ngay bằng blob
     const blobUrl = URL.createObjectURL(file);
     preview.src = blobUrl;
     preview.style.display = 'block';
-
-    // Lưu path
-    imageInput.value = `${CONFIG.WEB_BASE_URL}/${CONFIG.PUBLIC_IMAGE}/${file.name}`;
 }
-
-
-async function openAddSongModal() {
-    openModal('modal-add-song');
-
-    const select = document.getElementById('new-song-artist-id');
-    select.innerHTML = '<option value="">-- Chọn nghệ sĩ --</option>';
-
-    DATA.artists.forEach(a => {
-        const opt = document.createElement('option');
-        opt.value = a.id ?? a.artist_id;
-        opt.textContent = a.full_name ?? a.name;
-        select.appendChild(opt);
-    });
-}
-
 
 async function uploadFile(file) {
     try {
