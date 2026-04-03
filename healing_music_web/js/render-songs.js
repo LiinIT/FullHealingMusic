@@ -2,12 +2,6 @@
 function renderSongs(songs = DATA.songs) {
     const tbody = document.getElementById('songs-tbody');
 
-    // Update count
-    const songsCount = document.getElementById('songs-count');
-    const isongCount = document.getElementById('isong-count');
-    if (songsCount) songsCount.innerText = `${songs.length} bài hát`;
-    if (isongCount) isongCount.innerText = `${songs.length}`;
-
     if (!tbody) return;
 
     // Sort by play count
@@ -36,11 +30,11 @@ function renderSongs(songs = DATA.songs) {
     `).join('');
 }
 
-// ─── OPEN ADD SONG ───────────────────────────────────────────────────────────
+
 async function openAddSongModal() {
     resetAddSongForm();
     const select = document.getElementById('new-song-artist-id');
-    loadOptionArtist(select);
+    if (select) loadOptionArtist(select);
     openModal('modal-add-song');
 }
 // ─── ADD SONG ────────────────────────────────────────────────────────────────

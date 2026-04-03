@@ -29,10 +29,14 @@ async function loadSongsFromAPI() {
     if (success && data.songs) {
         DATA.songs = data.songs;
         renderSongs(DATA.songs);
-        const ranked = data.songs
-            .filter(s => s.rank != null)
-            .sort((a, b) => a.rank - b.rank);
-        // renderTopTracks(ranked);
+
+        // Update count
+        const songsCount = document.getElementById('songs-count');
+        const isongCount = document.getElementById('isong-count');
+        const totalOverView = document.getElementById('total-songs-value');
+        if (songsCount) songsCount.innerText = `${DATA.songs.length} bài hát`;
+        if (isongCount) isongCount.innerText = `${DATA.songs.length}`;
+        if (totalOverView) totalOverView.innerText = `${DATA.songs.length}`;
     }
 }
 
@@ -50,14 +54,6 @@ async function loadAlbumFromAPI() {
         DATA.albums = data.albums;
         renderAlbums(DATA.albums);
     }
-}
-async function openAddSongModal() {
-    resetAddSongForm();
-
-    const select = document.getElementById('new-song-artist-id');
-    if (select) loadOptionArtist(select);
-
-    openModal('modal-add-song');
 }
 
 function resetAddSongForm() {
@@ -86,70 +82,6 @@ function resetAddSongForm() {
     }
 }
 
-// ─── ADD ARTIST ──────────────────────────────────────────────────────────────
-async function addArtist() {
-    const fullName = document.getElementById('new-artist-name')?.value?.trim();
-    const avatarUrl = document.getElementById('new-artist-avatar')?.value?.trim();
-    const bio = document.getElementById('new-artist-bio')?.value?.trim();
-
-    if (!fullName) { showToast('⚠️ Tên nghệ sĩ là bắt buộc', 'error'); return; }
-
-    const { success, data } = await postAPI('/artists/manage', {
-        action: 'addArtist',
-        fullName,
-        avatarUrl: avatarUrl || `https://picsum.photos/id/${Math.floor(Math.random() * 100)}/500/500`,
-        bio: bio || null,
-    });
-
-    if (success && data.done) {
-        showToast(`✅ Thêm nghệ sĩ thành công! ID: ${data.id}`, 'success');
-        closeModal('modal-add-artist');
-        await loadArtistFromAPI();
-    } else {
-        showToast(`❌ ${data?.message ?? 'Thêm thất bại'}`, 'error');
-    }
-}
-
-// ─── ADD ALBUM ───────────────────────────────────────────────────────────────
-async function addAlbum() {
-    const title = document.getElementById('new-album-title')?.value?.trim();
-    const artistId = document.getElementById('new-album-artist-id')?.value?.trim();
-    const albumType = document.getElementById('new-album-type')?.value ?? 'album';
-    const coverUrl = document.getElementById('new-album-cover')?.value?.trim();
-
-    if (!title || !artistId) {
-        showToast('⚠️ Tên album và Artist ID là bắt buộc', 'error');
-        return;
-    }
-
-    const { success, data } = await postAPI('/artist_albums', {
-        action: 'addAlbum',
-        artistId: parseInt(artistId),
-        title, albumType,
-        coverUrl: coverUrl || null,
-    });
-
-    if (success && data.done) {
-        showToast(`✅ Thêm album thành công! ID: ${data.id}`, 'success');
-        closeModal('modal-add-album');
-        await loadAlbumFromAPI();
-    } else {
-        showToast(`❌ ${data?.message ?? 'Thêm thất bại'}`, 'error');
-    }
-}
-
-// ─── ADD SONG TO ALBUM ───────────────────────────────────────────────────────
-async function addSongToAlbum(albumId, songId, trackNumber = 999) {
-    const { success, data } = await postAPI('/artist_albums', {
-        action: 'addSongToAlbum',
-        albumId, songId, trackNumber,
-    });
-    if (success && data.done) {
-        showToast('✅ Đã thêm bài hát vào album', 'success');
-    } else {
-        showToast(`❌ ${data?.message ?? 'Thất bại'}`, 'error');
-    }
-}
 
 // ─── INIT ────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {

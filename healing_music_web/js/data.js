@@ -26,7 +26,6 @@ const STATIC_DATA = {
 };
 
 // Gán vào DATA
-DATA.albums = STATIC_DATA.albums;
 DATA.users = STATIC_DATA.users;
 DATA.playlists = STATIC_DATA.playlists;
 DATA.activity = STATIC_DATA.activity;

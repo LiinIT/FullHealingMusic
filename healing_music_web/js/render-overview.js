@@ -21,7 +21,7 @@ function renderOverview() {
             .sort((a, b) => b.play_count - a.play_count)
             .slice(0, 5).map((s, i) => {
                 return `<div class="track-item">
-                <div class="track-num">${s.rank || i + 1}</div>
+                <div class="track-num">${i + 1}</div>
                 <img src="${s.image_url || ''}" width="40" height="40" style="border-radius: 8px;">
                 <div class="track-info">
                     <div class="track-name">${escapeHtml(s.title)}</div>
