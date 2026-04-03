@@ -1,5 +1,6 @@
 // Render Songs page
 function renderSongs(songs = DATA.songs) {
+
     const tbody = document.getElementById('songs-tbody');
 
     if (!tbody) return;
@@ -9,7 +10,7 @@ function renderSongs(songs = DATA.songs) {
 
     tbody.innerHTML = isort.map(s => `
         <tr>
-            <td>${s.rank || '—'}</td>
+            <td>${s.play_count || '—'}</td>
             <td>
                 <div class="song-row">
                     <img src="${s.image_url || ''}" width="40" height="40" style="border-radius: 8px;">

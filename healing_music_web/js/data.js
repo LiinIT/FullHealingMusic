@@ -1,12 +1,5 @@
 // Static data (fallback khi API không có)
 const STATIC_DATA = {
-    users: [
-        { id: 1, name: 'Ngoc Khanh', username: '@liinit', email: 'hongockhanh.it@gmail.com', playlists: 5, favorites: 34, joined: '2024-01-15', status: 'online', initials: 'NK' },
-        { id: 2, name: 'Minh Tuan', username: '@mtuan', email: 'mtuan@gmail.com', playlists: 2, favorites: 18, joined: '2024-03-20', status: 'online', initials: 'MT' },
-        { id: 3, name: 'Thu Hang', username: '@thuhang', email: 'hang@gmail.com', playlists: 8, favorites: 67, joined: '2024-02-10', status: 'offline', initials: 'TH' },
-        { id: 4, name: 'Duc Anh', username: '@ducanh', email: 'ducanh@gmail.com', playlists: 1, favorites: 9, joined: '2024-04-05', status: 'offline', initials: 'DA' },
-        { id: 5, name: 'Lan Anh', username: '@lananh', email: 'lan@gmail.com', playlists: 4, favorites: 45, joined: '2024-01-28', status: 'online', initials: 'LA' },
-    ],
     playlists: [
         { id: 1, name: 'Nhạc Healing 🌿', user: '@liinit', songs: 12, visibility: 'public', icon: getPlaylistIcon({ name: 'Nhạc Healing' }) },
         { id: 2, name: 'Chill Vibes', user: '@thuhang', songs: 8, visibility: 'public', icon: getPlaylistIcon({ name: 'Chill Vibes' }) },
@@ -26,6 +19,5 @@ const STATIC_DATA = {
 };
 
 // Gán vào DATA
-DATA.users = STATIC_DATA.users;
 DATA.playlists = STATIC_DATA.playlists;
 DATA.activity = STATIC_DATA.activity;

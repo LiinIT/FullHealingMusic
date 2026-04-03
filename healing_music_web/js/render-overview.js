@@ -16,7 +16,11 @@ function renderOverview() {
 
     // Top tracks
     const tops = document.getElementById('top-tracks');
+
     if (tops && DATA.songs.length > 0) {
+        document.getElementById('total-songs-value').innerText = DATA.songs.length;
+        document.getElementById('isong-count').innerText = `${DATA.songs.length}`;
+
         tops.innerHTML = DATA.songs
             .sort((a, b) => b.play_count - a.play_count)
             .slice(0, 5).map((s, i) => {

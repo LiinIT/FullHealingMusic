@@ -1,0 +1,6 @@
+id,taguser,username,password,email,full_name,avatar_url,role,is_active,created_at
+20260403_a1,@user001,user1,$2b$10$hash001,user1@gmail.com,Nguyen Van A,https://i.pravatar.cc/150?img=1,USER,true,2026-04-01 10:00:00
+20260403_a2,@user002,user2,$2b$10$hash002,user2@gmail.com,Tran Thi B,https://i.pravatar.cc/150?img=2,USER,true,2026-04-01 11:00:00
+20260403_a3,@admin,admin,$2b$10$hash003,admin@gmail.com,Admin System,https://i.pravatar.cc/150?img=3,ADMIN,true,2026-04-01 12:00:00
+20260403_a4,@mod1,mod1,$2b$10$hash004,mod1@gmail.com,Le Van C,https://i.pravatar.cc/150?img=4,MODERATOR,true,2026-04-01 13:00:00
+20260403_a5,@user003,user3,$2b$10$hash005,user3@gmail.com,Pham Thi D,,USER,false,2026-04-01 14:00:00

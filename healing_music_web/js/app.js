@@ -20,15 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Load data from API
     await loadSongsFromAPI();
     await loadArtistFromAPI();
-
-
-    // Update count
-    const songsCount = document.getElementById('songs-count');
-    const isongCount = document.getElementById('isong-count');
-    const totalOverView = document.getElementById('total-songs-value');
-    if (songsCount) songsCount.innerText = `${DATA.songs.length} bài hát`;
-    if (isongCount) isongCount.innerText = `${DATA.songs.length}`;
-    if (totalOverView) totalOverView.innerText = `${DATA.songs.length}`;
+    await loadUserFromAPI();
 
     // Render pages
     renderSongs();
@@ -65,4 +57,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (e.target === overlay) overlay.classList.remove('show');
         });
     });
+
 });
+

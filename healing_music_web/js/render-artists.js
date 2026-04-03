@@ -1,97 +1,55 @@
 function renderArtists() {
     const grid = document.getElementById('artists-grid');
-
-    // ─── ARTISTS ─────────────────────
     if (grid && Array.isArray(DATA.artists)) {
-        grid.innerHTML = DATA.artists.map(a => {
-
-            const songCount = Array.isArray(DATA.songs)
-                ? DATA.songs.filter(s => s.artist_id === a.id).length
-                : 0;
+        grid.innerHTML = '';  // Clear any existing content first
+        DATA.artists.forEach(a => {
+            const artistCard = document.createElement('div');
+            artistCard.className = 'artist-card';
+            artistCard.onclick = () => showToast('👤 ' + escapeHtml(a.full_name), 'info');
 
             const avatar = a.avatar_url || 'https://via.placeholder.com/40';
-
-            return `
-                <div class="artist-card"
-                     onclick="showToast('👤 ${escapeHtml(a.full_name)}', 'info')">
-
-                    <div class="artist-avatar"
-                         style="background-image: url('${avatar}')">
-                    </div>
-
-                    <div class="artist-name">
-                        ${escapeHtml(a.full_name || 'Unknown')}
-                    </div>
-
-                    <div class="artist-songs">
-                        ${songCount} bài hát
-                    </div>
-
-                    <div class="artist-followers">
-                        ${a.follower_count ?? 0} followers
-                    </div>
-                </div>
+            artistCard.innerHTML = `
+                <div class="artist-avatar" style="background-image: url('${avatar}')"></div>
+                <div class="artist-name">${escapeHtml(a.full_name || 'Unknown')}</div>
+                <div class="artist-songs">${(Array.isArray(DATA.songs) ? DATA.songs.filter(s => s.artist_id === a.id).length : 0)} bài hát</div>
+                <div class="artist-followers">${a.follower_count ?? 0} followers</div>
             `;
-        }).join('');
+            grid.appendChild(artistCard);
+        });
     }
 
     // ─── ALBUMS ─────────────────────
     const tbody = document.getElementById('albums-tbody');
-
     if (tbody && Array.isArray(DATA.albums)) {
-        tbody.innerHTML = DATA.albums.map(a => `
-            <tr>
+        tbody.innerHTML = '';  // Clear existing content
+        DATA.albums.forEach(a => {
+            const row = document.createElement('tr');
+            const coverUrl = a.cover_url || 'https://via.placeholder.com/40';
+            row.innerHTML = `
                 <td>
                     <div class="song-row">
-                        <div class="song-thumb">
-                            <img src="${a.cover_url || 'https://via.placeholder.com/40'}"
-                                 width="40" height="40">
-                        </div>
-
-                        <div>
-                            <div class="song-name">
-                                ${escapeHtml(a.title || 'No title')}
-                            </div>
-
-                            <div class="song-artist">
-                                ${a.album_type || 'album'}
+                        <div style="display: flex;"> 
+                            <div class="artist-avatar" style="background-image: url('${coverUrl}')"></div>
+                            <div  style="display: flex;flex-direction: column;justify-content: center;padding-left: 2em;">
+                                <div class="song-name">${escapeHtml(a.title || 'No title')}</div>
+                                <div class="song-artist">${a.album_type || 'album'}</div>
                             </div>
                         </div>
                     </div>
                 </td>
-
-                <td>
-                    ${escapeHtml(a.artist?.full_name || 'Unknown')}
-                </td>
-
-                <td>
-                    ${a.total_songs ?? 0} tracks
-                </td>
-
+                <td>${escapeHtml(a.artist?.full_name || 'Unknown')}</td>
+                <td>${a.total_songs ?? 0} tracks</td>
                 <td>-</td>
-
                 <td>
                     <div class="action-btns">
-
-                        <button class="btn-sm btn-view"
-                            onclick="viewAlbum(${a.id})">
-                            ${ICONS.ui.view} View
-                        </button>
-
-                        <button class="btn-sm btn-edit"
-                            onclick="openEditAlbum(${a.id})">
-                            ${ICONS.ui.edit} Edit
-                        </button>
-
-                        <button class="btn-sm btn-danger"
-                            onclick="deleteAlbum(${a.id})">
-                            🗑 Delete
-                        </button>
-
+                        <button class="btn-sm btn-view" onclick="viewAlbum(${a.id})">${ICONS.ui.view} View</button>
+                        <button class="btn-sm btn-edit" onclick="openEditAlbum(${a.id})">${ICONS.ui.edit} Edit</button>
+                        <button class="btn-sm btn-del" onclick="deleteAlbum(${a.id})">${ICONS.ui.delete} Delete</button>
                     </div>
                 </td>
-            </tr>
-        `).join('');
+            `;
+            tbody.appendChild(row);
+        });
     }
 }
 
@@ -156,7 +114,7 @@ async function addAlbum() {
         return;
     }
 
-    const { success, data } = await postAPI('/artist_albums', {
+    const { success, data } = await postAPI('/artists/album', {
         action: 'addAlbum',
         artistId: parseInt(artistId),
         title, albumType,
@@ -164,6 +122,7 @@ async function addAlbum() {
     });
 
     if (success && data.done) {
+        console.log(data)
         showToast(`✅ Thêm album thành công! ID: ${data.id}`, 'success');
         closeModal('modal-add-album');
         await loadAlbumFromAPI();

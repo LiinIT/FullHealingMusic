@@ -28,32 +28,32 @@ async function loadSongsFromAPI() {
     if (success && data.songs) {
         DATA.songs = data.songs;
         renderSongs(DATA.songs);
-
-        // Update count
-        const songsCount = document.getElementById('songs-count');
-        const isongCount = document.getElementById('isong-count');
-        const totalOverView = document.getElementById('total-songs-value');
-        if (songsCount) songsCount.innerText = `${DATA.songs.length} bài hát`;
-        if (isongCount) isongCount.innerText = `${DATA.songs.length}`;
-        if (totalOverView) totalOverView.innerText = `${DATA.songs.length}`;
-    }
-}
-
-async function loadArtistFromAPI() {
-    const { success, data } = await postAPI('/artists/get_all', { action: 'getAll' });
-    if (success && data.artists) {
-        DATA.artists = data.artists;
-        renderArtists(DATA.artists);
     }
 }
 
 async function loadAlbumFromAPI() {
-    const { success, data } = await postAPI('/artist_albums', { action: 'getAllAlbums' });
+    const { success, data } = await postAPI('/artists/album', { action: 'getAllAlbums' });
     if (success && data.albums) {
         DATA.albums = data.albums;
-        renderAlbums(DATA.albums);
     }
 }
+async function loadArtistFromAPI() {
+    const { success, data } = await postAPI('/artists/get_all', { action: 'getAll' });
+    if (success && data.artists) {
+        DATA.artists = data.artists;
+        loadAlbumFromAPI()
+        renderArtists(DATA.artists);
+    }
+}
+
+async function loadUserFromAPI() {
+    const { success, data } = await postAPI('/users/crud_user', { action: 'getAll' });
+    if (success && data.users) {
+        DATA.users = data.users;
+        console.log(DATA.users)
+    }
+}
+
 
 function resetAddSongForm() {
     // reset input
@@ -80,20 +80,3 @@ function resetAddSongForm() {
         selectedFiles.create = { audio: null, image: null };
     }
 }
-
-
-// ─── INIT ────────────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', async () => {
-    // Load data song song
-    await Promise.all([
-        loadSongsFromAPI(),
-        loadArtistFromAPI(),
-    ]);
-
-    // Render các section không cần API
-    renderOverview();
-    renderUsers();
-
-    // navigate SAU KHI mọi thứ đã render xong
-    navigate('overview');
-});
