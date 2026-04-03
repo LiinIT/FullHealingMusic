@@ -1,11 +1,11 @@
 id,artist_id,title,cover_url,album_type,release_date,created_at
-1,1,Chill Lofi Vol.1,http://127.0.0.1:5500/public/images/artist/caotri.jpg,album,2023-03-25,2023-03-25 08:00:00
-2,1,Lofi Healing,http://127.0.0.1:5500/public/images/artist/caotri.jpg,album,2023-02-20,2023-02-20 10:00:00
-3,3,F47 Cover Collection,http://127.0.0.1:5500/public/images/artist/f47s.avif,EP,2023-03-18,2023-03-18 14:00:00
-4,5,Phù Hoa,http://127.0.0.1:5500/public/images/artist/7d00355583c6571daabb6ec3e541af1c.jpg,single,2023-03-15,2023-03-15 09:00:00
-5,7,Lofi Tình Yêu,http://127.0.0.1:5500/public/images/artist/e2b19f291479da26e3cabf61ff637318.jpg,album,2023-03-10,2023-03-10 11:00:00
-6,8,Mùa Thu,http://127.0.0.1:5500/public/images/artist/IMG_2114_zing.jpg,EP,2023-03-05,2023-03-05 16:00:00
-7,10,Duy Khiêm Collection,http://127.0.0.1:5500/public/images/artist/channels4_profile.jpg,album,2023-02-28,2023-02-28 13:00:00
-8,10,Dân Ca Remix,http://127.0.0.1:5500/public/images/artist/channels4_profile.jpg,EP,2023-02-25,2023-02-25 15:00:00
-9,4,Yên Phận,http://127.0.0.1:5500/public/images/artist/16e3429b1d4e43e1996269f0cf40c0a2.jpg,single,2023-02-20,2023-02-20 12:00:00
-10,1,Best of CaoTri,http://127.0.0.1:5500/public/images/artist/caotri.jpg,compilation,2023-03-01,2023-03-01 08:00:00
+1,1,Chill Lofi Vol.1,http://192.168.1.24:3000/public/images/artist/caotri.jpg,album,2023-03-25,2023-03-25 08:00:00
+2,1,Lofi Healing,http://192.168.1.24:3000/public/images/artist/caotri.jpg,album,2023-02-20,2023-02-20 10:00:00
+3,3,F47 Cover Collection,http://192.168.1.24:3000/public/images/artist/f47s.avif,EP,2023-03-18,2023-03-18 14:00:00
+4,5,Phù Hoa,http://192.168.1.24:3000/public/images/artist/7d00355583c6571daabb6ec3e541af1c.jpg,single,2023-03-15,2023-03-15 09:00:00
+5,7,Lofi Tình Yêu,http://192.168.1.24:3000/public/images/artist/e2b19f291479da26e3cabf61ff637318.jpg,album,2023-03-10,2023-03-10 11:00:00
+6,8,Mùa Thu,http://192.168.1.24:3000/public/images/artist/IMG_2114_zing.jpg,EP,2023-03-05,2023-03-05 16:00:00
+7,10,Duy Khiêm Collection,http://192.168.1.24:3000/public/images/artist/channels4_profile.jpg,album,2023-02-28,2023-02-28 13:00:00
+8,10,Dân Ca Remix,http://192.168.1.24:3000/public/images/artist/channels4_profile.jpg,EP,2023-02-25,2023-02-25 15:00:00
+9,4,Yên Phận,http://192.168.1.24:3000/public/images/artist/16e3429b1d4e43e1996269f0cf40c0a2.jpg,single,2023-02-20,2023-02-20 12:00:00
+10,1,Best of CaoTri,http://192.168.1.24:3000/public/images/artist/caotri.jpg,compilation,2023-03-01,2023-03-01 08:00:00

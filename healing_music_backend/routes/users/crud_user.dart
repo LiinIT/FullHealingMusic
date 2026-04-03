@@ -164,8 +164,6 @@ Future<Response> _getAll(Connection conn) async {
     ''',
   );
 
-  print('get all');
-
   return Response.json(body: {
     'users': result
         .map((r) => {

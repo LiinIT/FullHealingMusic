@@ -50,7 +50,6 @@ async function loadUserFromAPI() {
     const { success, data } = await postAPI('/users/crud_user', { action: 'getAll' });
     if (success && data.users) {
         DATA.users = data.users;
-        console.log(DATA.users)
     }
 }
 

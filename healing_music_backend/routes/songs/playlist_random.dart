@@ -15,6 +15,7 @@ Future<Response> onRequest(RequestContext context) async {
               -- songs fields
               s.id              AS song_id,
               s.title,
+              s.play_count,
               s.image_url,
               s.audio_url,
               s.duration_seconds,

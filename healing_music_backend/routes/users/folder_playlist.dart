@@ -89,6 +89,7 @@ Future<Response> getAllAlbum(Connection connect, dynamic userID) async {
               JSON_BUILD_OBJECT(
                 'id',               s.id,
                 'title',            s.title,
+                'play_count',       s.play_count,
                 'artist_id',        s.artist_id,
                 'full_name',        ar.full_name,      
                 'avatar_url',       ar.avatar_url,     

@@ -41,7 +41,7 @@ Future<Response> onRequest(RequestContext context) async {
 
     if (artist.isEmpty) {
       return Response.json(
-        statusCode: 404,
+        statusCode: 203,
         body: {'done': false, 'message': 'Artist not found'},
       );
     }

@@ -7,22 +7,21 @@ function renderUsers() {
                 <td>
                     <div class="song-row">
                         <div style="display: flex;"> 
-                            <div class="artist-avatar" style="background-image: url('${avatar_url}')"></div>
+                            <div class="artist-avatar" style="background-image: url('${u.avatar_url || ''}')"></div>
                             <div  style="display: flex;flex-direction: column;justify-content: center;padding-left: 2em;">
-                                <div class="song-name">${escapeHtml(a.full_name || 'No title')}</div>
-                                <div class="song-artist">${a.email || 'album'}</div>
+                                <div class="song-name">${escapeHtml(u.full_name || 'Unknown')}</div>
+                                <div class="song-artist">${u.username || 'Unknown'}</div>
                             </div>
                         </div>
                     </div>
                 </td>
-                <td>${escapeHtml(a.artist?.full_name || 'Unknown')}</td>
-                <td>${a.total_songs ?? 0} tracks</td>
-                <td>-</td>
+                <td>${escapeHtml(u.email || 'Unknown')}</td>
+                <td>${u.role} tracks</td>
                 <td>
                     <div class="action-btns">
-                        <button class="btn-sm btn-view" onclick="viewAlbum(${a.id})">${ICONS.ui.view} View</button>
-                        <button class="btn-sm btn-edit" onclick="openEditAlbum(${a.id})">${ICONS.ui.edit} Edit</button>
-                        <button class="btn-sm btn-del" onclick="deleteAlbum(${a.id})">${ICONS.ui.delete} Delete</button>
+                        <button class="btn-sm btn-view" onclick="viewAlbum(${u.id})">${ICONS.ui.view} View</button>
+                        <button class="btn-sm btn-edit" onclick="openEditAlbum(${u.id})">${ICONS.ui.edit} Edit</button>
+                        <button class="btn-sm btn-del" onclick="deleteAlbum(${u.id})">${ICONS.ui.delete} Delete</button>
                     </div>
                 </td>
             </tr>
