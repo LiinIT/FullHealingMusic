@@ -1,10 +1,10 @@
 id,title,artist_id,image_url,audio_url,duration_seconds,play_count,created_at
-1,Có Mình Và Ta,1,http://192.168.1.24:3000/public/images/song/40b825abe1245b6573c03a8f47cfea49.jpg,http://192.168.1.24:3000/public/audios/00001.mp3,210,543210,2023-03-25 09:30:00
-2,Em Có Ổn Không,1,http://192.168.1.24:3000/public/images/song/40096b96dd2369253bff23c0d86cbd07.jpg,http://192.168.1.24:3000/public/audios/00002.mp3,195,987654,2023-03-20 14:15:00
-3,Khách Mời,3,http://192.168.1.24:3000/public/images/song/ca31d0fa1a7cf6e7f7bc7e2b0bb7d2f5.jpg,http://192.168.1.24:3000/public/audios/00003.mp3,225,123456,2023-03-18 11:00:00
-4,Lưới Phù Hoa,5,http://192.168.1.24:3000/public/images/song/ab67616d0000b27352c7247d705ee97f4006c9c0.jpeg,http://192.168.1.24:3000/public/audios/00004.mp3,205,876543,2023-03-15 16:20:00
-5,Ngày Em Biết Nhớ Thương Một Người,7,http://192.168.1.24:3000/public/images/song/tiengphaotiengnguoi.jpeg,http://192.168.1.24:3000/public/audios/00005.mp3,215,654321,2023-03-10 10:45:00
-6,Thu Cuối,8,http://192.168.1.24:3000/public/images/song/artworks-000528353961-lo0sor-t500x500.jpg,http://192.168.1.24:3000/public/audios/00006.mp3,198,345678,2023-03-05 13:30:00
-7,Ví Dầu Đưa Dâu,10,http://192.168.1.24:3000/public/images/song/43327c3c1913b136d577905e93e29bd4.jpg,http://192.168.1.24:3000/public/audios/00007.mp3,185,789012,2023-02-28 09:15:00
-8,Xin Má Rước Dâu,10,http://127.0.0.0:5500/public/images/song/c44c3822217d8775780358df759f126d.jpg,http://192.168.1.24:3000/public/audios/00008.mp3,192,234567,2023-02-25 15:00:00
-9,Yên Phận Đi Nhé,4,http://192.168.1.24:3000/public/images/song/f04876c1657a88baf7a76f0c58c67513.jpg,http://192.168.1.24:3000/public/audios/00009.mp3,208,912345,2023-02-20 12:00:00
+1,Có Mình Và Ta,1,http://192.168.1.19:3000/public/images/song/40b825abe1245b6573c03a8f47cfea49.jpg,http://192.168.1.19:3000/public/audios/00001.mp3,210,543210,2023-03-25 09:30:00
+2,Em Có Ổn Không,1,http://192.168.1.19:3000/public/images/song/40096b96dd2369253bff23c0d86cbd07.jpg,http://192.168.1.19:3000/public/audios/00002.mp3,195,987654,2023-03-20 14:15:00
+3,Khách Mời,3,http://192.168.1.19:3000/public/images/song/ca31d0fa1a7cf6e7f7bc7e2b0bb7d2f5.jpg,http://192.168.1.19:3000/public/audios/00003.mp3,225,123456,2023-03-18 11:00:00
+4,Lưới Phù Hoa,5,http://192.168.1.19:3000/public/images/song/ab67616d0000b27352c7247d705ee97f4006c9c0.jpeg,http://192.168.1.19:3000/public/audios/00004.mp3,205,876543,2023-03-15 16:20:00
+5,Ngày Em Biết Nhớ Thương Một Người,7,http://192.168.1.19:3000/public/images/song/tiengphaotiengnguoi.jpeg,http://192.168.1.19:3000/public/audios/00005.mp3,215,654321,2023-03-10 10:45:00
+6,Thu Cuối,8,http://192.168.1.19:3000/public/images/song/artworks-000528353961-lo0sor-t500x500.jpg,http://192.168.1.19:3000/public/audios/00006.mp3,198,345678,2023-03-05 13:30:00
+7,Ví Dầu Đưa Dâu,10,http://192.168.1.19:3000/public/images/song/43327c3c1913b136d577905e93e29bd4.jpg,http://192.168.1.19:3000/public/audios/00007.mp3,185,789012,2023-02-28 09:15:00
+8,Xin Má Rước Dâu,10,http://192.168.1.19:3000/public/images/song/c44c3822217d8775780358df759f126d.jpg,http://192.168.1.19:3000/public/audios/00008.mp3,192,234567,2023-02-25 15:00:00
+9,Yên Phận Đi Nhé,4,http://192.168.1.19:3000/public/images/song/f04876c1657a88baf7a76f0c58c67513.jpg,http://192.168.1.19:3000/public/audios/00009.mp3,208,912345,2023-02-20 12:00:00

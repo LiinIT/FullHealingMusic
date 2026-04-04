@@ -47,7 +47,7 @@ Future<Response> onRequest(RequestContext context) async {
     await file.parent.create(recursive: true);
     await file.writeAsBytes(fileBytes);
 
-    final url = 'http://192.168.1.24:3000/public/$subfolder/$filename';
+    final url = '/public/$subfolder/$filename';
 
     return Response.json(
       body: {

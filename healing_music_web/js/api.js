@@ -41,7 +41,7 @@ async function loadArtistFromAPI() {
     const { success, data } = await postAPI('/artists/get_all', { action: 'getAll' });
     if (success && data.artists) {
         DATA.artists = data.artists;
-        loadAlbumFromAPI()
+        await loadAlbumFromAPI()
         renderArtists(DATA.artists);
     }
 }

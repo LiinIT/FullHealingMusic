@@ -1,6 +1,6 @@
 id,taguser,username,password,email,full_name,avatar_url,role,is_active,created_at
 20260403_a1,user001,liin,123456,liin@gmail.com,Liin Nguyen,https://i.pravatar.cc/150?img=1,USER,true,2026-04-03 10:15:00
 20260403_a2,user002,anhtuan,123456,anhtuan@gmail.com,Anh Tuan,https://i.pravatar.cc/150?img=2,USER,true,2026-04-03 10:16:00
-20260403_a3,user003,admin,admin123,admin@gmail.com,Admin,System,ADMIN,true,2026-04-03 10:17:00
-20260403_a4,user004,mod1,mod123,mod@gmail.com,Moderator One,,MODERATOR,true,2026-04-03 10:18:00
-20260403_a5,user005,user5,123456,user5@gmail.com,User Five,,USER,false,2026-04-03 10:19:00
+20260403_a3,user003,admin,admin123,admin@gmail.com,Admin,https://i.pravatar.cc/150?img=3,ADMIN,true,2026-04-03 10:17:00
+20260403_a4,user004,mod1,mod123,mod@gmail.com,Moderator One,https://i.pravatar.cc/150?img=4,USER,true,2026-04-03 10:18:00
+20260403_a5,user005,user5,123456,user5@gmail.com,User Five,https://i.pravatar.cc/150?img=5,USER,false,2026-04-03 10:19:00

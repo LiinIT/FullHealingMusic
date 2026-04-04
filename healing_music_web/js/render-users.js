@@ -10,13 +10,13 @@ function renderUsers() {
                             <div class="artist-avatar" style="background-image: url('${u.avatar_url || ''}')"></div>
                             <div  style="display: flex;flex-direction: column;justify-content: center;padding-left: 2em;">
                                 <div class="song-name">${escapeHtml(u.full_name || 'Unknown')}</div>
-                                <div class="song-artist">${u.username || 'Unknown'}</div>
+                                <div class="song-artist">@${u.username || 'Unknown'}</div>
                             </div>
                         </div>
                     </div>
                 </td>
                 <td>${escapeHtml(u.email || 'Unknown')}</td>
-                <td>${u.role} tracks</td>
+                <td>${u.role}</td>
                 <td>
                     <div class="action-btns">
                         <button class="btn-sm btn-view" onclick="viewAlbum(${u.id})">${ICONS.ui.view} View</button>
@@ -59,4 +59,18 @@ function deleteUser(id) {
         renderUsers();
         showToast('🚫 User đã bị ban', 'error');
     }
+}
+
+
+function openEdirUser(id) {
+    const s = DATA.songs.find(x => x.song_id === id);
+    if (!s) return;
+
+    const modal = document.getElementById('modal-confirm-delete');
+    modal.setAttribute('data-song-id', id);
+    document.getElementById('delete-message').textContent =
+        `Bạn có chắc muốn xoá "${s.title}"?`;
+    document.getElementById('btn-confirm-del').setAttribute('onClick', 'deleteSong()');
+
+    openModal('modal-confirm-delete');
 }

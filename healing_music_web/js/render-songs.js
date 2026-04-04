@@ -7,7 +7,6 @@ function renderSongs(songs = DATA.songs) {
 
     // Sort by play count
     const isort = [...songs].sort((a, b) => (b.play_count || 0) - (a.play_count || 0));
-
     tbody.innerHTML = isort.map(s => `
         <tr>
             <td>${s.play_count || '—'}</td>
@@ -44,8 +43,8 @@ async function addSong() {
     const artistId = document.getElementById('new-song-artist-id')?.value;
     const duration = document.getElementById('new-song-duration')?.value;
 
-    const fileAudio = selectedFiles.create.audio;
-    const fileImage = selectedFiles.create.image;
+    const fileAudio = selectedFiles.song.audio;
+    const fileImage = selectedFiles.song.image;
 
     if (!title) return showToast('Thiếu title', 'error');
     if (!artistId) return showToast('Thiếu artist', 'error');
@@ -158,6 +157,7 @@ function openDeleteSong(id) {
     modal.setAttribute('data-song-id', id);
     document.getElementById('delete-message').textContent =
         `Bạn có chắc muốn xoá "${s.title}"?`;
+    document.getElementById('btn-confirm-del').setAttribute('onClick', 'deleteSong()');
 
     openModal('modal-confirm-delete');
 }

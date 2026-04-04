@@ -6,7 +6,7 @@ function handleAudioFile(type, input) {
 
     selectedFiles[type].audio = file;
 
-    const prefix = type === 'create' ? 'new' : 'edit';
+    const prefix = type === 'song' ? 'new' : 'edit';
 
     const filenameEl = document.getElementById(`${prefix}-audio-filename`);
     const preview = document.getElementById(`${prefix}-audio-preview`);
@@ -34,21 +34,8 @@ function handleImageFile(type, input) {
 
     selectedFiles[type].image = file;
 
-    let prefix = type;
-    switch (type) {
-        case 'create':
-            prefix = 'new';
-            break;
-        case 'edit':
-            prefix = 'edit';
-            break;
-        case 'artist':
-            prefix = 'artist';
-            break;
-    }
-
-    const preview = document.getElementById(`${prefix}-image-preview`);
-    const label = document.getElementById(`${prefix}-image-filename`);
+    const preview = document.getElementById(`${type}-image-preview`);
+    const label = document.getElementById(`${type}-image-filename`);
 
     // Kiểm tra xem phần tử có tồn tại không
     if (!preview || !label) {

@@ -19,13 +19,14 @@
             <button class="btn btn-danger" onclick="closeModal('modal-confirm-delete')">
                 Huỷ
             </button>
-            <button class="btn btn-primary" onclick="deleteSong()">
+            <button class="btn btn-primary" id="btn-confirm-del">
                 Xoá Vĩnh Viễn
             </button>
         </div>
     </div>
 </div>
 
+<!-- Edit Song Modal -->
 <div class="modal-overlay" id="modal-edit-song">
     <div class="modal">
         <div class="modal-title">Chỉnh Sửa Bài Hát</div>
@@ -61,20 +62,23 @@
         <!-- IMAGE -->
         <div class="form-group">
             <label class="form-label">Ảnh bìa</label>
-
-            <input type="file" id="edit-image-file-input" accept=".jpg,.png,.webp"
-                onchange="handleImageFile('edit', this)" hidden>
-
-            <button class="btn btn-outline" onclick="document.getElementById('edit-image-file-input').click()">
-                Chọn ảnh
-            </button>
-
-            <span id="edit-image-filename" style="font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
-                Chưa chọn file
-            </span>
-
-            <img id="edit-image-preview"
-                style="display:none;width:80px;height:80px;object-fit:cover;border-radius:8px;">
+            <center>
+                <img id="edit-image-preview" style="
+                    display:none;
+                    width:100px;
+                    height:100px;
+                    object-fit:cover;
+                    border-radius:888px;">
+                <input type="file" id="edit-image-file-input" accept=".jpg,.png,.webp"
+                    onchange="handleImageFile('edit', this)" hidden>
+                <button class="btn btn-outline" onclick="document.getElementById('edit-image-file-input').click()">
+                    Chọn ảnh
+                </button>
+                <span id="edit-image-filename"
+                    style="font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
+                    Chưa chọn file
+                </span>
+            </center>
         </div>
 
         <div class="form-group">
@@ -93,7 +97,7 @@
     </div>
 </div>
 
-
+<!-- Add Song Modal -->
 <div class="modal-overlay" id="modal-add-song">
     <div class="modal">
         <div class="modal-title">Thêm Bài Hát</div>
@@ -112,7 +116,7 @@
         <div class="form-group">
             <label class="form-label">Audio File</label>
 
-            <input type="file" id="new-audio-file-input" onchange="handleAudioFile('create', this)" hidden>
+            <input type="file" id="new-audio-file-input" onchange="handleAudioFile('song', this)" hidden>
 
             <button class="btn btn-outline" onclick="document.getElementById('new-audio-file-input').click()">
                 Chọn audio
@@ -128,18 +132,22 @@
         <!-- IMAGE -->
         <div class="form-group">
             <label class="form-label">Ảnh bìa</label>
-
-            <input type="file" id="new-image-file-input" onchange="handleImageFile('create', this)" hidden>
-
-            <button class="btn btn-outline" onclick="document.getElementById('new-image-file-input').click()">
-                Chọn ảnh
-            </button>
-
-            <span id="new-image-filename" style="font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
-                Chưa chọn file
-            </span>
-
-            <img id="new-image-preview" style="display:none;width:80px;height:80px;object-fit:cover;border-radius:8px;">
+            <center>
+                <img id="new-image-preview" style="
+                    display:none;
+                    width:100px;
+                    height:100px;
+                    object-fit:cover;
+                    border-radius:888px;">
+                <input type="file" id="new-image-file-input" onchange="handleImageFile('song', this)" hidden>
+                <button class="btn btn-outline" onclick="document.getElementById('new-image-file-input').click()">
+                    Chọn ảnh
+                </button>
+                <span id="new-image-filename"
+                    style="font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
+                    Chưa chọn file
+                </span>
+            </center>
         </div>
 
         <div class="form-group">
@@ -171,20 +179,22 @@
         <!-- IMAGE -->
         <div class="form-group">
             <label class="form-label">Ảnh bìa</label>
-
-            <input type="file" id="artist-image-file-input" onchange="handleImageFile('artist', this)" hidden>
-
-            <button class="btn btn-outline" onclick="document.getElementById('artist-image-file-input').click()">
-                Chọn ảnh
-            </button>
-
-            <span id="artist-image-filename"
-                style="font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
-                Chưa chọn file
-            </span>
-
-            <img id="artist-image-preview"
-                style="display:none;width:80px;height:80px;object-fit:cover;border-radius:8px;">
+            <center>
+                <img id="artist-image-preview" style="
+                    display:none;
+                    width:100px;
+                    height:100px;
+                    object-fit:cover;
+                    border-radius:888px;">
+                <input type="file" id="artist-image-file-input" onchange="handleImageFile('artist', this)" hidden>
+                <button class="btn btn-outline" onclick="document.getElementById('artist-image-file-input').click()">
+                    Chọn ảnh
+                </button>
+                <span id="artist-image-filename"
+                    style="font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
+                    Chưa chọn file
+                </span>
+            </center>
         </div>
 
         <div class="form-group">
@@ -214,8 +224,8 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label">Artist ID *</label>
-            <input class="form-input" id="new-album-artist-id" type="number" placeholder="1">
+            <label class="form-label">Nghệ sĩ *</label>
+            <select class="form-input" id="new-album-artist-id"></select>
         </div>
 
         <div class="form-group">
@@ -229,9 +239,25 @@
             </select>
         </div>
 
+        <!-- IMAGE -->
         <div class="form-group">
-            <label class="form-label">Cover URL</label>
-            <input class="form-input" id="new-album-cover" placeholder="https://...">
+            <label class="form-label">Ảnh bìa</label>
+            <center>
+                <img id="album-image-preview" style="
+                    display:none;
+                    width:100px;
+                    height:100px;
+                    object-fit:cover;
+                    border-radius:888px;">
+                <input type="file" id="album-image-file-input" onchange="handleImageFile('album', this)" hidden>
+                <button class="btn btn-outline" onclick="document.getElementById('album-image-file-input').click()">
+                    Chọn ảnh
+                </button>
+                <span id="album-image-filename"
+                    style="font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
+                    Chưa chọn file
+                </span>
+            </center>
         </div>
 
         <div class="modal-footer">
@@ -239,6 +265,125 @@
                 Huỷ
             </button>
             <button class="btn btn-primary" onclick="addAlbum()">
+                Lưu
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- edit Album Modal -->
+<div class="modal-overlay" id="modal-edit-album">
+    <div class="modal">
+        <div class="modal-title">Chỉnh sửa Album</div>
+
+        <div class="form-group">
+            <label class="form-label">Tên album *</label>
+            <input class="form-input" id="edit-album-title" placeholder="VD: Sky Tour">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Nghệ sĩ *</label>
+            <select class="form-input" id="edit-album-artist-id"></select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Loại album</label>
+            <select class="form-input" id="edit-album-type">
+                <option value="album">Album</option>
+                <option value="single">Single</option>
+                <option value="EP">EP</option>
+                <option value="live">Live</option>
+                <option value="compilation">Compilation</option>
+            </select>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="form-group">
+            <label class="form-label">Ảnh bìa</label>
+            <center>
+                <img id="album-edit-image-preview" style="
+                    display:none;
+                    width:100px;
+                    height:100px;
+                    object-fit:cover;
+                    border-radius:888px;">
+                <input type="file" id="album-edit-image-file-input" onchange="handleImageFile('album-edit', this)"
+                    hidden>
+                <button class="btn btn-outline"
+                    onclick="document.getElementById('album-edit-image-file-input').click()">
+                    Chọn ảnh
+                </button>
+                <span id="album-edit-image-filename"
+                    style="font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
+                    Chưa chọn file
+                </span>
+            </center>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('modal-edit-album')">
+                Huỷ
+            </button>
+            <button class="btn btn-primary" id="btn-album-action">
+                Lưu
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Add User Modal -->
+<div class="modal-overlay" id="modal-add-user">
+    <div class="modal">
+        <div class="modal-title">Thêm User</div>
+        <!-- IMAGE -->
+        <div class="form-group">
+            <label class="form-label">Ảnh bìa</label>
+            <center>
+                <img id="user-image-preview" style="
+                    display:none;
+                    width:100px;
+                    height:100px;
+                    object-fit:cover;
+                    border-radius:888px;">
+                <input type="file" id="user-image-file-input" onchange="handleImageFile('user', this)" hidden>
+                <button class="btn btn-outline" style="margin-top: 1em;"
+                    onclick="document.getElementById('user-image-file-input').click()">
+                    Chọn ảnh
+                </button>
+                <span id="user-image-filename"
+                    style="display: none ;font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
+                    Chưa chọn file
+                </span>
+            </center>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Tên*</label>
+            <input class="form-input" id="new-user-name" placeholder="VD: Nguyễn Văn A" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Tag User*</label>
+            <input class="form-input" id="new-user-tag" placeholder="VD: @userA01" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">tài khoản*</label>
+            <input class="form-input" id="new-user-acc" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">mật khẩu*</label>
+            <input class="form-input" id="new-user-pass" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Role</label>
+            <input class="form-input" id="new-user-role" value="USER" disabled>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('modal-add-user')">
+                Huỷ
+            </button>
+            <button class="btn btn-primary" onclick="addUser()">
                 Lưu
             </button>
         </div>

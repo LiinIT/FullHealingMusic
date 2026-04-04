@@ -25,6 +25,15 @@ Future<Response> onRequest(RequestContext context) async {
         body['albumType'],
         body['coverUrl'],
       );
+    case 'updateAlbum':
+      return updateAlbum(
+        connect,
+        body['albumId'],
+        body['artistId'],
+        body['title'],
+        body['albumType'],
+        body['coverUrl'],
+      );
     case 'addSongToAlbum':
       return addSongToAlbum(
         connect,
@@ -86,6 +95,64 @@ Future<Response> addAlbum(
         albumType ?? 'album',
         DateTime.now().toIso8601String().split('T').first,
         DateTime.now(),
+      ],
+    );
+
+    final rows = result.toList();
+
+    return Response.json(
+      body: {
+        'done': rows.isNotEmpty,
+        if (rows.isNotEmpty) 'id': rows.first[0],
+      },
+    );
+  } catch (e) {
+    return Response.json(
+      statusCode: 500,
+      body: {'done': false, 'message': '$e'},
+    );
+  }
+}
+// ============================================================
+// Update ALBUM
+// ============================================================
+
+Future<Response> updateAlbum(
+  Connection connect,
+  dynamic albumId,
+  dynamic artistId,
+  dynamic title,
+  dynamic albumType,
+  dynamic coverUrl,
+) async {
+  if (artistId == null || title == null) {
+    return Response.json(
+      statusCode: 400,
+      body: {'done': false, 'message': 'Missing artistId or title'},
+    );
+  }
+
+  final int albumIdParsed = int.tryParse(albumId.toString()) ?? 0;
+  final int artistIdParsed = int.tryParse(artistId.toString()) ?? 0;
+
+  try {
+    final result = await connect.execute(
+      r'''
+      UPDATE artist_albums 
+      SET 
+        artist_id = $2, 
+        title = $3, 
+        album_type = $4, 
+        cover_url = $5 
+      WHERE id = $1
+      RETURNING id;
+      ''',
+      parameters: [
+        albumIdParsed,
+        artistIdParsed,
+        title,
+        albumType ?? 'album',
+        coverUrl ?? '',
       ],
     );
 
