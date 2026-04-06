@@ -236,35 +236,65 @@ Future<Response> getAllAlbums(Connection connect) async {
         ar.avatar_url,
         ar.follower_count,
         ar.is_verified,
-        COUNT(aas.song_id)
+        COUNT(aas.song_id) OVER (PARTITION BY a.id),
+        s.id        as song_id,
+        s.title     as song_title,
+        s.audio_url as song_audio,
+        s.image_url as song_image,
+        s.duration_seconds
       FROM artist_albums a
       LEFT JOIN artists ar ON ar.id = a.artist_id
       LEFT JOIN artist_album_songs aas ON aas.album_id = a.id
-      GROUP BY a.id, ar.id
-      ORDER BY a.release_date DESC
+      LEFT JOIN songs s ON s.id = aas.song_id
+      ORDER BY a.release_date DESC, aas.track_number ASC
     ''');
 
-    final albums = result.map((row) {
-      return {
-        'id': row[0],
-        'artist_id': row[1],
-        'title': row[2],
-        'cover_url': row[3],
-        'album_type': row[4],
-        'release_date': row[5]?.toString(),
-        'created_at': row[6]?.toString(),
-        'total_songs': (row[11] as int?) ?? 0,
-        'artist': {
-          'id': row[1],
+    // Group rows theo album
+    final Map<int, Map<String, dynamic>> albumMap = {};
+
+    for (final row in result) {
+      final albumId = row[0] as int;
+
+      if (!albumMap.containsKey(albumId)) {
+        albumMap[albumId] = {
+          'id': row[0],
+          'artist_id': row[1],
+          'title': row[2],
+          'cover_url': row[3],
+          'album_type': row[4],
+          'release_date': row[5]?.toString(),
+          'created_at': row[6]?.toString(),
+          'total_songs': (row[11] as num?)?.toInt() ?? 0,
+          'artist': {
+            'id': row[1],
+            'full_name': row[7],
+            'avatar_url': row[8],
+            'follower_count': row[9],
+            'is_verified': row[10],
+          },
+          'songs': [],
+        };
+      }
+
+      if (row[12] != null) {
+        (albumMap[albumId]!['songs'] as List).add({
+          'id': row[12],
+          'title': row[13],
+          'audio_url': row[14],
+          'image_url': row[15],
+          'duration_seconds': row[16],
+          'play_count': 0,
+          'artist_id': row[1],
           'full_name': row[7],
           'avatar_url': row[8],
-          'follower_count': row[9],
-          'is_verified': row[10],
-        }
-      };
-    }).toList();
+        });
+      }
+    }
 
-    return Response.json(body: {'done': true, 'albums': albums});
+    return Response.json(body: {
+      'done': true,
+      'albums': albumMap.values.toList(),
+    });
   } catch (e) {
     return Response.json(
       statusCode: 500,

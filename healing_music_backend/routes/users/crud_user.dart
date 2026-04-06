@@ -33,10 +33,13 @@ Future<Response> _addUser(Connection conn, dynamic body) async {
   final password = body['password'];
   final email = body['email'];
   final fullName = body['fullName'];
+  final tag = body['userTag'];
   final avatar = body['avatarUrl'];
   final role = body['role'];
 
-  if (username == null || password == null || email == null) {
+  if (username.toString().isEmpty ||
+      password.toString().isEmpty ||
+      email.toString().isEmpty) {
     return Response.json(
       statusCode: 400,
       body: {'done': false, 'message': 'username, password, email là bắt buộc'},
@@ -47,12 +50,19 @@ Future<Response> _addUser(Connection conn, dynamic body) async {
     final result = await conn.execute(
       r'''
         INSERT INTO users (
-          username, password, email, full_name, avatar_url, role
+          taguser, 
+          username, 
+          password, 
+          email, 
+          full_name, 
+          avatar_url, 
+          role
         )
-        VALUES ($1, $2, $3, $4, $5, COALESCE($6, 'USER'))
+        VALUES ($1, $2, $3, $4, $5, $6, COALESCE($7, 'USER'))
         RETURNING id
       ''',
       parameters: [
+        tag,
         username,
         password,
         email,
@@ -62,10 +72,12 @@ Future<Response> _addUser(Connection conn, dynamic body) async {
       ],
     );
 
-    return Response.json(body: {
-      'done': true,
-      'id': result.first[0],
-    });
+    return Response.json(
+      body: {
+        'done': true,
+        'id': result.first[0],
+      },
+    );
   } catch (e) {
     return Response.json(
       statusCode: 500,
@@ -78,9 +90,8 @@ Future<Response> _addUser(Connection conn, dynamic body) async {
 Future<Response> _updateUser(Connection conn, dynamic body) async {
   final id = body['userId'];
 
-  if (id == null) {
+  if (id.toString().isEmpty) {
     return Response.json(
-      statusCode: 400,
       body: {'done': false, 'message': 'userId bắt buộc'},
     );
   }
@@ -88,13 +99,13 @@ Future<Response> _updateUser(Connection conn, dynamic body) async {
   final result = await conn.execute(
     r'''
       UPDATE users SET
-        username   = COALESCE($1, username),
-        password   = COALESCE($2, password),
-        email      = COALESCE($3, email),
-        full_name  = COALESCE($4, full_name),
-        avatar_url = COALESCE($5, avatar_url),
-        role       = COALESCE($6, role),
-        is_active  = COALESCE($7, is_active)
+      username   = COALESCE(NULLIF($1, ''), username),
+      password   = COALESCE(NULLIF($2, ''), password),
+      email      = COALESCE(NULLIF($3, ''), email),
+      full_name  = COALESCE(NULLIF($4, ''), full_name),
+      avatar_url = COALESCE(NULLIF($5, ''), avatar_url),
+      role       = COALESCE(NULLIF($6, ''), role),
+      taguser    = COALESCE(NULLIF($7, ''), taguser)
       WHERE id = $8
       RETURNING id
     ''',
@@ -105,7 +116,7 @@ Future<Response> _updateUser(Connection conn, dynamic body) async {
       body['fullName'],
       body['avatarUrl'],
       body['role'],
-      body['isActive'],
+      body['taguser'],
       id,
     ],
   );
@@ -124,7 +135,7 @@ Future<Response> _updateUser(Connection conn, dynamic body) async {
 Future<Response> _deleteUser(Connection conn, dynamic body) async {
   final id = body['userId'];
 
-  if (id == null) {
+  if (id.toString().isEmpty) {
     return Response.json(
       statusCode: 400,
       body: {'done': false, 'message': 'userId bắt buộc'},
@@ -138,7 +149,6 @@ Future<Response> _deleteUser(Connection conn, dynamic body) async {
 
   if (result.isEmpty) {
     return Response.json(
-      statusCode: 404,
       body: {'done': false, 'message': 'User không tồn tại'},
     );
   }
@@ -158,7 +168,8 @@ Future<Response> _getAll(Connection conn) async {
         avatar_url,
         role,
         is_active,
-        created_at
+        created_at,
+        taguser
       FROM users
       ORDER BY created_at DESC
     ''',
@@ -166,16 +177,19 @@ Future<Response> _getAll(Connection conn) async {
 
   return Response.json(body: {
     'users': result
-        .map((r) => {
-              'id': r[0],
-              'username': r[1],
-              'email': r[2],
-              'full_name': r[3],
-              'avatar_url': r[4],
-              'role': r[5],
-              'is_active': r[6],
-              'created_at': r[7].toString(),
-            })
+        .map(
+          (r) => {
+            'id': r[0],
+            'username': r[1],
+            'email': r[2],
+            'full_name': r[3],
+            'avatar_url': r[4],
+            'role': r[5],
+            'is_active': r[6],
+            'created_at': r[7].toString(),
+            'taguser': r[8],
+          },
+        )
         .toList(),
   });
 }

@@ -11,6 +11,8 @@ Future<Response> onRequest(RequestContext context) async {
   final body = await context.request.json();
 
   switch (body['action']) {
+    case 'getSongByID':
+      return _getSongById(conn, body);
     case 'addSong':
       return _addSong(conn, body);
     case 'update':
@@ -22,6 +24,62 @@ Future<Response> onRequest(RequestContext context) async {
         statusCode: 400,
         body: {'done': false, 'message': 'Unknown action'},
       );
+  }
+}
+
+Future<Response> _getSongById(Connection conn, dynamic body) async {
+  final rawId = body['songId'];
+
+  if (rawId == null) {
+    return Response.json(
+      statusCode: 400,
+      body: {'done': false, 'message': 'songId là bắt buộc'},
+    );
+  }
+
+  // ✅ Parse sang int trong Dart, không dùng ::int trong SQL
+  final int songId = int.parse(rawId.toString());
+
+  try {
+    final result = await conn.execute(
+      r'''
+    SELECT 
+      s.id, s.title, s.audio_url, s.image_url, 
+      s.duration_seconds, s.created_at,
+      a.id as artist_id, a.full_name, a.avatar_url
+    FROM songs s
+    LEFT JOIN artists a ON s.artist_id = a.id
+    WHERE s.id = $1
+  ''',
+      parameters: [songId],
+    );
+
+    if (result.isEmpty) {
+      return Response.json(
+        statusCode: 404,
+        body: {'done': false, 'message': 'Không tìm thấy bài hát'},
+      );
+    }
+
+    final row = result.first;
+    return Response.json(body: {
+      'id': row[0],
+      'title': row[1],
+      'audio_url': row[2],
+      'image_url': row[3],
+      'duration_seconds': row[4],
+      'created_at': row[5]?.toString(),
+      'artist_id': row[6],
+      'full_name': row[7],
+      'avatar_url': row[8],
+    });
+  } catch (e, stackTrace) {
+    print('Error getSongById: $e');
+    print('StackTrace: $stackTrace');
+    return Response.json(
+      statusCode: 500,
+      body: {'done': false, 'message': 'Lỗi server: $e'},
+    );
   }
 }
 

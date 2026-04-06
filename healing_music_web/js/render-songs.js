@@ -30,14 +30,14 @@ function renderSongs(songs = DATA.songs) {
     `).join('');
 }
 
-
+// ─── ADD SONG ────────────────────────────────────────────────────────────────
 async function openAddSongModal() {
     resetAddSongForm();
     const select = document.getElementById('new-song-artist-id');
     if (select) loadOptionArtist(select);
     openModal('modal-add-song');
 }
-// ─── ADD SONG ────────────────────────────────────────────────────────────────
+
 async function addSong() {
     const title = document.getElementById('new-song-title')?.value?.trim();
     const artistId = document.getElementById('new-song-artist-id')?.value;
@@ -72,7 +72,7 @@ async function addSong() {
     }
 }
 
-// ─── OPEN EDIT SONG ──────────────────────────────────────────────────────────
+// ─── EDIT SONG ──────────────────────────────────────────────────────────
 function openEditSong(id) {
     const s = DATA.songs.find(x => x.song_id === id);
     if (!s) return;
@@ -108,7 +108,6 @@ function openEditSong(id) {
     openModal('modal-edit-song');
 }
 
-// ─── EDIT SONG ───────────────────────────────────────────────────────────────
 async function editSong() {
     const songId = parseInt(
         document.getElementById('modal-edit-song').getAttribute('data-song-id')

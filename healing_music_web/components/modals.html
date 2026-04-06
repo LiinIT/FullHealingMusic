@@ -164,7 +164,7 @@
             </button>
         </div>
     </div>
-</div>
+</div>2
 
 <!-- Add Artist Modal -->
 <div class="modal-overlay" id="modal-add-artist">
@@ -362,6 +362,10 @@
             <input class="form-input" id="new-user-name" placeholder="VD: Nguyễn Văn A" required>
         </div>
         <div class="form-group">
+            <label class="form-label">email*</label>
+            <input class="form-input" id="new-user-email" type="email" required>
+        </div>
+        <div class="form-group">
             <label class="form-label">Tag User*</label>
             <input class="form-input" id="new-user-tag" placeholder="VD: @userA01" required>
         </div>
@@ -371,7 +375,7 @@
         </div>
         <div class="form-group">
             <label class="form-label">mật khẩu*</label>
-            <input class="form-input" id="new-user-pass" required>
+            <input class="form-input" id="new-user-pass" type="password" required>
         </div>
 
         <div class="form-group">
@@ -384,6 +388,70 @@
                 Huỷ
             </button>
             <button class="btn btn-primary" onclick="addUser()">
+                Lưu
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- edit User Modal -->
+<div class="modal-overlay" id="modal-edit-user">
+    <div class="modal">
+        <div class="modal-title">Chỉnh sửa User</div>
+        <!-- IMAGE -->
+        <div class="form-group">
+            <label class="form-label">Ảnh bìa</label>
+            <center>
+                <img id="user-edit-image-preview" style="
+                    display:none;
+                    width:100px;
+                    height:100px;
+                    object-fit:cover;
+                    border-radius:888px;">
+                <input type="file" id="user-edit-image-file-input" onchange="handleImageFile('user-edit', this)" hidden>
+                <button class="btn btn-outline" style="margin-top: 1em;"
+                    onclick="document.getElementById('user-edit-image-file-input').click()">
+                    Chọn ảnh
+                </button>
+                <span id="user-edit-image-filename"
+                    style="display: none ;font-size:12px;color:var(--text-muted);margin-top:6px;display:block">
+                    Giữ lại avatar cũ
+                </span>
+            </center>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Tên*</label>
+            <input class="form-input" id="edit-user-name" placeholder="VD: Nguyễn Văn A" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">email*</label>
+            <input class="form-input" id="edit-user-email" type="email" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Tag User*</label>
+            <input class="form-input" id="edit-user-tag" placeholder="VD: @userA01" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">tài khoản*</label>
+            <input class="form-input" id="edit-user-acc" required>
+        </div>
+        <div class="form-group">
+            <label class="form-label">mật khẩu*</label>
+            <input class="form-input" id="edit-user-pass" type="password" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Role</label>
+            <input class="form-input" id="edit-user-role" value="USER" disabled>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('modal-edit-user')">
+                Huỷ
+            </button>
+            <button class="btn btn-primary" id="" onclick="updateUser()">
                 Lưu
             </button>
         </div>

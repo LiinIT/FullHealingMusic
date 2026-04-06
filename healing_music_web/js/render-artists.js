@@ -95,7 +95,7 @@ async function addArtist() {
             document.getElementById('new-artist-name').value = '';
             document.getElementById('artist-image-preview').value = '';
             document.getElementById('new-artist-bio').value = '';
-
+            selectedFiles.artist = { audio: null, image: null };
             closeModal('modal-add-artist');
 
             await loadArtistFromAPI();
@@ -191,6 +191,7 @@ async function addAlbum() {
     });
 
     if (success && data.done) {
+        selectedFiles.album = { audio: null, image: null };
         showToast(`✅ Thêm album thành công! ID: ${data.id}`, 'success');
         closeModal('modal-add-album');
         await loadArtistFromAPI();
@@ -229,6 +230,7 @@ async function updateAlbum(id) {
     });
 
     if (success && data.done) {
+        selectedFiles.album = { audio: null, image: null };
         showToast(`✅ Thêm album thành công! ID: ${data.id}`, 'success');
         closeModal('modal-edit-album');
         await loadArtistFromAPI();

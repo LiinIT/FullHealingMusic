@@ -20,7 +20,9 @@ let selectedFiles = {
     edit: { audio: null, image: null },
     artist: { audio: null, image: null },
     album: { audio: null, image: null },
-    'album-edit': { audio: null, image: null }
+    user: { audio: null, image: null },
+    'album-edit': { audio: null, image: null },
+    'user-edit': { audio: null, image: null }
 };
 
 // Global DATA object (sẽ được fill từ API)

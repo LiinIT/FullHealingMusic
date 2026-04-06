@@ -19,9 +19,9 @@ function renderUsers() {
                 <td>${u.role}</td>
                 <td>
                     <div class="action-btns">
-                        <button class="btn-sm btn-view" onclick="viewAlbum(${u.id})">${ICONS.ui.view} View</button>
-                        <button class="btn-sm btn-edit" onclick="openEditAlbum(${u.id})">${ICONS.ui.edit} Edit</button>
-                        <button class="btn-sm btn-del" onclick="deleteAlbum(${u.id})">${ICONS.ui.delete} Delete</button>
+                        <button class="btn-sm btn-view" onclick="viewUser('${u.id}')">${ICONS.ui.view} View</button>
+                        <button class="btn-sm btn-edit" onclick="openEdirUser('${u.id}')">${ICONS.ui.edit} Edit</button>
+                        <button class="btn-sm btn-del" onclick="deleteUser('${u.id}')">${ICONS.ui.delete} Delete</button>
                     </div>
                 </td>
             </tr>
@@ -50,27 +50,140 @@ function renderUsers() {
 }
 
 
-// ─── DELETE USER ─────────────────────────────────────────────────────────────
-function deleteUser(id) {
-    if (!confirm('Bạn có chắc muốn ban user này?')) return;
-    const idx = DATA.users.findIndex(x => x.id === id);
-    if (idx > -1) {
-        DATA.users.splice(idx, 1);
+// ─── ADD USER ─────────────────────────────────────────────────────────────
+async function addUser() {
+    try {
+        const username = document.getElementById('new-user-acc')?.value;
+        const password = document.getElementById('new-user-pass')?.value;
+        const userTag = document.getElementById('new-user-tag')?.value;
+        const fullName = document.getElementById('new-user-name')?.value.trim();
+        const email = document.getElementById('new-user-email')?.value;
+        const role = document.getElementById('new-user-role')?.value;
+        const fileImage = selectedFiles.user.image;
+
+        let avatarUrl = null;
+        if (fileImage) avatarUrl = await uploadFile(fileImage);
+
+        const { success, data } = await postAPI('/users/crud_user', {
+            action: 'addUser',
+            username,
+            password,
+            email,
+            fullName,
+            userTag,
+            avatarUrl,
+            role,
+        });
+
+        if (success && data.done) {
+            closeModal('modal-add-user');
+            selectedFiles.user = { audio: null, image: null };
+        }
+    } catch (e) {
+        console.log(e);
+    } finally {
+        await loadUserFromAPI();
         renderUsers();
-        showToast('🚫 User đã bị ban', 'error');
+    }
+
+}
+
+
+
+// ─── EDIT USER ─────────────────────────────────────────────────────────────
+async function openEdirUser(id) {
+    const u = DATA.users.find(x => x.id === id);
+    if (!u) return;
+
+    // id
+    document.getElementById('modal-edit-user').setAttribute('modal-edit-user-id', u.id);
+
+    // img
+    const preview = document.getElementById('user-edit-image-preview');
+    preview.src = u.avatar_url;
+    preview.style.display = 'block';
+
+    // name
+    document.getElementById('edit-user-name').value = u.full_name;
+
+    // email
+    document.getElementById('edit-user-email').value = u.email;
+
+    // tag
+    document.getElementById('edit-user-tag').value = u.taguser;
+
+    // account
+    document.getElementById('edit-user-acc').value = u.username;
+
+    // pass 
+    document.getElementById('edit-user-name').value = u.full_name;
+
+    // role 
+    document.getElementById('edit-user-role').value = u.role;
+
+
+
+    openModal('modal-edit-user');
+}
+
+async function updateUser() {
+    const id = document.getElementById('modal-edit-user').getAttribute('modal-edit-user-id');
+
+    const avatarPreview = document.getElementById('user-edit-image-preview');
+    const nameEl = document.getElementById('edit-user-name');
+    const emailEl = document.getElementById('edit-user-email');
+    const taguserEl = document.getElementById('edit-user-tag');
+    const usernameEl = document.getElementById('edit-user-acc');
+    const passEl = document.getElementById('edit-user-pass');
+    const roleEl = document.getElementById('edit-user-role');
+
+    const { success, data } = await postAPI('/users/crud_user', {
+        action: 'updateUser',
+        userId: id,
+        avatarUrl: avatarPreview.src,
+        fullName: nameEl.value,
+        email: emailEl.value,
+        taguser: taguserEl.value,
+        username: usernameEl.value,
+        password: passEl.value,
+        role: roleEl.value,
+    });
+
+    if (success && data.done) {
+        showToast('Cập nhật thành công!');
+        closeModal('modal-edit-user');
+
+        avatarPreview.src = '';
+        avatarPreview.style.display = 'none';
+        nameEl.value = '';
+        emailEl.value = '';
+        taguserEl.value = '';
+        usernameEl.value = '';
+        passEl.value = '';
+        roleEl.value = '';
+    } else {
+        showToast('❌ Lỗi: ' + data.message);
     }
 }
 
 
-function openEdirUser(id) {
-    const s = DATA.songs.find(x => x.song_id === id);
-    if (!s) return;
 
-    const modal = document.getElementById('modal-confirm-delete');
-    modal.setAttribute('data-song-id', id);
-    document.getElementById('delete-message').textContent =
-        `Bạn có chắc muốn xoá "${s.title}"?`;
-    document.getElementById('btn-confirm-del').setAttribute('onClick', 'deleteSong()');
+// ─── DELETE USER ─────────────────────────────────────────────────────────────
+async function deleteUser(id) {
+    if (!confirm('Bạn có chắc muốn ban user này?')) return;
 
-    openModal('modal-confirm-delete');
+    const { success, data } = await postAPI('/users/crud_user', {
+        action: 'deleteUser',
+        userId: id,
+    });
+
+    if (success && data.done) {
+        showToast('✅ Đã thêm bài hát vào album', 'success');
+    } else {
+        showToast('🚫 User đã bị ban', 'error');
+        console.log(data.message);
+    }
+
+    await loadUserFromAPI();
+    renderUsers();
 }
