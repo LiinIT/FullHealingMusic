@@ -4,7 +4,8 @@ function renderOverview() {
     document.getElementById('isong-count').innerText = DATA.songs.length;
     document.getElementById('total-artist-value').innerText = DATA.artists.length;
     document.getElementById('iartist-count').innerText = DATA.artists.length;
-
+    document.getElementById('total-user-value').innerText = DATA.users.length;
+    document.getElementById('icount-user').innerText = DATA.users.length;
 
     // Activity feed
     const feed = document.getElementById('activity-feed');

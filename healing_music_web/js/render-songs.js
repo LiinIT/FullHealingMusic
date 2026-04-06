@@ -1,6 +1,7 @@
 // Render Songs page
 function renderSongs(songs = DATA.songs) {
 
+    document.getElementById('isong-count').innerText = DATA.songs.length;
     const tbody = document.getElementById('songs-tbody');
 
     if (!tbody) return;

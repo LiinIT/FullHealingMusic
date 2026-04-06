@@ -1,5 +1,6 @@
 // Render Users page
 function renderUsers() {
+    document.getElementById('icount-user').innerText = DATA.users.length;
     const tbody = document.getElementById('users-tbody');
     if (tbody && DATA.users) {
         tbody.innerHTML = DATA.users.map(u => `
@@ -19,7 +20,7 @@ function renderUsers() {
                 <td>${u.role}</td>
                 <td>
                     <div class="action-btns">
-                        <button class="btn-sm btn-view" onclick="viewUser('${u.id}')">${ICONS.ui.view} View</button>
+                        <!-- <button class="btn-sm btn-view" onclick="viewUser('${u.id}')">${ICONS.ui.view} View</button> -->
                         <button class="btn-sm btn-edit" onclick="openEdirUser('${u.id}')">${ICONS.ui.edit} Edit</button>
                         <button class="btn-sm btn-del" onclick="deleteUser('${u.id}')">${ICONS.ui.delete} Delete</button>
                     </div>
@@ -161,6 +162,8 @@ async function updateUser() {
         usernameEl.value = '';
         passEl.value = '';
         roleEl.value = '';
+        await loadUserFromAPI();
+        renderUsers();
     } else {
         showToast('❌ Lỗi: ' + data.message);
     }

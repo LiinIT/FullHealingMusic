@@ -1,6 +1,6 @@
 function renderArtists() {
+    document.getElementById('iartist-count').innerText = DATA.artists.length;
     const grid = document.getElementById('artists-grid');
-    let countAlbum = 0;
     if (grid && Array.isArray(DATA.artists)) {
         grid.innerHTML = '';  // Clear any existing content first
         DATA.artists.forEach(a => {

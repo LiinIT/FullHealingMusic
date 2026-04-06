@@ -7,8 +7,7 @@ Future<Response> onRequest(RequestContext context) async {
   try {
     // 1. Truy vấn DB
     final result = await conn.execute('''
-        SELECT 
-          -- songs fields
+        SELECT
           s.id              AS song_id,
           s.title,
           s.play_count,
@@ -17,7 +16,6 @@ Future<Response> onRequest(RequestContext context) async {
           s.duration_seconds,
           s.created_at      AS song_created_at,
 
-          -- artists fields
           a.id              AS artist_id,
           a.full_name,
           a.avatar_url,
@@ -27,6 +25,7 @@ Future<Response> onRequest(RequestContext context) async {
         FROM songs s
         LEFT JOIN artists a 
           ON a.id = s.artist_id
+        ORDER BY s.play_count DESC
         LIMIT 5
         ''');
 
