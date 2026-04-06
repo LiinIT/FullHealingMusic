@@ -253,7 +253,7 @@ Future<Response> getAllAlbums(Connection connect) async {
     final Map<int, Map<String, dynamic>> albumMap = {};
 
     for (final row in result) {
-      final albumId = row[0] as int;
+      final albumId = row[0]! as int;
 
       if (!albumMap.containsKey(albumId)) {
         albumMap[albumId] = {
@@ -272,6 +272,7 @@ Future<Response> getAllAlbums(Connection connect) async {
             'follower_count': row[9],
             'is_verified': row[10],
           },
+          // ignore: inference_failure_on_collection_literal
           'songs': [],
         };
       }
@@ -291,10 +292,12 @@ Future<Response> getAllAlbums(Connection connect) async {
       }
     }
 
-    return Response.json(body: {
-      'done': true,
-      'albums': albumMap.values.toList(),
-    });
+    return Response.json(
+      body: {
+        'done': true,
+        'albums': albumMap.values.toList(),
+      },
+    );
   } catch (e) {
     return Response.json(
       statusCode: 500,
