@@ -196,7 +196,7 @@ Future<Response> _handleGetAllHistory({
     );
   } catch (e) {
     return Response.json(
-      body: {'done': false, 'isEmpty': false, 'songs': []},
+      body: {'done': false, 'isEmpty': false, 'songs': <dynamic>[]},
     );
   }
 }
