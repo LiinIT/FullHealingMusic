@@ -176,17 +176,20 @@ Future<Response> _handleGetAllHistory({
             // songs fields
             'song_id': row[0],
             'title': row[1],
-            'image_url': row[2],
-            'audio_url': row[3],
-            'duration_seconds': row[4],
-            'song_created_at': row[5]?.toString(),
+            'play_count': row[2],
+            'image_url': row[3],
+            'audio_url': row[4],
+            'duration_seconds': row[5],
+            'song_created_at': row[6] is DateTime
+                ? (row[6]! as DateTime).toIso8601String()
+                : null,
 
             // artists fields
-            'artist_id': row[6],
-            'full_name': row[7],
-            'avatar_url': row[8],
-            'follower_count': row[9],
-            'is_verified': row[10],
+            'artist_id': row[7],
+            'full_name': row[8],
+            'avatar_url': row[9],
+            'follower_count': row[10],
+            'is_verified': row[11],
           },
         )
         .toList();
@@ -195,6 +198,7 @@ Future<Response> _handleGetAllHistory({
       body: {'done': true, 'isEmpty': false, 'songs': songs},
     );
   } catch (e) {
+    print(e);
     return Response.json(
       body: {'done': false, 'isEmpty': false, 'songs': <dynamic>[]},
     );
