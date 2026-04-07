@@ -38,18 +38,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             const q = e.target.value;
             if (q.length > 0) {
                 navigate('songs');
-                searchSongs(q);
+                searchSongs('topbar-search-input');
             } else {
                 renderSongs(DATA.songs);
             }
         });
     }
 
-    // Page song search
-    const songsSearch = document.getElementById('songs-search');
-    if (songsSearch) {
-        songsSearch.addEventListener('input', e => searchSongs(e.target.value));
-    }
 
     // Close modal on overlay click
     document.querySelectorAll('.modal-overlay').forEach(overlay => {

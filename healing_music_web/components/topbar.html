@@ -5,7 +5,8 @@
     </div>
     <div class="topbar-search">
         <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input id="topbar-search-input" type="text" placeholder="Tìm bài hát, nghệ sĩ...">
+        <input id="topbar-search-input" onkeydown="searchSongs('topbar-search-input')" type="text"
+            placeholder="Tìm bài hát, nghệ sĩ...">
     </div>
     <div class="topbar-actions">
         <div class="icon-btn" onclick="showToast('Không có thông báo mới', 'info')">

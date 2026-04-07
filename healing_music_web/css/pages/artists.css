@@ -6,6 +6,7 @@
 }
 
 .artist-card {
+    height: 234px;
     background: var(--bg-card2);
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
@@ -13,6 +14,7 @@
     text-align: center;
     transition: all 0.2s;
     cursor: pointer;
+    position: relative;
 }
 
 .artist-card:hover {

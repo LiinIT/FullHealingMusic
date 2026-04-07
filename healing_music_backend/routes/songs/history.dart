@@ -128,6 +128,9 @@ Future<Response> _handleGetAllHistory({
   required Connection connect,
 }) async {
   final userID = body['userID'] as String?;
+
+  print(userID);
+
   if (userID == null) {
     return Response.json(
       statusCode: 400,
@@ -195,8 +198,7 @@ Future<Response> _handleGetAllHistory({
     );
   } catch (e) {
     return Response.json(
-      statusCode: 500,
-      body: {'done': false, 'message': 'ERROR => $e'},
+      body: {'done': false, 'isEmpty': false, 'songs': []},
     );
   }
 }

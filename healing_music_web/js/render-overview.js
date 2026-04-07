@@ -1,5 +1,10 @@
 // Render Overview page
 function renderOverview() {
+    let countTotalPlays = 0;
+
+    DATA.songs.forEach(s => countTotalPlays += s.play_count);
+    document.getElementById('total-plays').innerText = formatNumber(countTotalPlays);
+
     document.getElementById('total-songs-value').innerText = DATA.songs.length;
     document.getElementById('isong-count').innerText = DATA.songs.length;
     document.getElementById('total-artist-value').innerText = DATA.artists.length;

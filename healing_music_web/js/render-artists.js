@@ -23,7 +23,7 @@ function renderArtists() {
                         
                 </div>
                 <div class="artist-followers">${a.follower_count ?? 0} followers</div>
-                <div class="btn-del" onClick="openDeleteArtist(${a.id})" style="margin-top:2em; padding: 0.4em"><i class="fa-solid fa-ban"></i> Ban</div>
+                <div class="btn-del" onClick="openDeleteArtist(${a.id})" style="margin-top:2em;padding: 0.4em;position: absolute;bottom: 15px;left: 15px;right: 15px;"><i class="fa-solid fa-ban"></i> Ban</div>
             `;
             grid.appendChild(artistCard);
         });
@@ -53,7 +53,7 @@ function renderArtists() {
                 <td>-</td>
                 <td>
                     <div class="action-btns">
-                        <button class="btn-sm btn-view" onclick="viewAlbum(${a.id})">${ICONS.ui.view} View</button>
+                        <!-- <button class="btn-sm btn-view" onclick="viewAlbum(${a.id})">${ICONS.ui.view} View</button> -->
                         <button class="btn-sm btn-edit" onclick="openEditAlbum(${a.id})">${ICONS.ui.edit} Edit</button>
                         <button class="btn-sm btn-del" onclick="openDeleteAlbum(${a.id})">${ICONS.ui.delete} Delete</button>
                     </div>
