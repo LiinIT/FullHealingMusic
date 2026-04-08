@@ -1,0 +1,57 @@
+Dạ, em chào anh Nam ạ. 
+Em là Khánh, em đang ở vị trí Mobile App. 
+Hôm nay em xin phép trình bày về đồ án cá nhân của em — 
+mong anh dành chút thời gian nghe và góp ý ạ
+
+Dạ, dự án của em tên là Healing Music — 
+một ứng dụng nghe nhạc di động full-stack 
+mà em tự xây dựng hoàn toàn từ đầu đến cuối.
+Hệ thống gồm 4 phần chính:
+
+Mobile app — dành cho người dùng cuối, viết bằng Flutter
+REST API backend — viết bằng Dart Frog
+Web dashboard — dành cho admin để quản lý nội dung
+
+Tất cả dùng chung một database PostgreSQL. 
+Mục tiêu em đặt ra từ đầu là làm một sản phẩm vận hành được thực tế, không chỉ là bài tập."
+
+
+
+--Về công nghệ:
+Flutter — clean architecture, Provider
+Dart Frog — REST API, JWT
+PostgreSQL — trigger tự động đếm lượt nghe
+Web dashboard — gọi chung REST API
+Google Mobile Ads — tích hợp Banner Ads phục vụ monetization"
+
+Screen 
+Register / Login / Home / Play / aritst / album / profile / search 
+
+Flow 
+khi người dùng đăng ký và đăng nhập vào app 
+thì được xác thực bằng JWT trên BE và được lưu vào token trên secure storage
+page home, hiển thị các bài ngẫu nhiên / top trending / hot track / history
+khi người dùng nhấn vào một bài hát bất kỳ sẽ được audio stream trực tiếp realtime
+và chuyển qua page play,
+Trong page play có shuffle / repeat / play / pause / prew / next / favorite
+
+và chuyển sang page artist
+page artist có đầy đủ thông tin của artist bio / avt / name / album / song của artist đó
+khi chọn album bất kỳ thì sẽ được hiển thị toàn bộ bài hát là album đó có
+
+về page profile có thể logout hoặc đổi theme darkmode / lightmode 
+
+ứng dụng của em gồm 4 phần chính,
+ - Mobile app được viết bằng flutter, có clean architure
+ - Back end được viết bằng dart Frog
+ - web dashboard được xây dựng bằng html/css/js thuần
+ - và tất cả dùng chung 1 DB PostgreSQL
+
+Điểm nổi bật của ứng dụng là 
+ - hệ thống hoàn chỉnh có WEB, APP, BE, DB được em xây dựng từ đầu đến cuối
+ - có dùng clean architure tách riêng component để dễ đọc code và dễ score 
+ - có tích hợp google ads
+
+về Database gồm 8 màn hình artist / song / album / songInAlbum / User / histoty / favory / theme
+
+đó là toàn bộ phần trình bày của em, em rất mong nhận được đánh giá, góp ý từ anh. Em chân thành cảm ơn!!
