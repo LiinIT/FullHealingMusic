@@ -51,7 +51,8 @@ Future<Response> _handleGetAllFavorite({
           a.full_name,
           a.avatar_url,
           a.follower_count,
-          a.is_verified
+          a.is_verified,
+          a.bio
       FROM favorites f
         JOIN songs   s ON s.id = f.song_id
         JOIN artists a ON a.id = s.artist_id
@@ -68,25 +69,28 @@ Future<Response> _handleGetAllFavorite({
     }
 
     final songs = result
-        .map((row) => {
-              // songs fields
-              'song_id': row[0],
-              'title': row[1],
-              'play_count': row[2],
-              'image_url': row[3],
-              'audio_url': row[4],
-              'duration_seconds': row[5],
-              'song_created_at': row[6] is DateTime
-                  ? (row[6]! as DateTime).toIso8601String()
-                  : null,
+        .map(
+          (row) => {
+            // songs fields
+            'song_id': row[0],
+            'title': row[1],
+            'play_count': row[2],
+            'image_url': row[3],
+            'audio_url': row[4],
+            'duration_seconds': row[5],
+            'song_created_at': row[6] is DateTime
+                ? (row[6]! as DateTime).toIso8601String()
+                : null,
 
-              // artists fields
-              'artist_id': row[7],
-              'full_name': row[8],
-              'avatar_url': row[9],
-              'follower_count': row[10],
-              'is_verified': row[11],
-            })
+            // artists fields
+            'artist_id': row[7],
+            'full_name': row[8],
+            'avatar_url': row[9],
+            'follower_count': row[10],
+            'is_verified': row[11],
+            'bio': row[12],
+          },
+        )
         .toList();
 
     return Response.json(

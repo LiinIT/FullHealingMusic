@@ -32,7 +32,8 @@ Future<Response> onRequest(RequestContext context) async {
           a.full_name ,
           a.avatar_url,
           a.follower_count,
-          a.is_verified
+          a.is_verified,
+          a.bio
         FROM songs s
         LEFT JOIN artists a ON a.id = s.artist_id
         WHERE
@@ -56,6 +57,7 @@ Future<Response> onRequest(RequestContext context) async {
             'avatar_url': row[7],
             'follower_count': row[8],
             'is_verified': row[9],
+            'bio': row[10]
           },
         )
         .toList();

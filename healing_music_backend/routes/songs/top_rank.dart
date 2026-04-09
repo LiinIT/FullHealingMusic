@@ -20,7 +20,8 @@ Future<Response> onRequest(RequestContext context) async {
           a.full_name,
           a.avatar_url,
           a.follower_count,
-          a.is_verified
+          a.is_verified,
+          a.bio
 
         FROM songs s
         LEFT JOIN artists a 
