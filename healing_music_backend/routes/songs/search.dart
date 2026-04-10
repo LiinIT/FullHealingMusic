@@ -49,15 +49,16 @@ Future<Response> onRequest(RequestContext context) async {
           (row) => {
             'song_id': row[0],
             'title': row[1],
-            'image_url': row[2],
-            'audio_url': row[3],
-            'duration_seconds': row[4],
-            'artist_id': row[5],
-            'full_name': row[6],
-            'avatar_url': row[7],
-            'follower_count': row[8],
-            'is_verified': row[9],
-            'bio': row[10]
+            'play_count': row[2],
+            'image_url': row[3],
+            'audio_url': row[4],
+            'duration_seconds': row[5],
+            'artist_id': row[6],
+            'full_name': row[7],
+            'avatar_url': row[8],
+            'follower_count': row[9],
+            'is_verified': row[10],
+            'bio': row[11],
           },
         )
         .toList();
