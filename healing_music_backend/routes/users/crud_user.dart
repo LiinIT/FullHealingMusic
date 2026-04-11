@@ -191,5 +191,5 @@ Future<Response> _getAll(Connection conn) async {
           },
         )
         .toList(),
-  });
+  },);
 }

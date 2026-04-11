@@ -57,7 +57,7 @@ Future<Response> _addArtist(Connection conn, dynamic body) async {
     return Response.json(body: {
       'done': true,
       'id': result.first[0],
-    });
+    },);
   } catch (e) {
     return Response.json(
       statusCode: 500,
@@ -137,7 +137,7 @@ Future<Response> _getAll(Connection conn) async {
               'full_name': r[1],
               'avatar_url': r[2],
               'bio': r[3],
-            })
+            },)
         .toList(),
-  });
+  },);
 }

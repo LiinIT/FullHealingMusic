@@ -86,7 +86,7 @@ Future<Response> _handleGetAllFavorite({
               'avatar_url': row[9],
               'follower_count': row[10],
               'is_verified': row[11],
-            })
+            },)
         .toList();
 
     return Response.json(
