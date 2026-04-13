@@ -72,7 +72,7 @@ Future<Response> _getSongById(Connection conn, dynamic body) async {
       'artist_id': row[6],
       'full_name': row[7],
       'avatar_url': row[8],
-    });
+    },);
   } catch (e, stackTrace) {
     print('Error getSongById: $e');
     print('StackTrace: $stackTrace');
@@ -93,17 +93,17 @@ Future<Response> _addSong(Connection conn, dynamic body) async {
 
   if (title == null || title.toString().trim().isEmpty) {
     return Response.json(
-        statusCode: 400, body: {'done': false, 'message': 'title là bắt buộc'});
+        statusCode: 400, body: {'done': false, 'message': 'title là bắt buộc'},);
   }
   if (audioUrl == null || audioUrl.toString().trim().isEmpty) {
     return Response.json(
         statusCode: 400,
-        body: {'done': false, 'message': 'audioUrl là bắt buộc'});
+        body: {'done': false, 'message': 'audioUrl là bắt buộc'},);
   }
   if (artistId == null) {
     return Response.json(
         statusCode: 400,
-        body: {'done': false, 'message': 'artistId là bắt buộc'});
+        body: {'done': false, 'message': 'artistId là bắt buộc'},);
   }
 
   try {
@@ -126,18 +126,18 @@ Future<Response> _addSong(Connection conn, dynamic body) async {
     final rows = result.toList();
     if (rows.isEmpty) {
       return Response.json(
-          statusCode: 500, body: {'done': false, 'message': 'Insert thất bại'});
+          statusCode: 500, body: {'done': false, 'message': 'Insert thất bại'},);
     }
 
     return Response.json(body: {
       'done': true,
       'id': rows.first[0]! as int,
       'message': 'Thêm bài hát thành công',
-    });
+    },);
   } catch (e) {
     print('Error addSong: $e');
     return Response.json(
-        statusCode: 500, body: {'done': false, 'message': 'Lỗi server: $e'});
+        statusCode: 500, body: {'done': false, 'message': 'Lỗi server: $e'},);
   }
 }
 
@@ -153,21 +153,21 @@ Future<Response> _updateSong(Connection conn, dynamic body) async {
   if (songId == null) {
     return Response.json(
         statusCode: 400,
-        body: {'done': false, 'message': 'songID là bắt buộc'});
+        body: {'done': false, 'message': 'songID là bắt buộc'},);
   }
   if (title == null || title.toString().trim().isEmpty) {
     return Response.json(
-        statusCode: 400, body: {'done': false, 'message': 'title là bắt buộc'});
+        statusCode: 400, body: {'done': false, 'message': 'title là bắt buộc'},);
   }
   if (artistId == null) {
     return Response.json(
         statusCode: 400,
-        body: {'done': false, 'message': 'artistId là bắt buộc'});
+        body: {'done': false, 'message': 'artistId là bắt buộc'},);
   }
   if (audioUrl == null || audioUrl.toString().trim().isEmpty) {
     return Response.json(
         statusCode: 400,
-        body: {'done': false, 'message': 'audioUrl là bắt buộc'});
+        body: {'done': false, 'message': 'audioUrl là bắt buộc'},);
   }
 
   try {
@@ -196,19 +196,19 @@ Future<Response> _updateSong(Connection conn, dynamic body) async {
     if (result.isEmpty) {
       return Response.json(statusCode: 404, body: {
         'done': false,
-        'message': 'Không tìm thấy bài hát ID: $songId'
-      });
+        'message': 'Không tìm thấy bài hát ID: $songId',
+      },);
     }
 
     return Response.json(body: {
       'done': true,
       'id': songId,
       'message': 'Cập nhật thành công',
-    });
+    },);
   } catch (e) {
     print('Error updateSong: $e');
     return Response.json(
-        statusCode: 500, body: {'done': false, 'message': 'Lỗi server: $e'});
+        statusCode: 500, body: {'done': false, 'message': 'Lỗi server: $e'},);
   }
 }
 
@@ -219,7 +219,7 @@ Future<Response> _deleteSong(Connection conn, dynamic body) async {
   if (songId == null) {
     return Response.json(
         statusCode: 400,
-        body: {'done': false, 'message': 'songID là bắt buộc'});
+        body: {'done': false, 'message': 'songID là bắt buộc'},);
   }
 
   try {
@@ -231,18 +231,18 @@ Future<Response> _deleteSong(Connection conn, dynamic body) async {
     if (result.isEmpty) {
       return Response.json(statusCode: 404, body: {
         'done': false,
-        'message': 'Không tìm thấy bài hát ID: $songId'
-      });
+        'message': 'Không tìm thấy bài hát ID: $songId',
+      },);
     }
 
     return Response.json(body: {
       'done': true,
       'id': songId,
       'message': 'Xoá bài hát thành công',
-    });
+    },);
   } catch (e) {
     print('Error deleteSong: $e');
     return Response.json(
-        statusCode: 500, body: {'done': false, 'message': 'Lỗi server: $e'});
+        statusCode: 500, body: {'done': false, 'message': 'Lỗi server: $e'},);
   }
 }
