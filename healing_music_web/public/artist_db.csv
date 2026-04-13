@@ -1,7 +1,7 @@
 id,full_name,avatar_url,bio,follower_count,is_verified,created_at
 1,CaoTri Official,http://192.168.1.29:3000/public/images/artist/caotri.jpg,Nhà sản xuất âm nhạc và ca sĩ trẻ với nhiều sản phẩm Lofi chất lượng cao,15420,true,2023-01-15 08:30:00
 2,Nguyễn Vĩ,http://192.168.1.29:3000/public/images/artist/90_f24dc8425551a2db257bee1e730e187e.jpg,Ca sĩ sở hữu giọng hát ấm áp thường xuyên hợp tác với CaoTri Official,8750,false,2023-02-20 10:15:00
-3,F47,http://192.168.1.29:3000/public/images/artist/f47s.avif,Nghệ sĩ cover với phong cách trẻ trung năng động,12340,false,2023-03-10 14:20:00
+3,F47,http://192.168.1.29:3000/public/images/artist/f47s.png,Nghệ sĩ cover với phong cách trẻ trung năng động,12340,false,2023-03-10 14:20:00
 4,Đặng Thanh Tuyền,http://192.168.1.29:3000/public/images/artist/16e3429b1d4e43e1996269f0cf40c0a2.jpg,Giọng ca nội lực với nhiều bản cover được yêu thích,9820,false,2023-01-05 09:45:00
 5,Yamix Hầu Ca,http://192.168.1.29:3000/public/images/artist/7d00355583c6571daabb6ec3e541af1c.jpg,Rapper và nhạc sĩ với phong cách Lofi độc đáo,11250,false,2023-02-28 16:30:00
 6,Gấu,http://192.168.1.29:3000/public/images/artist/images.jpeg,Nữ ca sĩ trẻ với chất giọng ngọt ngào,7890,false,2023-03-15 11:00:00
