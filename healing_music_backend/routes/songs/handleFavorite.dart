@@ -31,7 +31,6 @@ Future<Response> _handleGetAllFavorite({
       body: {'done': false, 'message': 'Missing userID'},
     );
   }
-  print(userID);
 
   try {
     final result = await connect.execute(

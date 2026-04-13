@@ -1,35 +1,50 @@
+import 'package:bcrypt/bcrypt.dart';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:postgres/postgres.dart';
 
 Future<Response> onRequest(RequestContext context) async {
   final conn = context.read<Connection>();
-  // Chỉ chấp nhận phương thức POST
+
   if (context.request.method != HttpMethod.post) {
     return Response(statusCode: 405);
   }
 
-  // 1. Đọc dữ liệu từ Flutter gửi lên
   final body = await context.request.json();
-  final userName = body['username'];
-  final password = body['password'];
+  final userName = body['username']?.toString() ?? '';
+  final password = body['password']?.toString() ?? '';
 
-  // 3. Truy vấn DB
+  if (userName.isEmpty || password.isEmpty) {
+    return Response.json(
+      statusCode: 400,
+      body: {'isMatch': false, 'message': 'Thiếu username hoặc password'},
+    );
+  }
+
+  // Lấy password đã lưu (bcrypt hoặc plain-text cũ)
   final result = await conn.execute(
-    r'''
-      SELECT users.username 
-      FROM users 
-      WHERE username = $1 AND password = $2
-    ''',
-    parameters: [userName, password],
+    r'SELECT password FROM users WHERE username = $1',
+    parameters: [userName],
   );
 
-  // 4. Kiểm tra kết quả
-  if (result.isNotEmpty) {
-    return Response.json(
-      body: {'result': true},
-      statusCode: 401,
-    );
-  } else {
-    return Response.json(body: {'result': false}, statusCode: 201);
+  if (result.isEmpty) {
+    return Response.json(statusCode: 400, body: {'isMatch': false});
   }
+
+  final storedPassword = result.first[0].toString();
+
+  // Hỗ trợ cả bcrypt lẫn plain-text cũ (migration)
+  bool isMatch;
+  final isBcrypt = storedPassword.startsWith(r'$2b$') ||
+      storedPassword.startsWith(r'$2a$');
+  if (isBcrypt) {
+    isMatch = BCrypt.checkpw(password, storedPassword);
+  } else {
+    isMatch = storedPassword == password;
+  }
+
+  // 200 = khớp, 400 = không khớp
+  return Response.json(
+    statusCode: isMatch ? 200 : 400,
+    body: {'isMatch': isMatch},
+  );
 }

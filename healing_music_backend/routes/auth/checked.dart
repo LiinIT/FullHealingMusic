@@ -22,15 +22,8 @@ Future<Response> onRequest(RequestContext context) async {
     parameters: [account],
   );
 
-  // 4. Kiểm tra kết quả
-  if (result.isNotEmpty) {
-    return Response.json(
-      body: {'isNotEmpty': true},
-      statusCode: 401,
-    );
-  } else {
-    return Response.json(
-      body: {'isNotEmpty': false},
-    );
-  }
+  // 4. Kiểm tra kết quả — trả 200 cho cả 2 trường hợp, dùng body để phân biệt
+  return Response.json(
+    body: {'isNotEmpty': result.isNotEmpty},
+  );
 }

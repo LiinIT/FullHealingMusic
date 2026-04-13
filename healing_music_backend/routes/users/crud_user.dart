@@ -1,4 +1,5 @@
 import 'package:dart_frog/dart_frog.dart';
+import 'package:healing_music_backend/core/service/JwtService.dart';
 import 'package:postgres/postgres.dart';
 
 Future<Response> onRequest(RequestContext context) async {
@@ -16,15 +17,37 @@ Future<Response> onRequest(RequestContext context) async {
     case 'updateUser':
       return _updateUser(conn, body);
     case 'deleteUser':
-      return _deleteUser(conn, body);
+      return _requireAuth(context, () => _deleteUser(conn, body));
     case 'getAll':
-      return _getAll(conn);
+      return _requireAuth(context, () => _getAll(conn));
     default:
       return Response.json(
         statusCode: 400,
         body: {'done': false, 'message': 'Unknown action'},
       );
   }
+}
+
+// ─── AUTH GUARD ──────────────────────────────────
+Future<Response> _requireAuth(
+  RequestContext context,
+  Future<Response> Function() handler,
+) async {
+  final authHeader = context.request.headers['Authorization'];
+  if (authHeader == null || !authHeader.startsWith('Bearer ')) {
+    return Response.json(
+      statusCode: 401,
+      body: {'done': false, 'message': 'Thiếu token xác thực!'},
+    );
+  }
+  final payload = JwtService.verifyToken(authHeader.substring(7));
+  if (payload == null) {
+    return Response.json(
+      statusCode: 401,
+      body: {'done': false, 'message': 'Token không hợp lệ hoặc đã hết hạn!'},
+    );
+  }
+  return handler();
 }
 
 // ─── ADD USER ────────────────────────────────────
