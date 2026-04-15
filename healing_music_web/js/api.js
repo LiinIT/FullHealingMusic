@@ -1,11 +1,65 @@
+// ─── AUTH ─────────────────────────────────────────────────────────────────────
+const AUTH = {
+    TOKEN_KEY: 'hm_admin_token',
+    USER_KEY: 'hm_admin_user',
+
+    getToken() { return localStorage.getItem(this.TOKEN_KEY); },
+    getUser()  { return JSON.parse(localStorage.getItem(this.USER_KEY) || 'null'); },
+
+    save(token, userInfo) {
+        localStorage.setItem(this.TOKEN_KEY, token);
+        localStorage.setItem(this.USER_KEY, JSON.stringify(userInfo));
+    },
+
+    clear() {
+        localStorage.removeItem(this.TOKEN_KEY);
+        localStorage.removeItem(this.USER_KEY);
+    },
+
+    isLoggedIn() { return !!this.getToken(); },
+
+    async login(username, password) {
+        try {
+            const res = await fetch(`${CONFIG.API_BASE_URL}/auth/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+            });
+            const data = await res.json();
+            if (!res.ok) return { success: false, message: data.message || 'Đăng nhập thất bại' };
+            this.save(data.token, { id: data.userID, username: data.username });
+            return { success: true, data };
+        } catch (e) {
+            return { success: false, message: 'Không kết nối được đến server' };
+        }
+    },
+
+    logout() {
+        this.clear();
+        showLoginScreen();
+    },
+};
+
 // ─── FETCH HELPERS ───────────────────────────────────────────────────────────
 async function fetchAPI(endpoint, options = {}) {
     const url = `${CONFIG.API_BASE_URL}${endpoint}`;
+    const token = AUTH.getToken();
+
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
     try {
         const response = await fetch(url, {
-            headers: { 'Content-Type': 'application/json' },
+            headers,
             ...options,
+            // Merge headers nếu options có truyền thêm
+            headers: { ...headers, ...(options.headers || {}) },
         });
+        if (response.status === 401) {
+            AUTH.clear();
+            showLoginScreen();
+            return { success: false, error: 'Unauthorized' };
+        }
         if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         return { success: true, data: await response.json() };
     } catch (error) {
@@ -50,6 +104,7 @@ async function loadUserFromAPI() {
     const { success, data } = await postAPI('/users/crud_user', { action: 'getAll' });
     if (success && data.users) {
         DATA.users = data.users;
+        renderUsers();
     }
 }
 

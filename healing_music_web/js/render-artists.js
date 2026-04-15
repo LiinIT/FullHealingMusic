@@ -1,66 +1,60 @@
 function renderArtists() {
     document.getElementById('iartist-count').innerText = DATA.artists.length;
     const grid = document.getElementById('artists-grid');
-    if (grid && Array.isArray(DATA.artists)) {
-        grid.innerHTML = '';  // Clear any existing content first
-        DATA.artists.forEach(a => {
-            const artistCard = document.createElement('div');
-            artistCard.className = 'artist-card';
-            artistCard.onclick = () => showToast('👤 ' + escapeHtml(a.full_name), 'info');
 
-            const avatar = a.avatar_url || 'https://via.placeholder.com/40';
-            artistCard.innerHTML = `
-                <div class="artist-avatar" style="background-image: url('${avatar}')"></div>
-                <div class="artist-name">${escapeHtml(a.full_name || 'Unknown')}</div>
-                <div class="artist-songs">
-                    ${(Array.isArray(DATA.songs) ?
-                    DATA.songs.filter(s => s.artist_id === a.id).length :
-                    0)} bài hát 
-                    ·
-                    ${Array.isArray(DATA.albums)
-                    ? DATA.albums.filter(s => s.artist_id === a.id).length
-                    : 0} albums
-                        
-                </div>
-                <div class="artist-followers">${a.follower_count ?? 0} followers</div>
-                <div class="btn-del" onClick="openDeleteArtist(${a.id})" style="margin-top:2em;padding: 0.4em;position: absolute;bottom: 15px;left: 15px;right: 15px;"><i class="fa-solid fa-ban"></i> Ban</div>
-            `;
-            grid.appendChild(artistCard);
-        });
+    if (grid && Array.isArray(DATA.artists)) {
+        PAGINATION.init('artists', DATA.artists, 8, (slice) => {
+            grid.innerHTML = slice.map(a => {
+                const avatar = a.avatar_url || 'https://via.placeholder.com/40';
+                const songCount = Array.isArray(DATA.songs) ? DATA.songs.filter(s => s.artist_id === a.id).length : 0;
+                const albumCount = Array.isArray(DATA.albums) ? DATA.albums.filter(s => s.artist_id === a.id).length : 0;
+                return `
+                    <div class="artist-card" onclick="showToast('👤 ${escapeHtml(a.full_name)}', 'info')">
+                        <div class="artist-avatar" style="background-image: url('${avatar}')"></div>
+                        <div class="artist-name">${escapeHtml(a.full_name || 'Unknown')}</div>
+                        <div class="artist-songs">${songCount} bài hát · ${albumCount} albums</div>
+                        <div class="artist-followers">${a.follower_count ?? 0} followers</div>
+                        <div class="btn-del" onClick="openDeleteArtist(${a.id})" style="margin-top:2em;padding:0.4em;position:absolute;bottom:15px;left:15px;right:15px;">
+                            <i class="fa-solid fa-ban"></i> Ban
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }, 'artists-pagination');
     }
 
     // ─── ALBUMS ─────────────────────
     const tbody = document.getElementById('albums-tbody');
     if (tbody && Array.isArray(DATA.albums)) {
-        tbody.innerHTML = '';  // Clear existing content
-        DATA.albums.forEach(a => {
-            const row = document.createElement('tr');
-            const coverUrl = a.cover_url || 'https://via.placeholder.com/40';
-            row.innerHTML = `
-                <td>
-                    <div class="song-row">
-                        <div style="display: flex;"> 
-                            <div class="artist-avatar" style="background-image: url('${coverUrl}')"></div>
-                            <div  style="display: flex;flex-direction: column;justify-content: center;padding-left: 2em;">
-                                <div class="song-name">${escapeHtml(a.title || 'No title')}</div>
-                                <div class="song-artist">${a.album_type || 'album'}</div>
+        PAGINATION.init('albums', DATA.albums, 8, (slice) => {
+            tbody.innerHTML = slice.map(a => {
+                const coverUrl = a.cover_url || 'https://via.placeholder.com/40';
+                return `
+                    <tr>
+                        <td>
+                            <div class="song-row">
+                                <div style="display:flex">
+                                    <div class="artist-avatar" style="background-image:url('${coverUrl}')"></div>
+                                    <div style="display:flex;flex-direction:column;justify-content:center;padding-left:2em">
+                                        <div class="song-name">${escapeHtml(a.title || 'No title')}</div>
+                                        <div class="song-artist">${a.album_type || 'album'}</div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </td>
-                <td>${escapeHtml(a.artist?.full_name || 'Unknown')}</td>
-                <td>${a.total_songs ?? 0} tracks</td>
-                <td>-</td>
-                <td>
-                    <div class="action-btns">
-                        <!-- <button class="btn-sm btn-view" onclick="viewAlbum(${a.id})">${ICONS.ui.view} View</button> -->
-                        <button class="btn-sm btn-edit" onclick="openEditAlbum(${a.id})">${ICONS.ui.edit} Edit</button>
-                        <button class="btn-sm btn-del" onclick="openDeleteAlbum(${a.id})">${ICONS.ui.delete} Delete</button>
-                    </div>
-                </td>
-            `;
-            tbody.appendChild(row);
-        });
+                        </td>
+                        <td>${escapeHtml(a.artist?.full_name || 'Unknown')}</td>
+                        <td>${a.total_songs ?? 0} tracks</td>
+                        <td>-</td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="btn-sm btn-edit" onclick="openEditAlbum(${a.id})">${ICONS.ui.edit} Edit</button>
+                                <button class="btn-sm btn-del" onclick="openDeleteAlbum(${a.id})">${ICONS.ui.delete} Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }, 'albums-pagination');
     }
 }
 

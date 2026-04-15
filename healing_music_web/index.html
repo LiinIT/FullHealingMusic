@@ -12,7 +12,45 @@
 </head>
 
 <body>
-    <div class="app-layout">
+
+    <!-- Login Screen -->
+    <div class="login-screen" id="login-screen">
+        <div class="login-card">
+            <div class="login-logo">
+                <i class="fa-solid fa-headphones-simple"></i>
+            </div>
+            <div class="login-title">Healing Music</div>
+            <div class="login-subtitle">Admin Dashboard</div>
+
+            <div class="login-form">
+                <div class="login-field">
+                    <label>Username</label>
+                    <div class="login-input-wrap">
+                        <i class="fa-solid fa-user"></i>
+                        <input id="login-username" type="text" placeholder="Nhập tên đăng nhập"
+                            onkeydown="if(event.key==='Enter') doLogin()">
+                    </div>
+                </div>
+                <div class="login-field">
+                    <label>Password</label>
+                    <div class="login-input-wrap">
+                        <i class="fa-solid fa-lock"></i>
+                        <input id="login-password" type="password" placeholder="Nhập mật khẩu"
+                            onkeydown="if(event.key==='Enter') doLogin()">
+                        <button class="login-eye" type="button" onclick="toggleLoginPassword(this)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="login-error" id="login-error"></div>
+                <button class="login-btn" id="login-btn" onclick="doLogin()">
+                    <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-layout" id="app-layout" style="display:none">
         <!-- Sidebar sẽ được load vào đây -->
         <div id="sidebar-container"></div>
 
@@ -27,6 +65,7 @@
         </div>
     </div>
 
+
     <!-- Modals container -->
     <div id="modals-container"></div>
 
@@ -39,11 +78,13 @@
     <script src="js/utils.js"></script>
     <script src="js/api.js"></script>
     <script src="js/data.js"></script>
+    <script src="js/pagination.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/render-overview.js"></script>
     <script src="js/render-songs.js"></script>
     <script src="js/render-artists.js"></script>
     <script src="js/render-users.js"></script>
+    <script src="js/render-notifications.js"></script>
     <script src="js/player.js"></script>
     <script src="js/search.js"></script>
     <script src="js/modals.js"></script>

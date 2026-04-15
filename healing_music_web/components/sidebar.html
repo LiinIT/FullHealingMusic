@@ -26,7 +26,10 @@
         </a>
 
         <div class="nav-section-label" style="margin-top:8px">System</div>
-        <a class="nav-item" onclick="showToast('Settings chưa implement', 'info')">
+        <a class="nav-item" data-page="notifications" onclick="navigate('notifications')">
+            <span class="nav-icon"><i class="fa-solid fa-bell"></i></span> Notifications
+        </a>
+        <a class="nav-item" data-page="settings" onclick="navigate('settings')">
             <span class="nav-icon"><i class="fa-solid fa-gears"></i></span> Settings
         </a>
         <a class="nav-item" onclick="showToast('Analytics chưa implement', 'info')">
@@ -35,13 +38,15 @@
     </nav>
 
     <div class="sidebar-footer">
-        <div class="user-card" onclick="showToast('Admin profile', 'info')">
-            <div class="user-avatar">NK</div>
+        <div class="user-card">
+            <div class="user-avatar">AD</div>
             <div class="user-info">
-                <div class="user-name">Ngoc Khanh</div>
+                <div class="user-name">Admin</div>
                 <div class="user-role">Administrator</div>
             </div>
-            <span style="color:var(--text-muted);font-size:14px"><i class="fa-solid fa-ellipsis"></i></span>
+            <span style="color:var(--text-muted);font-size:14px;cursor:pointer" title="Đăng xuất" onclick="AUTH.logout()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </span>
         </div>
     </div>
 </aside>

@@ -2,51 +2,55 @@
 function renderUsers() {
     document.getElementById('icount-user').innerText = DATA.users.length;
     const tbody = document.getElementById('users-tbody');
+
     if (tbody && DATA.users) {
-        tbody.innerHTML = DATA.users.map(u => `
-            <tr>
-                <td>
-                    <div class="song-row">
-                        <div style="display: flex;"> 
-                            <div class="artist-avatar" style="background-image: url('${u.avatar_url || ''}')"></div>
-                            <div  style="display: flex;flex-direction: column;justify-content: center;padding-left: 2em;">
-                                <div class="song-name">${escapeHtml(u.full_name || 'Unknown')}</div>
-                                <div class="song-artist">@${u.username || 'Unknown'}</div>
+        PAGINATION.init('users', DATA.users, 10, (slice) => {
+            tbody.innerHTML = slice.map(u => `
+                <tr>
+                    <td>
+                        <div class="song-row">
+                            <div style="display:flex">
+                                <div class="artist-avatar" style="background-image:url('${u.avatar_url || ''}')"></div>
+                                <div style="display:flex;flex-direction:column;justify-content:center;padding-left:2em">
+                                    <div class="song-name">${escapeHtml(u.full_name || 'Unknown')}</div>
+                                    <div class="song-artist">@${u.username || 'Unknown'}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </td>
-                <td>${escapeHtml(u.email || 'Unknown')}</td>
-                <td>${u.role}</td>
-                <td>
-                    <div class="action-btns">
-                        <!-- <button class="btn-sm btn-view" onclick="viewUser('${u.id}')">${ICONS.ui.view} View</button> -->
-                        <button class="btn-sm btn-edit" onclick="openEdirUser('${u.id}')">${ICONS.ui.edit} Edit</button>
-                        <button class="btn-sm btn-del" onclick="deleteUser('${u.id}')">${ICONS.ui.delete} Delete</button>
-                    </div>
-                </td>
-            </tr>
-        `).join('');
+                    </td>
+                    <td>${escapeHtml(u.email || 'Unknown')}</td>
+                    <td>${u.role}</td>
+                    <td>
+                        <div class="action-btns">
+                            <button class="btn-sm btn-edit" onclick="openEdirUser('${u.id}')">${ICONS.ui.edit} Edit</button>
+                            <button class="btn-sm btn-del" onclick="deleteUser('${u.id}')">${ICONS.ui.delete} Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }, 'users-pagination');
     }
 
     const pgrid = document.getElementById('playlists-grid');
     if (pgrid && DATA.playlists) {
-        pgrid.innerHTML = DATA.playlists.map(p => `
-            <div class="playlist-card">
-                <div class="playlist-cover">
-                    <span style="position:relative;z-index:1;font-size:36px">${p.icon}</span>
-                    <div class="playlist-cover-overlay"></div>
-                </div>
-                <div class="playlist-info">
-                    <div class="playlist-name">${escapeHtml(p.name)}</div>
-                    <div class="playlist-meta">
-                        <span><i class="fa-brands fa-soundcloud"></i> ${p.songs}</span>
-                        <span>${p.visibility === 'public' ? '<i class="fa-solid fa-globe"></i>' : '<i class="fa-solid fa-lock"></i>'} ${p.visibility}</span>
+        PAGINATION.init('playlists', DATA.playlists, 12, (slice) => {
+            pgrid.innerHTML = slice.map(p => `
+                <div class="playlist-card">
+                    <div class="playlist-cover">
+                        <span style="position:relative;z-index:1;font-size:36px">${p.icon}</span>
+                        <div class="playlist-cover-overlay"></div>
                     </div>
-                    <div style="font-size:11px;color:var(--text-muted);margin-top:5px">${p.user}</div>
+                    <div class="playlist-info">
+                        <div class="playlist-name">${escapeHtml(p.name)}</div>
+                        <div class="playlist-meta">
+                            <span><i class="fa-brands fa-soundcloud"></i> ${p.songs}</span>
+                            <span>${p.visibility === 'public' ? '<i class="fa-solid fa-globe"></i>' : '<i class="fa-solid fa-lock"></i>'} ${p.visibility}</span>
+                        </div>
+                        <div style="font-size:11px;color:var(--text-muted);margin-top:5px">${p.user}</div>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `).join('');
+        }, 'playlists-pagination');
     }
 }
 

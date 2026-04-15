@@ -13,6 +13,8 @@ async function navigate(pageId) {
         songs: ['Songs', 'Quản lý bài hát'],
         artists: ['Artists & Albums', 'Quản lý nghệ sĩ & album'],
         users: ['Users & Playlists', 'Quản lý người dùng'],
+        notifications: ['Notifications', 'Quản lý thông báo push'],
+        settings: ['Settings', 'Chính sách & nội dung hệ thống'],
     };
     const t = titles[pageId] || ['Dashboard', ''];
     document.getElementById('page-title').textContent = t[0];
@@ -23,4 +25,6 @@ async function navigate(pageId) {
     else if (pageId === 'songs') renderSongs();
     else if (pageId === 'artists') renderArtists();
     else if (pageId === 'users') renderUsers();
+    else if (pageId === 'notifications') renderNotifications();
+    // settings page is static, no render needed
 }

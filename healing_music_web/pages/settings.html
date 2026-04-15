@@ -1,0 +1,548 @@
+<!-- ════════════════ PAGE: SETTINGS ════════════════ -->
+<div class="page" id="page-settings">
+
+    <!-- Tab Navigation -->
+    <div class="settings-tabs">
+        <button class="settings-tab active" onclick="switchSettingsTab('policy', this)">
+            <i class="fa-solid fa-file-shield"></i> Policy & Terms
+        </button>
+        <button class="settings-tab" onclick="switchSettingsTab('content', this)">
+            <i class="fa-solid fa-sliders"></i> Content Rules
+        </button>
+        <button class="settings-tab" onclick="switchSettingsTab('about', this)">
+            <i class="fa-solid fa-circle-info"></i> About
+        </button>
+    </div>
+
+    <!-- ── Tab: Policy & Terms ── -->
+    <div class="settings-panel active" id="settings-panel-policy">
+
+        <!-- Privacy Policy -->
+        <div class="card settings-card">
+            <div class="settings-card-header">
+                <span class="settings-card-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                <div>
+                    <div class="settings-card-title">Privacy Policy</div>
+                    <div class="settings-card-meta">Chính sách bảo mật &amp; quyền riêng tư người dùng</div>
+                </div>
+                <span class="settings-badge">v1.2</span>
+            </div>
+            <div class="settings-policy-body">
+                <div class="policy-section">
+                    <h4><i class="fa-solid fa-database"></i> 1. Thu thập dữ liệu</h4>
+                    <p>Healing Music thu thập các thông tin cần thiết để cung cấp dịch vụ, bao gồm: tên hiển thị, địa chỉ email, lịch sử nghe nhạc và danh sách phát. Dữ liệu được mã hoá và lưu trữ an toàn trên hệ thống của chúng tôi.</p>
+                </div>
+                <div class="policy-section">
+                    <h4><i class="fa-solid fa-lock"></i> 2. Bảo mật thông tin</h4>
+                    <p>Chúng tôi áp dụng các biện pháp bảo mật tiêu chuẩn ngành, bao gồm mã hoá SSL/TLS cho mọi kết nối và băm mật khẩu một chiều (bcrypt). Dữ liệu cá nhân không được chia sẻ với bên thứ ba nếu không có sự đồng ý rõ ràng của người dùng.</p>
+                </div>
+                <div class="policy-section">
+                    <h4><i class="fa-solid fa-user-shield"></i> 3. Quyền của người dùng</h4>
+                    <p>Người dùng có quyền yêu cầu truy cập, chỉnh sửa hoặc xoá dữ liệu cá nhân bất kỳ lúc nào thông qua phần cài đặt tài khoản hoặc liên hệ trực tiếp với quản trị viên.</p>
+                </div>
+                <div class="policy-section">
+                    <h4><i class="fa-solid fa-cookie-bite"></i> 4. Cookies &amp; Phân tích</h4>
+                    <p>Ứng dụng sử dụng cookies phiên để duy trì trạng thái đăng nhập. Chúng tôi có thể thu thập dữ liệu sử dụng ẩn danh nhằm cải thiện trải nghiệm nghe nhạc và gợi ý bài hát phù hợp.</p>
+                </div>
+            </div>
+            <div class="settings-card-footer">
+                <span class="settings-updated"><i class="fa-solid fa-clock-rotate-left"></i> Cập nhật: 01/01/2025</span>
+            </div>
+        </div>
+
+        <!-- Terms of Service -->
+        <div class="card settings-card">
+            <div class="settings-card-header">
+                <span class="settings-card-icon"><i class="fa-solid fa-file-contract"></i></span>
+                <div>
+                    <div class="settings-card-title">Terms of Service</div>
+                    <div class="settings-card-meta">Điều khoản sử dụng dịch vụ Healing Music</div>
+                </div>
+                <span class="settings-badge">v1.0</span>
+            </div>
+            <div class="settings-policy-body">
+                <div class="policy-section">
+                    <h4><i class="fa-solid fa-circle-check"></i> 1. Điều kiện sử dụng</h4>
+                    <p>Người dùng phải đủ 13 tuổi trở lên để sử dụng Healing Music. Bằng việc tạo tài khoản, bạn đồng ý tuân thủ toàn bộ các điều khoản này và chính sách nội dung của chúng tôi.</p>
+                </div>
+                <div class="policy-section">
+                    <h4><i class="fa-solid fa-music"></i> 2. Quyền sở hữu trí tuệ</h4>
+                    <p>Toàn bộ âm nhạc, hình ảnh và nội dung trên nền tảng thuộc sở hữu của các nghệ sĩ và nhãn đĩa tương ứng. Nghiêm cấm sao chép, phân phối hoặc sử dụng thương mại khi chưa được uỷ quyền.</p>
+                </div>
+                <div class="policy-section">
+                    <h4><i class="fa-solid fa-ban"></i> 3. Hành vi bị cấm</h4>
+                    <p>Nghiêm cấm: tải xuống trái phép, chia sẻ tài khoản, phá vỡ hệ thống bảo mật, đăng tải nội dung vi phạm pháp luật hoặc gây hại cho người dùng khác.</p>
+                </div>
+                <div class="policy-section">
+                    <h4><i class="fa-solid fa-gavel"></i> 4. Chấm dứt dịch vụ</h4>
+                    <p>Chúng tôi có quyền tạm ngưng hoặc xoá tài khoản vi phạm điều khoản mà không cần thông báo trước. Người dùng có thể khiếu nại qua email hỗ trợ trong vòng 30 ngày.</p>
+                </div>
+            </div>
+            <div class="settings-card-footer">
+                <span class="settings-updated"><i class="fa-solid fa-clock-rotate-left"></i> Cập nhật: 01/01/2025</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── Tab: Content Rules ── -->
+    <div class="settings-panel" id="settings-panel-content">
+
+        <!-- Content Policy -->
+        <div class="card settings-card">
+            <div class="settings-card-header">
+                <span class="settings-card-icon"><i class="fa-solid fa-music"></i></span>
+                <div>
+                    <div class="settings-card-title">Content Policy</div>
+                    <div class="settings-card-meta">Tiêu chuẩn nội dung âm nhạc được phép đăng tải</div>
+                </div>
+            </div>
+            <div class="settings-rules-grid">
+                <div class="settings-rule allowed">
+                    <div class="rule-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="rule-title">Được phép</div>
+                    <ul class="rule-list">
+                        <li>Nhạc không lời (instrumental)</li>
+                        <li>Nhạc thiền, ambient, lo-fi</li>
+                        <li>Nhạc có lời lành mạnh, tích cực</li>
+                        <li>Cover được uỷ quyền hợp lệ</li>
+                        <li>Nhạc thư giãn, healing, sleep music</li>
+                        <li>Nhạc thiên nhiên, tiếng mưa, sóng biển</li>
+                        <li>Binaural beats, solfeggio frequencies</li>
+                        <li>Nhạc cụ dân tộc, world music</li>
+                        <li>Podcast âm nhạc có nội dung lành mạnh</li>
+                        <li>Nhạc cổ điển, jazz nhẹ nhàng</li>
+                    </ul>
+                </div>
+                <div class="settings-rule blocked">
+                    <div class="rule-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                    <div class="rule-title">Không được phép</div>
+                    <ul class="rule-list">
+                        <li>Nội dung bạo lực, kích động thù địch</li>
+                        <li>Ngôn từ phân biệt chủng tộc, giới tính</li>
+                        <li>Vi phạm bản quyền, không có giấy phép</li>
+                        <li>Nội dung khiêu dâm, người lớn (18+)</li>
+                        <li>Quảng cáo, thương mại hoá trái phép</li>
+                        <li>Spam, nội dung lặp, chất lượng thấp</li>
+                        <li>Nội dung gây hại sức khoẻ tâm thần</li>
+                        <li>Âm thanh tần số gây hại (harmful Hz)</li>
+                        <li>Tuyên truyền chính trị, tôn giáo cực đoan</li>
+                        <li>Deepfake giọng nói nghệ sĩ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Genre Classification -->
+        <div class="card settings-card">
+            <div class="settings-card-header">
+                <span class="settings-card-icon"><i class="fa-solid fa-tags"></i></span>
+                <div>
+                    <div class="settings-card-title">Genre Classification</div>
+                    <div class="settings-card-meta">Phân loại thể loại nhạc trên nền tảng</div>
+                </div>
+            </div>
+            <div class="settings-genre-grid">
+                <div class="genre-group">
+                    <div class="genre-group-title"><i class="fa-solid fa-spa"></i> Healing & Wellness</div>
+                    <div class="genre-tags">
+                        <span class="genre-tag">Meditation</span>
+                        <span class="genre-tag">Sleep Music</span>
+                        <span class="genre-tag">Stress Relief</span>
+                        <span class="genre-tag">Yoga</span>
+                        <span class="genre-tag">Binaural Beats</span>
+                        <span class="genre-tag">Solfeggio</span>
+                        <span class="genre-tag">Chakra</span>
+                    </div>
+                </div>
+                <div class="genre-group">
+                    <div class="genre-group-title"><i class="fa-solid fa-leaf"></i> Nature & Ambient</div>
+                    <div class="genre-tags">
+                        <span class="genre-tag">Rain Sounds</span>
+                        <span class="genre-tag">Ocean Waves</span>
+                        <span class="genre-tag">Forest</span>
+                        <span class="genre-tag">White Noise</span>
+                        <span class="genre-tag">Ambient</span>
+                        <span class="genre-tag">Dark Ambient</span>
+                    </div>
+                </div>
+                <div class="genre-group">
+                    <div class="genre-group-title"><i class="fa-solid fa-guitar"></i> Instrumental</div>
+                    <div class="genre-tags">
+                        <span class="genre-tag">Piano</span>
+                        <span class="genre-tag">Guitar Acoustic</span>
+                        <span class="genre-tag">Classical</span>
+                        <span class="genre-tag">Jazz</span>
+                        <span class="genre-tag">Lo-fi</span>
+                        <span class="genre-tag">Chill Hop</span>
+                        <span class="genre-tag">New Age</span>
+                    </div>
+                </div>
+                <div class="genre-group">
+                    <div class="genre-group-title"><i class="fa-solid fa-globe-asia"></i> World & Folk</div>
+                    <div class="genre-tags">
+                        <span class="genre-tag">Nhạc Dân Tộc</span>
+                        <span class="genre-tag">Đàn Bầu</span>
+                        <span class="genre-tag">Sitar</span>
+                        <span class="genre-tag">Hang Drum</span>
+                        <span class="genre-tag">Celtic</span>
+                        <span class="genre-tag">Tibetan Bowl</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Standards -->
+        <div class="card settings-card">
+            <div class="settings-card-header">
+                <span class="settings-card-icon"><i class="fa-solid fa-upload"></i></span>
+                <div>
+                    <div class="settings-card-title">Upload Standards</div>
+                    <div class="settings-card-meta">Tiêu chuẩn kỹ thuật khi đăng tải nội dung</div>
+                </div>
+            </div>
+            <div class="settings-standards">
+                <div class="standard-item">
+                    <span class="standard-icon"><i class="fa-solid fa-file-audio"></i></span>
+                    <div class="standard-info">
+                        <div class="standard-label">Định dạng âm thanh</div>
+                        <div class="standard-value">MP3, AAC, FLAC, WAV</div>
+                    </div>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-icon"><i class="fa-solid fa-weight-hanging"></i></span>
+                    <div class="standard-info">
+                        <div class="standard-label">Kích thước tối đa</div>
+                        <div class="standard-value">50 MB / file</div>
+                    </div>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-icon"><i class="fa-solid fa-signal"></i></span>
+                    <div class="standard-info">
+                        <div class="standard-label">Bitrate tối thiểu</div>
+                        <div class="standard-value">128 kbps (khuyến nghị 320 kbps)</div>
+                    </div>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-icon"><i class="fa-solid fa-image"></i></span>
+                    <div class="standard-info">
+                        <div class="standard-label">Ảnh bìa (Cover Art)</div>
+                        <div class="standard-value">JPG / PNG, tối thiểu 500×500px</div>
+                    </div>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-icon"><i class="fa-solid fa-language"></i></span>
+                    <div class="standard-info">
+                        <div class="standard-label">Metadata bắt buộc</div>
+                        <div class="standard-value">Tên bài, Nghệ sĩ, Thể loại, Năm phát hành</div>
+                    </div>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-icon"><i class="fa-solid fa-certificate"></i></span>
+                    <div class="standard-info">
+                        <div class="standard-label">Bản quyền</div>
+                        <div class="standard-value">Giấy phép CC, bản quyền tác giả, hoặc tự sản xuất</div>
+                    </div>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-icon"><i class="fa-solid fa-clock"></i></span>
+                    <div class="standard-info">
+                        <div class="standard-label">Thời lượng</div>
+                        <div class="standard-value">Tối thiểu 30 giây — Tối đa 3 giờ</div>
+                    </div>
+                </div>
+                <div class="standard-item">
+                    <span class="standard-icon"><i class="fa-solid fa-waveform-lines"></i></span>
+                    <div class="standard-info">
+                        <div class="standard-label">Sample Rate</div>
+                        <div class="standard-value">44.1 kHz hoặc 48 kHz</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Moderation Process -->
+        <div class="card settings-card">
+            <div class="settings-card-header">
+                <span class="settings-card-icon"><i class="fa-solid fa-shield-check"></i></span>
+                <div>
+                    <div class="settings-card-title">Moderation Process</div>
+                    <div class="settings-card-meta">Quy trình kiểm duyệt nội dung</div>
+                </div>
+            </div>
+            <div class="moderation-steps">
+                <div class="mod-step">
+                    <div class="mod-step-num">01</div>
+                    <div class="mod-step-info">
+                        <div class="mod-step-title">Tự động kiểm tra kỹ thuật</div>
+                        <div class="mod-step-desc">Hệ thống tự động kiểm tra định dạng, kích thước, bitrate và metadata ngay khi upload. File không đạt chuẩn bị từ chối ngay lập tức.</div>
+                    </div>
+                    <span class="mod-step-tag auto">Auto</span>
+                </div>
+                <div class="mod-step">
+                    <div class="mod-step-num">02</div>
+                    <div class="mod-step-info">
+                        <div class="mod-step-title">Quét bản quyền (Content ID)</div>
+                        <div class="mod-step-desc">Nội dung được so sánh với cơ sở dữ liệu bản quyền. Nếu phát hiện trùng khớp, admin sẽ được thông báo để xác minh giấy phép.</div>
+                    </div>
+                    <span class="mod-step-tag auto">Auto</span>
+                </div>
+                <div class="mod-step">
+                    <div class="mod-step-num">03</div>
+                    <div class="mod-step-info">
+                        <div class="mod-step-title">Duyệt thủ công bởi Admin</div>
+                        <div class="mod-step-desc">Admin xem xét nội dung, hình ảnh bìa và thông tin nghệ sĩ. Thời gian duyệt thông thường trong vòng 24–48 giờ làm việc.</div>
+                    </div>
+                    <span class="mod-step-tag manual">Manual</span>
+                </div>
+                <div class="mod-step">
+                    <div class="mod-step-num">04</div>
+                    <div class="mod-step-info">
+                        <div class="mod-step-title">Phát hành & Theo dõi</div>
+                        <div class="mod-step-desc">Sau khi được duyệt, bài hát được phát hành. Hệ thống tiếp tục theo dõi báo cáo từ người dùng và có thể gỡ bỏ nếu vi phạm được xác nhận.</div>
+                    </div>
+                    <span class="mod-step-tag live">Live</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ── Tab: About ── -->
+    <div class="settings-panel" id="settings-panel-about">
+
+        <!-- Hero -->
+        <div class="card settings-card settings-about-hero">
+            <div class="about-logo">
+                <i class="fa-solid fa-headphones-simple"></i>
+            </div>
+            <div class="about-title">Healing Music</div>
+            <div class="about-subtitle">Admin Dashboard</div>
+            <div class="about-version">
+                <span class="settings-badge">v1.0.0</span>
+                <span class="settings-badge" style="background:rgba(74,222,128,0.15);color:var(--success);border-color:rgba(74,222,128,0.3)">Stable</span>
+                <span class="settings-badge" style="background:rgba(255,179,71,0.15);color:var(--warning);border-color:rgba(255,179,71,0.3)">2025</span>
+            </div>
+            <p class="about-desc">Nền tảng quản lý âm nhạc healing — nơi giao thoa giữa nghệ thuật âm thanh và sức khoẻ tâm trí. Được xây dựng với tâm huyết để mang lại trải nghiệm thư giãn thuần tuý, giúp người dùng tìm lại sự cân bằng trong cuộc sống hiện đại.</p>
+            <div class="about-stats">
+                <div class="about-stat">
+                    <div class="about-stat-value">3</div>
+                    <div class="about-stat-label">Platforms</div>
+                </div>
+                <div class="about-stat-divider"></div>
+                <div class="about-stat">
+                    <div class="about-stat-value">5+</div>
+                    <div class="about-stat-label">Tech Stack</div>
+                </div>
+                <div class="about-stat-divider"></div>
+                <div class="about-stat">
+                    <div class="about-stat-value">∞</div>
+                    <div class="about-stat-label">Good Vibes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission -->
+        <div class="card settings-card">
+            <div class="settings-card-header">
+                <span class="settings-card-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+                <div>
+                    <div class="settings-card-title">Our Mission</div>
+                    <div class="settings-card-meta">Sứ mệnh &amp; tầm nhìn</div>
+                </div>
+            </div>
+            <div class="about-mission-grid">
+                <div class="mission-item">
+                    <div class="mission-icon"><i class="fa-solid fa-brain"></i></div>
+                    <div class="mission-title">Sức khoẻ tâm trí</div>
+                    <div class="mission-desc">Cung cấp âm nhạc có tác dụng trị liệu, giúp giảm căng thẳng, lo âu và cải thiện chất lượng giấc ngủ cho người dùng.</div>
+                </div>
+                <div class="mission-item">
+                    <div class="mission-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                    <div class="mission-title">Hỗ trợ nghệ sĩ</div>
+                    <div class="mission-desc">Tạo ra sân chơi công bằng cho các nghệ sĩ độc lập chia sẻ âm nhạc chữa lành, kết nối cộng đồng yêu nhạc healing.</div>
+                </div>
+                <div class="mission-item">
+                    <div class="mission-icon"><i class="fa-solid fa-earth-asia"></i></div>
+                    <div class="mission-title">Tiếp cận toàn cầu</div>
+                    <div class="mission-desc">Đưa âm nhạc healing Việt Nam và thế giới đến gần hơn với người dùng thông qua nền tảng đa nền tảng, dễ tiếp cận.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech + Contact 2 col -->
+        <div class="settings-about-grid">
+            <div class="card settings-card">
+                <div class="settings-card-header">
+                    <span class="settings-card-icon"><i class="fa-solid fa-code-branch"></i></span>
+                    <div>
+                        <div class="settings-card-title">Tech Stack</div>
+                        <div class="settings-card-meta">Công nghệ sử dụng</div>
+                    </div>
+                </div>
+                <div class="tech-list">
+                    <div class="tech-item">
+                        <span class="tech-dot" style="background:#54C5F8"></span>
+                        <div class="tech-detail">
+                            <span class="tech-name">Flutter</span>
+                            <span class="tech-role">Mobile App (iOS &amp; Android)</span>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-dot" style="background:#FF6B4A"></span>
+                        <div class="tech-detail">
+                            <span class="tech-name">Dart / Dart Frog</span>
+                            <span class="tech-role">Backend API &amp; Server</span>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-dot" style="background:#FFB347"></span>
+                        <div class="tech-detail">
+                            <span class="tech-name">HTML / CSS / JS</span>
+                            <span class="tech-role">Web Admin Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-dot" style="background:#4ADE80"></span>
+                        <div class="tech-detail">
+                            <span class="tech-name">MongoDB</span>
+                            <span class="tech-role">Database</span>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-dot" style="background:#FFCA28"></span>
+                        <div class="tech-detail">
+                            <span class="tech-name">Firebase</span>
+                            <span class="tech-role">Storage &amp; Authentication</span>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-dot" style="background:#E84393"></span>
+                        <div class="tech-detail">
+                            <span class="tech-name">JWT</span>
+                            <span class="tech-role">Auth Token &amp; Security</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card settings-card">
+                <div class="settings-card-header">
+                    <span class="settings-card-icon"><i class="fa-solid fa-envelope"></i></span>
+                    <div>
+                        <div class="settings-card-title">Contact & Support</div>
+                        <div class="settings-card-meta">Liên hệ &amp; hỗ trợ kỹ thuật</div>
+                    </div>
+                </div>
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <div style="font-size:11px;color:var(--text-muted);margin-bottom:2px">Email hỗ trợ</div>
+                            <span>support@healingmusic.app</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-brands fa-github"></i>
+                        <div>
+                            <div style="font-size:11px;color:var(--text-muted);margin-bottom:2px">Source code</div>
+                            <span>github.com/healing-music</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-globe"></i>
+                        <div>
+                            <div style="font-size:11px;color:var(--text-muted);margin-bottom:2px">Website</div>
+                            <span>healingmusic.app</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-bug"></i>
+                        <div>
+                            <div style="font-size:11px;color:var(--text-muted);margin-bottom:2px">Báo lỗi</div>
+                            <span>GitHub Issues</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-brands fa-facebook"></i>
+                        <div>
+                            <div style="font-size:11px;color:var(--text-muted);margin-bottom:2px">Cộng đồng</div>
+                            <span>fb.com/healingmusicvn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Changelog -->
+        <div class="card settings-card">
+            <div class="settings-card-header">
+                <span class="settings-card-icon"><i class="fa-solid fa-timeline"></i></span>
+                <div>
+                    <div class="settings-card-title">Changelog</div>
+                    <div class="settings-card-meta">Lịch sử cập nhật hệ thống</div>
+                </div>
+            </div>
+            <div class="changelog-list">
+                <div class="changelog-item">
+                    <div class="changelog-dot current"></div>
+                    <div class="changelog-content">
+                        <div class="changelog-header">
+                            <span class="changelog-version">v1.0.0</span>
+                            <span class="changelog-date">01/01/2025</span>
+                            <span class="changelog-tag stable">Stable</span>
+                        </div>
+                        <ul class="changelog-notes">
+                            <li>Ra mắt nền tảng Healing Music chính thức</li>
+                            <li>Admin Dashboard với quản lý Songs, Artists, Users</li>
+                            <li>Hệ thống xác thực JWT, phân quyền admin/user</li>
+                            <li>Music player tích hợp trong dashboard</li>
+                            <li>Trang Settings với Policy &amp; Content Rules</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-dot"></div>
+                    <div class="changelog-content">
+                        <div class="changelog-header">
+                            <span class="changelog-version">v0.9.0</span>
+                            <span class="changelog-date">15/11/2024</span>
+                            <span class="changelog-tag beta">Beta</span>
+                        </div>
+                        <ul class="changelog-notes">
+                            <li>Hoàn thiện API backend Dart Frog</li>
+                            <li>Tích hợp Firebase Storage cho upload nhạc</li>
+                            <li>Mobile app Flutter — màn hình chính &amp; player</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="changelog-item">
+                    <div class="changelog-dot"></div>
+                    <div class="changelog-content">
+                        <div class="changelog-header">
+                            <span class="changelog-version">v0.5.0</span>
+                            <span class="changelog-date">01/09/2024</span>
+                            <span class="changelog-tag alpha">Alpha</span>
+                        </div>
+                        <ul class="changelog-notes">
+                            <li>Khởi tạo dự án, kiến trúc cơ bản</li>
+                            <li>MongoDB schema cho songs, artists, users</li>
+                            <li>Prototype giao diện admin</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function switchSettingsTab(tab, el) {
+    document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.settings-panel').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('settings-panel-' + tab).classList.add('active');
+}
+</script>

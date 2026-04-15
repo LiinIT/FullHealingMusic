@@ -24,7 +24,10 @@
 @import 'pages/songs.css';
 @import 'pages/artists.css';
 @import 'pages/users.css';
+@import 'pages/notifications.css';
+@import 'pages/settings.css';
 
 /* Utils */
 @import 'utils/animations.css';
 @import 'utils/responsive.css';
+@import 'layout/login.css';

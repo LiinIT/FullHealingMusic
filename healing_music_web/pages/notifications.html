@@ -1,0 +1,231 @@
+<!-- ════════════════ PAGE: NOTIFICATIONS ════════════════ -->
+<div class="page" id="page-notifications">
+
+    <div class="notif-layout">
+
+        <!-- ── LEFT: Compose ── -->
+        <div class="notif-compose-col">
+
+            <!-- Compose Card -->
+            <div class="card notif-card">
+                <div class="notif-card-header">
+                    <span class="notif-card-icon"><i class="fa-solid fa-paper-plane"></i></span>
+                    <div>
+                        <div class="notif-card-title">Gửi thông báo</div>
+                        <div class="notif-card-meta">Push notification đến người dùng qua OneSignal</div>
+                    </div>
+                </div>
+
+                <div class="notif-form">
+                    <!-- Title -->
+                    <div class="notif-field">
+                        <label>Tiêu đề <span class="notif-required">*</span></label>
+                        <input id="notif-title" type="text" class="notif-input"
+                            placeholder="Vd: 🎵 Bài hát mới đã ra mắt!" maxlength="100"
+                            oninput="updateNotifPreview()">
+                        <span class="notif-char-count" id="notif-title-count">0/100</span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="notif-field">
+                        <label>Nội dung <span class="notif-required">*</span></label>
+                        <textarea id="notif-content" class="notif-textarea"
+                            placeholder="Nội dung thông báo hiển thị cho người dùng..."
+                            maxlength="300" oninput="updateNotifPreview()" rows="3"></textarea>
+                        <span class="notif-char-count" id="notif-content-count">0/300</span>
+                    </div>
+
+                    <!-- Image URL -->
+                    <div class="notif-field">
+                        <label>Ảnh đính kèm <span class="notif-optional">(tuỳ chọn)</span></label>
+                        <input id="notif-image" type="url" class="notif-input"
+                            placeholder="https://... (URL ảnh hiển thị trong thông báo)"
+                            oninput="updateNotifPreview()">
+                    </div>
+
+                    <!-- Launch URL -->
+                    <div class="notif-field">
+                        <label>URL mở khi click <span class="notif-optional">(tuỳ chọn)</span></label>
+                        <input id="notif-url" type="url" class="notif-input"
+                            placeholder="https://... (deeplink hoặc web URL)">
+                    </div>
+
+                    <!-- Target -->
+                    <div class="notif-field">
+                        <label>Đối tượng nhận</label>
+                        <div class="notif-target-group">
+                            <label class="notif-radio-card active" id="target-all-card">
+                                <input type="radio" name="notif-target" value="all" checked
+                                    onchange="switchNotifTarget('all')">
+                                <i class="fa-solid fa-users"></i>
+                                <span>Tất cả</span>
+                            </label>
+                            <label class="notif-radio-card" id="target-segment-card">
+                                <input type="radio" name="notif-target" value="segment"
+                                    onchange="switchNotifTarget('segment')">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <span>Segment</span>
+                            </label>
+                            <label class="notif-radio-card" id="target-ids-card">
+                                <input type="radio" name="notif-target" value="external_ids"
+                                    onchange="switchNotifTarget('external_ids')">
+                                <i class="fa-solid fa-user-tag"></i>
+                                <span>User IDs</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Segment input (ẩn mặc định) -->
+                    <div class="notif-field" id="notif-segment-field" style="display:none">
+                        <label>Tên segment</label>
+                        <select id="notif-segment" class="notif-input">
+                            <option value="All">All — Tất cả người dùng</option>
+                            <option value="Active Users">Active Users</option>
+                            <option value="Inactive Users">Inactive Users</option>
+                            <option value="Subscribed Users">Subscribed Users</option>
+                        </select>
+                    </div>
+
+                    <!-- External IDs input (ẩn mặc định) -->
+                    <div class="notif-field" id="notif-ids-field" style="display:none">
+                        <label>User IDs (External ID)</label>
+                        <textarea id="notif-external-ids" class="notif-textarea"
+                            placeholder="Nhập từng user ID trên một dòng, hoặc cách nhau bằng dấu phẩy"
+                            rows="3"></textarea>
+                        <span class="notif-hint">
+                            <i class="fa-solid fa-circle-info"></i>
+                            External ID là username hoặc user ID đã đăng ký trong OneSignal
+                        </span>
+                    </div>
+
+                    <!-- Quick Templates -->
+                    <div class="notif-field">
+                        <label>Template nhanh</label>
+                        <div class="notif-templates">
+                            <button class="notif-template-btn"
+                                onclick="applyNotifTemplate('new_song')">
+                                <i class="fa-solid fa-music"></i> Bài hát mới
+                            </button>
+                            <button class="notif-template-btn"
+                                onclick="applyNotifTemplate('new_artist')">
+                                <i class="fa-solid fa-microphone-lines"></i> Nghệ sĩ mới
+                            </button>
+                            <button class="notif-template-btn"
+                                onclick="applyNotifTemplate('healing')">
+                                <i class="fa-solid fa-spa"></i> Healing tip
+                            </button>
+                            <button class="notif-template-btn"
+                                onclick="applyNotifTemplate('weekend')">
+                                <i class="fa-solid fa-moon"></i> Cuối tuần
+                            </button>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary notif-send-btn" id="notif-send-btn"
+                        onclick="sendNotification()">
+                        <i class="fa-solid fa-paper-plane"></i> Gửi thông báo
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── RIGHT: Preview + History ── -->
+        <div class="notif-right-col">
+
+            <!-- Preview -->
+            <div class="card notif-card">
+                <div class="notif-card-header">
+                    <span class="notif-card-icon"><i class="fa-solid fa-mobile-screen"></i></span>
+                    <div>
+                        <div class="notif-card-title">Preview</div>
+                        <div class="notif-card-meta">Xem trước trên thiết bị</div>
+                    </div>
+                </div>
+                <div class="notif-preview-wrap">
+                    <div class="notif-phone-frame">
+                        <div class="notif-phone-status">
+                            <span>9:41</span>
+                            <span><i class="fa-solid fa-signal"></i> <i class="fa-solid fa-wifi"></i> <i class="fa-solid fa-battery-full"></i></span>
+                        </div>
+                        <div class="notif-phone-banner">
+                            <div class="notif-banner-app">
+                                <div class="notif-banner-icon"><i class="fa-solid fa-headphones-simple"></i></div>
+                                <span>Healing Music</span>
+                                <span class="notif-banner-time">now</span>
+                            </div>
+                            <div class="notif-banner-title" id="preview-title">Tiêu đề thông báo</div>
+                            <div class="notif-banner-content" id="preview-content">Nội dung thông báo sẽ hiển thị ở đây...</div>
+                            <div class="notif-banner-image-wrap" id="preview-image-wrap" style="display:none">
+                                <img id="preview-image" src="" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats tổng quan -->
+            <div class="card notif-card">
+                <div class="notif-card-header">
+                    <span class="notif-card-icon"><i class="fa-solid fa-chart-bar"></i></span>
+                    <div>
+                        <div class="notif-card-title">Thống kê</div>
+                        <div class="notif-card-meta">Tổng quan hoạt động thông báo</div>
+                    </div>
+                </div>
+                <div class="notif-stats-grid">
+                    <div class="notif-stat">
+                        <div class="notif-stat-value" id="stat-total">—</div>
+                        <div class="notif-stat-label">Đã gửi</div>
+                    </div>
+                    <div class="notif-stat">
+                        <div class="notif-stat-value" id="stat-recipients">—</div>
+                        <div class="notif-stat-label">Tổng recipients</div>
+                    </div>
+                    <div class="notif-stat">
+                        <div class="notif-stat-value" id="stat-today">—</div>
+                        <div class="notif-stat-label">Hôm nay</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── History Table ── -->
+    <div class="card notif-card" style="margin-top:20px">
+        <div class="notif-card-header">
+            <span class="notif-card-icon"><i class="fa-solid fa-clock-rotate-left"></i></span>
+            <div>
+                <div class="notif-card-title">Lịch sử thông báo</div>
+                <div class="notif-card-meta">100 thông báo gần nhất</div>
+            </div>
+            <button class="btn btn-outline" style="margin-left:auto"
+                onclick="loadNotifHistory()">
+                <i class="fa-solid fa-rotate"></i> Tải lại
+            </button>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Thông báo</th>
+                        <th>Đối tượng</th>
+                        <th>Recipients</th>
+                        <th>Thời gian</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="notif-history-tbody">
+                    <tr>
+                        <td colspan="5" class="notif-empty">
+                            <i class="fa-solid fa-bell-slash"></i> Chưa có thông báo nào
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination" id="notif-history-pagination"></div>
+    </div>
+
+</div>

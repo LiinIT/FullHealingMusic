@@ -1,34 +1,35 @@
 // Render Songs page
 function renderSongs(songs = DATA.songs) {
-
     document.getElementById('isong-count').innerText = DATA.songs.length;
     const tbody = document.getElementById('songs-tbody');
-
     if (!tbody) return;
 
     // Sort by play count
-    const isort = [...songs].sort((a, b) => (b.play_count || 0) - (a.play_count || 0));
-    tbody.innerHTML = isort.map(s => `
-        <tr>
-            <td>${s.play_count || '—'}</td>
-            <td>
-                <div class="song-row">
-                    <img src="${s.image_url || ''}" width="40" height="40" style="border-radius: 8px;">
-                    <div>
-                        <div class="song-name">${escapeHtml(s.title)}</div>
-                        <div class="song-artist">${escapeHtml(s.full_name)}</div>
+    const sorted = [...songs].sort((a, b) => (b.play_count || 0) - (a.play_count || 0));
+
+    PAGINATION.init('songs', sorted, 10, (slice) => {
+        tbody.innerHTML = slice.map(s => `
+            <tr>
+                <td>${s.play_count || '—'}</td>
+                <td>
+                    <div class="song-row">
+                        <img src="${s.image_url || ''}" width="40" height="40" style="border-radius: 8px;">
+                        <div>
+                            <div class="song-name">${escapeHtml(s.title)}</div>
+                            <div class="song-artist">${escapeHtml(s.full_name)}</div>
+                        </div>
                     </div>
-                </div>
-            </td>
-            <td>${formatDuration(s.duration_seconds)}</td>
-            <td>
-                <div class="action-btns">
-                    <button class="btn-sm btn-edit" onclick="openEditSong(${s.song_id})">${ICONS.ui.edit} Edit</button>
-                    <button class="btn-sm btn-del" onclick="openDeleteSong(${s.song_id})">${ICONS.ui.delete} Del</button>
-                </div>
-            </td>
-        </tr>
-    `).join('');
+                </td>
+                <td>${formatDuration(s.duration_seconds)}</td>
+                <td>
+                    <div class="action-btns">
+                        <button class="btn-sm btn-edit" onclick="openEditSong(${s.song_id})">${ICONS.ui.edit} Edit</button>
+                        <button class="btn-sm btn-del" onclick="openDeleteSong(${s.song_id})">${ICONS.ui.delete} Del</button>
+                    </div>
+                </td>
+            </tr>
+        `).join('');
+    }, 'songs-pagination');
 }
 
 // ─── ADD SONG ────────────────────────────────────────────────────────────────
