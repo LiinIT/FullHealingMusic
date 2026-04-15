@@ -16,7 +16,16 @@ const AUTH = {
         localStorage.removeItem(this.USER_KEY);
     },
 
-    isLoggedIn() { return !!this.getToken(); },
+    isLoggedIn() {
+        if (!this.getToken()) return false;
+        const user = this.getUser();
+        // Nếu user được lưu mà không có role hoặc role khác admin thì coi như chưa đăng nhập
+        if (user && user.role && user.role.toLowerCase() !== 'admin') {
+            this.clear();
+            return false;
+        }
+        return true;
+    },
 
     async login(username, password) {
         try {
@@ -27,7 +36,17 @@ const AUTH = {
             });
             const data = await res.json();
             if (!res.ok) return { success: false, message: data.message || 'Đăng nhập thất bại' };
-            this.save(data.token, { id: data.userID, username: data.username });
+
+            // Chỉ cho phép role "admin" đăng nhập vào trang quản trị
+            const role = (data.role || '').toLowerCase();
+            if (role !== 'admin') {
+                return {
+                    success: false,
+                    message: 'Tài khoản không có quyền truy cập trang quản trị. Chỉ Admin mới được phép đăng nhập.',
+                };
+            }
+
+            this.save(data.token, { id: data.userID, username: data.username, email: data.email, role });
             return { success: true, data };
         } catch (e) {
             return { success: false, message: 'Không kết nối được đến server' };

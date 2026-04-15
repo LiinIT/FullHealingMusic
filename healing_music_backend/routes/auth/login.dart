@@ -25,7 +25,7 @@ Future<Response> onRequest(RequestContext context) async {
   // Lấy user theo username (không so sánh password trong SQL nữa)
   final result = await conn.execute(
     r'''
-      SELECT id, username, password
+      SELECT id, username, password, role, email
       FROM users
       WHERE username = $1
     ''',
@@ -79,6 +79,8 @@ Future<Response> onRequest(RequestContext context) async {
       'message': 'Đăng nhập thành công!',
       'userID': row['id'],
       'username': row['username'],
+      'email': row['email'],
+      'role': row['role'],
       'token': token,
     },
   );
