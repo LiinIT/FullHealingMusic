@@ -3,29 +3,29 @@
     <div class="page-search-bar">
         <div class="search-input-wrap">
             <span style="color:var(--text-muted)"><i class="fa-solid fa-magnifying-glass"></i></span>
-            <input id="songs-search" onkeydown="searchSongs('songs-search')" type="text"
-                placeholder="Tìm bài hát, nghệ sĩ...">
+            <input id="songs-search" oninput="searchSongs('songs-search')" type="text"
+                data-i18n="songs.search_placeholder" data-i18n-attr="placeholder" placeholder="Tìm bài hát, nghệ sĩ...">
         </div>
         <button class="btn btn-outline" onclick="searchSongs('songs-search')"><i class="fa-solid fa-filter"></i>
-            Filter</button>
+            <span data-i18n="songs.filter">Lọc</span></button>
         <button class="btn btn-primary" onclick="openAddSongModal()">
-            <i class="fa-solid fa-plus"></i> Add Song
+            <i class="fa-solid fa-plus"></i> <span data-i18n="songs.add">Thêm bài hát</span>
         </button>
     </div>
 
     <div class="card">
         <div class="card-header">
-            <span class="card-title"><i class="fa-solid fa-music"></i> All Songs</span>
+            <span class="card-title"><i class="fa-solid fa-music"></i> <span data-i18n="songs.all">Tất cả bài hát</span></span>
             <span class="card-action" id="songs-count"></span>
         </div>
         <div class="table-wrap">
             <table>
                 <thead>
                     <tr>
-                        <th>plays</th>
-                        <th>Song</th>
-                        <th>Duration</th>
-                        <th>Actions</th>
+                        <th data-i18n="songs.col_plays">Lượt phát</th>
+                        <th data-i18n="songs.col_song">Bài hát</th>
+                        <th data-i18n="songs.col_duration">Thời lượng</th>
+                        <th data-i18n="songs.col_actions">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody id="songs-tbody"></tbody>

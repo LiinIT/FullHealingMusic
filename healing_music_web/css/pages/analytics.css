@@ -1,0 +1,140 @@
+/* ════════════════ ANALYTICS PAGE ════════════════ */
+
+.an-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 160px;
+}
+
+/* ── Rows ── */
+.an-row {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.an-card-wide  { /* takes 1fr */ }
+.an-card-narrow { /* takes 320px */ }
+.an-card-half  { /* used in 2-col equal grid */ }
+
+.an-row:has(.an-card-half) {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* ── Chart containers ── */
+.an-chart-wrap {
+    position: relative;
+    height: 260px;
+    padding: 4px 0;
+}
+
+.an-doughnut-wrap {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Doughnut Legend ── */
+.an-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 4px 4px;
+}
+
+.an-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.an-legend-item strong {
+    color: var(--text-primary);
+    margin-left: auto;
+}
+
+.an-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* ── Mini Table ── */
+.an-mini-table {
+    overflow-y: auto;
+    max-height: 280px;
+}
+
+.an-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.an-table thead th {
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--border-soft);
+    text-align: left;
+    position: sticky;
+    top: 0;
+    background: var(--bg-card);
+    z-index: 1;
+}
+
+.an-table tbody tr {
+    border-bottom: 1px solid var(--border-soft);
+    transition: background 0.15s;
+}
+
+.an-table tbody tr:hover {
+    background: var(--bg-hover);
+}
+
+.an-table tbody td {
+    padding: 7px 8px;
+    vertical-align: middle;
+}
+
+.an-num {
+    color: var(--text-muted);
+    font-size: 11px;
+    width: 24px;
+    text-align: center;
+}
+
+.an-title {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.an-artist {
+    color: var(--text-secondary);
+}
+
+.an-plays {
+    color: var(--primary);
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+    .an-row {
+        grid-template-columns: 1fr;
+    }
+    .an-row:has(.an-card-half) {
+        grid-template-columns: 1fr;
+    }
+}

@@ -8,17 +8,10 @@ async function navigate(pageId) {
     await HTML_LOADER.loadPage(pageId, `pages/${pageId}.html`);
 
     // Cập nhật title
-    const titles = {
-        overview: ['Overview', 'Tổng quan hệ thống'],
-        songs: ['Songs', 'Quản lý bài hát'],
-        artists: ['Artists & Albums', 'Quản lý nghệ sĩ & album'],
-        users: ['Users & Playlists', 'Quản lý người dùng'],
-        notifications: ['Notifications', 'Quản lý thông báo push'],
-        settings: ['Settings', 'Chính sách & nội dung hệ thống'],
-    };
-    const t = titles[pageId] || ['Dashboard', ''];
-    document.getElementById('page-title').textContent = t[0];
-    document.getElementById('page-subtitle').textContent = t[1];
+    const titleEl = document.getElementById('page-title');
+    const subEl   = document.getElementById('page-subtitle');
+    if (titleEl) titleEl.textContent = I18N.t(`page.${pageId}.title`) !== `page.${pageId}.title` ? I18N.t(`page.${pageId}.title`) : pageId;
+    if (subEl)   subEl.textContent   = I18N.t(`page.${pageId}.sub`)   !== `page.${pageId}.sub`   ? I18N.t(`page.${pageId}.sub`)   : '';
 
     // Gọi render sau khi load xong
     if (pageId === 'overview') renderOverview();
@@ -26,5 +19,6 @@ async function navigate(pageId) {
     else if (pageId === 'artists') renderArtists();
     else if (pageId === 'users') renderUsers();
     else if (pageId === 'notifications') renderNotifications();
+    else if (pageId === 'analytics') renderAnalytics();
     // settings page is static, no render needed
 }

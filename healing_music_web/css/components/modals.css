@@ -1,18 +1,125 @@
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    z-index: 200;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(6px);
+    z-index: 300;
     display: none;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 
 .modal-overlay.show {
     display: flex;
 }
 
+/* ── Modal Card ── */
+.modal-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalIn 0.2s ease;
+    box-shadow: var(--shadow), 0 0 60px rgba(0,0,0,0.4);
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96) translateY(-8px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ── Modal Header ── */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 18px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.modal-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.modal-title i {
+    color: var(--primary);
+    font-size: 14px;
+}
+
+.modal-close {
+    width: 30px;
+    height: 30px;
+    background: var(--bg-card2);
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 13px;
+    transition: all 0.15s;
+}
+
+.modal-close:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+/* ── Modal Body ── */
+.modal-body {
+    padding: 24px;
+}
+
+/* ── Modal Footer ── */
+.modal-footer {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-soft);
+}
+
+/* ── Password Field with Eye ── */
+.pw-field-wrap {
+    position: relative;
+}
+
+.pw-field-wrap .form-input {
+    padding-right: 42px;
+    box-sizing: border-box;
+}
+
+.pw-eye-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    font-size: 13px;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.pw-eye-btn:hover {
+    color: var(--text-secondary);
+}
+
+/* ── Legacy .modal (backward compat) ── */
 .modal {
     background: var(--bg-card);
     border: 1px solid var(--border-soft);
@@ -20,19 +127,12 @@
     padding: 28px;
     width: 420px;
     max-width: 90vw;
-    animation: modalIn 0.3s ease;
+    animation: modalIn 0.2s ease;
 }
 
-.modal-title {
+.modal-title-legacy {
     font-family: 'Syne', sans-serif;
     font-size: 18px;
     font-weight: 800;
     margin-bottom: 20px;
-}
-
-.modal-footer {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-    margin-top: 24px;
 }

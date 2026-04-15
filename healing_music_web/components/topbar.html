@@ -5,19 +5,96 @@
     </div>
     <div class="topbar-search">
         <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input id="topbar-search-input" onkeydown="searchSongs('topbar-search-input')" type="text"
-            placeholder="Tìm bài hát, nghệ sĩ...">
+        <input id="topbar-search-input" type="text" data-i18n="topbar.search" data-i18n-attr="placeholder" placeholder="Tìm tất cả...">
     </div>
     <div class="topbar-actions">
-        <div class="icon-btn" onclick="showToast('Không có thông báo mới', 'info')">
+        <div class="icon-btn" onclick="showToast(I18N.t('topbar.no_notif'), 'info')">
             <i class="fa-solid fa-bell"></i>
             <span class="badge">3</span>
         </div>
-        <div class="icon-btn" onclick="showToast('🌙 Toggle theme', 'info')">
-            <i class="fa-solid fa-circle-half-stroke"></i>
+
+        <!-- Language Toggle -->
+        <div class="icon-btn lang-toggle-btn" onclick="I18N.toggle()" title="Switch language">
+            <span id="lang-btn-label" style="font-size:11px;font-weight:700;letter-spacing:0.05em">EN</span>
         </div>
-        <div class="icon-btn" onclick="showToast('👤 Admin profile', 'info')">
-            <i class="fa-solid fa-user-tie"></i>
+
+        <!-- Theme Toggle -->
+        <div class="icon-btn theme-toggle-btn" id="theme-toggle-btn" onclick="THEME.toggle()" title="Toggle theme">
+            <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </div>
+
+        <!-- Admin Profile -->
+        <div class="admin-profile" id="admin-profile">
+            <div class="admin-profile-trigger" onclick="PROFILE.toggle()">
+                <div class="admin-avatar" id="topbar-avatar">AD</div>
+                <div class="admin-info">
+                    <span class="admin-name" id="topbar-name">Admin</span>
+                    <span class="admin-role">Administrator</span>
+                </div>
+                <i class="fa-solid fa-chevron-down admin-chevron" id="profile-chevron"></i>
+            </div>
+
+            <div class="profile-dropdown" id="profile-dropdown">
+                <div class="profile-dropdown-header">
+                    <div class="profile-dropdown-avatar" id="dropdown-avatar">AD</div>
+                    <div>
+                        <div class="profile-dropdown-name" id="dropdown-name">Admin</div>
+                        <div class="profile-dropdown-email" id="dropdown-email">admin@healingmusic.app</div>
+                    </div>
+                </div>
+                <div class="profile-dropdown-divider"></div>
+                <button class="profile-dropdown-item" onclick="PROFILE.openChangePassword()">
+                    <i class="fa-solid fa-key"></i> <span data-i18n="profile.change_pw">Đổi mật khẩu</span>
+                </button>
+                <button class="profile-dropdown-item" onclick="THEME.toggle(); PROFILE.close()">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                    <span id="dropdown-theme-label" data-i18n="profile.light_mode">Chuyển Light Mode</span>
+                </button>
+                <div class="profile-dropdown-divider"></div>
+                <button class="profile-dropdown-item danger" onclick="AUTH.logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i> <span data-i18n="profile.logout">Đăng xuất</span>
+                </button>
+            </div>
         </div>
     </div>
 </header>
+
+<!-- Change Password Modal -->
+<div class="modal-overlay" id="modal-change-password">
+    <div class="modal-card">
+        <div class="modal-header">
+            <div class="modal-title"><i class="fa-solid fa-key"></i> Đổi mật khẩu</div>
+            <button class="modal-close" onclick="PROFILE.closeChangePassword()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body" style="display:flex;flex-direction:column;gap:18px">
+            <div class="form-group" style="margin-bottom:0">
+                <label class="form-label">Mật khẩu hiện tại</label>
+                <div class="pw-field-wrap">
+                    <input class="form-input" type="password" id="cp-current" placeholder="Nhập mật khẩu hiện tại">
+                    <button type="button" class="pw-eye-btn" onclick="toggleFieldPassword('cp-current', this)"><i class="fa-solid fa-eye"></i></button>
+                </div>
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+                <label class="form-label">Mật khẩu mới</label>
+                <div class="pw-field-wrap">
+                    <input class="form-input" type="password" id="cp-new" placeholder="Tối thiểu 6 ký tự">
+                    <button type="button" class="pw-eye-btn" onclick="toggleFieldPassword('cp-new', this)"><i class="fa-solid fa-eye"></i></button>
+                </div>
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+                <label class="form-label">Xác nhận mật khẩu mới</label>
+                <div class="pw-field-wrap">
+                    <input class="form-input" type="password" id="cp-confirm" placeholder="Nhập lại mật khẩu mới">
+                    <button type="button" class="pw-eye-btn" onclick="toggleFieldPassword('cp-confirm', this)"><i class="fa-solid fa-eye"></i></button>
+                </div>
+            </div>
+            <div id="cp-error" style="color:var(--danger);font-size:12px;display:none;padding:8px 12px;background:rgba(255,74,107,0.08);border-radius:8px;border:1px solid rgba(255,74,107,0.2)"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-ghost" onclick="PROFILE.closeChangePassword()">Hủy</button>
+            <button class="btn btn-primary" onclick="PROFILE.submitChangePassword()">
+                <i class="fa-solid fa-check"></i> Cập nhật
+            </button>
+        </div>
+    </div>
+</div>

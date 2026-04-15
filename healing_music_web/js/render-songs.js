@@ -69,7 +69,8 @@ async function addSong() {
 
     if (success && data.done) {
         closeModal('modal-add-song');
-        selectedFiles.create = { audio: null, image: null };
+        selectedFiles.song = { audio: null, image: null };
+        resetAddSongForm();
         await loadSongsFromAPI();
     }
 }

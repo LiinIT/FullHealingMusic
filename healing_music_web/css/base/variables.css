@@ -24,3 +24,18 @@
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     --shadow-glow: 0 0 24px rgba(255, 107, 74, 0.25);
 }
+
+/* ── Light Theme ── */
+[data-theme="light"] {
+    --bg-deep: #F0EFF6;
+    --bg-card: #FFFFFF;
+    --bg-card2: #F5F4FB;
+    --bg-hover: #ECEAF5;
+    --border: rgba(255, 107, 74, 0.2);
+    --border-soft: rgba(0, 0, 0, 0.08);
+    --text-primary: #1A1828;
+    --text-secondary: #5A586A;
+    --text-muted: #9896A8;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 24px rgba(255, 107, 74, 0.15);
+}

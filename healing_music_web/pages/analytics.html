@@ -1,0 +1,100 @@
+<!-- ════════════════ PAGE: ANALYTICS ════════════════ -->
+<div class="page active" id="page-analytics">
+
+    <!-- ── Stat Cards ── -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-icon"><i class="fa-solid fa-headphones"></i></span>
+            <div class="stat-label" data-i18n="an.total_plays">TỔNG LƯỢT PHÁT</div>
+            <div class="stat-value" id="an-total-plays">—</div>
+            <div class="stat-meta"><span class="stat-badge up"><i class="fa-solid fa-arrow-trend-up"></i></span><span>tổng lượt phát</span></div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-icon"><i class="fa-solid fa-chart-simple"></i></span>
+            <div class="stat-label" data-i18n="an.avg_plays">TB LƯỢT PHÁT / BÀI</div>
+            <div class="stat-value" id="an-avg-plays">—</div>
+            <div class="stat-meta"><span class="stat-badge up"><i class="fa-solid fa-music"></i></span><span>trung bình mỗi bài</span></div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-icon"><i class="fa-solid fa-fire"></i></span>
+            <div class="stat-label" data-i18n="an.hot_song">BÀI HÁT HOT</div>
+            <div class="stat-value an-ellipsis" id="an-hot-song">—</div>
+            <div class="stat-meta"><span class="stat-badge up"><i class="fa-solid fa-crown"></i></span><span id="an-hot-song-plays">0 plays</span></div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-icon"><i class="fa-solid fa-star"></i></span>
+            <div class="stat-label" data-i18n="an.top_artist">NGHỆ SĨ HÀNG ĐẦU</div>
+            <div class="stat-value an-ellipsis" id="an-top-artist">—</div>
+            <div class="stat-meta"><span class="stat-badge up"><i class="fa-solid fa-users"></i></span><span id="an-top-artist-followers">0 followers</span></div>
+        </div>
+    </div>
+
+    <!-- ── Row 1: Top Songs Bar + Doughnut ── -->
+    <div class="an-row">
+        <!-- Top 10 Songs by Play Count -->
+        <div class="card an-card-wide">
+            <div class="card-header">
+                <span class="card-title"><i class="fa-solid fa-ranking-star"></i> <span data-i18n="an.chart_top_songs">Top 10 bài hát theo lượt phát</span></span>
+            </div>
+            <div class="an-chart-wrap">
+                <canvas id="chart-top-songs"></canvas>
+            </div>
+        </div>
+
+        <!-- Verified vs Unverified -->
+        <div class="card an-card-narrow">
+            <div class="card-header">
+                <span class="card-title"><i class="fa-solid fa-circle-check"></i> Artist Verified</span>
+            </div>
+            <div class="an-chart-wrap an-doughnut-wrap">
+                <canvas id="chart-verified"></canvas>
+            </div>
+            <div class="an-legend" id="an-verified-legend"></div>
+        </div>
+    </div>
+
+    <!-- ── Row 2: Monthly Lines ── -->
+    <div class="an-row">
+        <!-- Songs added per month -->
+        <div class="card an-card-half">
+            <div class="card-header">
+                <span class="card-title"><i class="fa-solid fa-music"></i> Songs Added per Month</span>
+            </div>
+            <div class="an-chart-wrap">
+                <canvas id="chart-songs-monthly"></canvas>
+            </div>
+        </div>
+
+        <!-- User signups per month -->
+        <div class="card an-card-half">
+            <div class="card-header">
+                <span class="card-title"><i class="fa-solid fa-user-plus"></i> User Signups per Month</span>
+            </div>
+            <div class="an-chart-wrap">
+                <canvas id="chart-users-monthly"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Row 3: Top Artists Bar + Tables ── -->
+    <div class="an-row">
+        <!-- Top 10 Artists by Follower -->
+        <div class="card an-card-wide">
+            <div class="card-header">
+                <span class="card-title"><i class="fa-solid fa-microphone-lines"></i> Top 10 Artists by Followers</span>
+            </div>
+            <div class="an-chart-wrap">
+                <canvas id="chart-top-artists"></canvas>
+            </div>
+        </div>
+
+        <!-- Play count distribution -->
+        <div class="card an-card-narrow">
+            <div class="card-header">
+                <span class="card-title"><i class="fa-solid fa-list-ol"></i> Songs Table</span>
+            </div>
+            <div class="an-mini-table" id="an-songs-table"></div>
+        </div>
+    </div>
+
+</div>

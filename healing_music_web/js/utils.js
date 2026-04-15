@@ -13,6 +13,11 @@ function formatNumber(num) {
     return num.toString();
 }
 
+function normalizeText(str) {
+    if (!str) return '';
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
 function escapeHtml(str) {
     if (!str) return '';
     return str

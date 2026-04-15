@@ -1,7 +1,15 @@
 .topbar {
     height: var(--topbar-height);
-    background: rgba(13, 13, 18, 0.8);
+    background: rgba(13, 13, 18, 0.85);
     backdrop-filter: blur(20px);
+}
+
+[data-theme="light"] .topbar {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom-color: rgba(0,0,0,0.08);
+}
+
+.topbar {
     border-bottom: 1px solid var(--border-soft);
     display: flex;
     align-items: center;
@@ -105,4 +113,202 @@
     align-items: center;
     justify-content: center;
     border: 2px solid var(--bg-deep);
+}
+
+/* ── Theme Toggle ── */
+.theme-toggle-btn {
+    transition: all 0.3s;
+}
+
+.lang-toggle-btn {
+    min-width: 36px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.lang-toggle-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    background: rgba(255, 107, 74, 0.08);
+}
+
+[data-theme="light"] .theme-toggle-btn #theme-icon::before {
+    content: "\f185"; /* fa-sun */
+}
+
+/* ── Admin Profile ── */
+.admin-profile {
+    position: relative;
+}
+
+.admin-profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px 6px 6px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.admin-profile-trigger:hover {
+    background: var(--bg-hover);
+    border-color: var(--border-soft);
+}
+
+.admin-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.admin-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.admin-role {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.admin-chevron {
+    font-size: 11px;
+    color: var(--text-muted);
+    transition: transform 0.2s;
+}
+
+.admin-profile.open .admin-chevron {
+    transform: rotate(180deg);
+}
+
+/* ── Profile Dropdown ── */
+.profile-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 240px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 200;
+    animation: dropdownIn 0.15s ease;
+}
+
+.profile-dropdown.show {
+    display: flex;
+}
+
+@keyframes dropdownIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.profile-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 10px 12px;
+}
+
+.profile-dropdown-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.profile-dropdown-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.profile-dropdown-email {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.profile-dropdown-divider {
+    height: 1px;
+    background: var(--border-soft);
+    margin: 4px 0;
+}
+
+.profile-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 9px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    transition: all 0.15s;
+}
+
+.profile-dropdown-item:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+.profile-dropdown-item i {
+    width: 16px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.profile-dropdown-item:hover i {
+    color: var(--primary);
+}
+
+.profile-dropdown-item.danger {
+    color: var(--danger);
+}
+
+.profile-dropdown-item.danger i {
+    color: var(--danger);
+}
+
+.profile-dropdown-item.danger:hover {
+    background: rgba(255, 74, 107, 0.08);
 }

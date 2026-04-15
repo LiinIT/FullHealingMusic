@@ -117,20 +117,25 @@ function resetAddSongForm() {
             if (el) el.value = '';
         });
 
-    // FIX ID đúng
     const audioName = document.getElementById('new-audio-filename');
-    const imageName = document.getElementById('new-image-filename');
+    const imageName = document.getElementById('song-image-filename');
     const audioPreview = document.getElementById('new-audio-preview');
-    const imagePreview = document.getElementById('new-image-preview');
+    const imagePreview = document.getElementById('song-image-preview');
 
     if (audioName) audioName.innerHTML = 'Chưa chọn file';
     if (imageName) imageName.innerHTML = 'Chưa chọn file';
 
-    if (audioPreview) audioPreview.style.display = 'none';
-    if (imagePreview) imagePreview.style.display = 'none';
+    if (audioPreview) { audioPreview.src = ''; audioPreview.style.display = 'none'; }
+    if (imagePreview) { imagePreview.src = ''; imagePreview.style.display = 'none'; }
+
+    // reset file input elements
+    const audioInput = document.getElementById('new-audio-file-input');
+    const imageInput = document.getElementById('new-image-file-input');
+    if (audioInput) audioInput.value = '';
+    if (imageInput) imageInput.value = '';
 
     // reset file state
     if (typeof selectedFiles !== 'undefined') {
-        selectedFiles.create = { audio: null, image: null };
+        selectedFiles.song = { audio: null, image: null };
     }
 }

@@ -11,9 +11,15 @@ Future<Response> onRequest(RequestContext context) async {
   final body = await context.request.json();
 
   try {
+    final keyword = body['keyword'] as String?;
+
+    final String whereClause = (keyword != null && keyword.isNotEmpty)
+        ? "WHERE a.full_name ILIKE '%$keyword%'"
+        : '';
+
     final result = await conn.execute(
       '''
-        SELECT 
+        SELECT
           a.id,
           a.full_name,
           a.avatar_url,
@@ -21,7 +27,8 @@ Future<Response> onRequest(RequestContext context) async {
           a.is_verified,
           a.created_at
         FROM artists a
-        ORDER BY a.full_name ASC 
+        $whereClause
+        ORDER BY a.full_name ASC
       ''',
     );
 
@@ -34,7 +41,6 @@ Future<Response> onRequest(RequestContext context) async {
     final artists = result
         .map(
           (row) => {
-            // artists fields
             'id': row[0],
             'full_name': row[1],
             'avatar_url': row[2],

@@ -27,8 +27,7 @@ Future<Response> onRequest(RequestContext context) async {
         FROM songs s
         LEFT JOIN artists a 
           ON a.id = s.artist_id
-        ORDER BY RANDOM() 
-        LIMIT 50
+        ORDER BY s.play_count DESC
     ''');
 
     // 2. Xử lý dữ liệu để loại bỏ các

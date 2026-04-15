@@ -26,6 +26,7 @@
 @import 'pages/users.css';
 @import 'pages/notifications.css';
 @import 'pages/settings.css';
+@import 'pages/analytics.css';
 
 /* Utils */
 @import 'utils/animations.css';
