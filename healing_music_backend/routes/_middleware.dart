@@ -5,7 +5,18 @@ import 'package:dotenv/dotenv.dart';
 import 'package:postgres/postgres.dart';
 
 Connection? _dbConnection;
-final _env = DotEnv()..load();
+final _env = _createEnv();
+
+DotEnv _createEnv() {
+  final env = DotEnv();
+  try {
+    env.load();
+  } catch (e) {
+    // .env file không tồn tại — OK, sẽ dùng Platform.environment
+    developer.log('No .env file found, using system environment variables');
+  }
+  return env;
+}
 
 String _getEnv(String key) {
   // Ưu tiên Railway environment variables
