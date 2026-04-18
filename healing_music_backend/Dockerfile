@@ -13,7 +13,7 @@ COPY . .
 # Build production server
 RUN dart pub global run dart_frog_cli:dart_frog build
 
-FROM dart:stable-slim
+FROM dart:stable
 
 WORKDIR /app
 
