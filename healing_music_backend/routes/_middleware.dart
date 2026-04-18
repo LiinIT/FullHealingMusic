@@ -49,14 +49,22 @@ Handler middleware(Handler handler) {
       return Response(statusCode: 204, headers: _corsHeaders);
     }
 
-    final conn = await _getConnection();
+    try {
+      final conn = await _getConnection();
 
-    final response = await handler
-        .use(provider<Connection>((_) => conn))
-        .call(context);
+      final response = await handler
+          .use(provider<Connection>((_) => conn))
+          .call(context);
 
-    return response.copyWith(
-      headers: {...response.headers, ..._corsHeaders},
-    );
+      return response.copyWith(
+        headers: {...response.headers, ..._corsHeaders},
+      );
+    } catch (e) {
+      return Response.json(
+        statusCode: 500,
+        body: {'error': e.toString()},
+        headers: _corsHeaders,
+      );
+    }
   };
 }
