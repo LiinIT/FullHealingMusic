@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:dotenv/dotenv.dart';
 import 'package:postgres/postgres.dart';
@@ -6,6 +7,10 @@ Connection? _dbConnection;
 final _env = DotEnv()..load();
 
 String _getEnv(String key) {
+  // Ưu tiên Railway environment variables
+  final fromSystem = Platform.environment[key];
+  if (fromSystem != null && fromSystem.isNotEmpty) return fromSystem;
+  // Fallback sang .env file (local dev)
   final value = _env[key];
   if (value == null || value.isEmpty) {
     throw Exception('Missing env: $key');
