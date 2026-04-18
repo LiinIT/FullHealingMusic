@@ -42,12 +42,12 @@ Future<Response> onRequest(RequestContext context) async {
     final subfolder = isAudio ? 'audios' : 'images';
 
     // Lưu file vào healing_music_web/public/
-    final savePath = '../healing_music_web/public/$subfolder/$filename';
+    final savePath = 'public/$subfolder/$filename';
     final file = File(savePath);
     await file.parent.create(recursive: true);
     await file.writeAsBytes(fileBytes);
 
-    final url = 'http://localhost:3000/public/$subfolder/$filename';
+    final url = 'https://fullhealingmusic-production.up.railway.app/public/$subfolder/$filename';
 
     return Response.json(
       body: {
