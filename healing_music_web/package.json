@@ -1,0 +1,11 @@
+{
+  "name": "healing-music-web",
+  "version": "1.0.0",
+  "description": "FullHealingMusic Web Dashboard",
+  "scripts": {
+    "start": "npx serve . -l 3000"
+  },
+  "dependencies": {
+    "serve": "^14.2.3"
+  }
+}
