@@ -1,6 +1,6 @@
 // // Configuration
 const CONFIG = {
-    API_BASE_URL: 'http://localhost:8080',
+    API_BASE_URL: 'https://fullhealingmusic-production.up.railway.app',
 };
 
 // Global variables
