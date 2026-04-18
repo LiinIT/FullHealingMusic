@@ -1,3 +1,4 @@
+import 'dart:developer' as developer;
 import 'dart:io';
 import 'package:dart_frog/dart_frog.dart';
 import 'package:dotenv/dotenv.dart';
@@ -59,7 +60,12 @@ Handler middleware(Handler handler) {
       return response.copyWith(
         headers: {...response.headers, ..._corsHeaders},
       );
-    } catch (e) {
+    } catch (e, stackTrace) {
+      developer.log('Middleware error: $e', stackTrace: stackTrace);
+      developer.log('DB_HOST: ${_getEnv("DB_HOST")}');
+      developer.log('DB_NAME: ${_getEnv("DB_NAME")}');
+      developer.log('DB_USER: ${_getEnv("DB_USER")}');
+      developer.log('DB_PORT: ${_getEnv("DB_PORT")}');
       return Response.json(
         statusCode: 500,
         body: {'error': e.toString()},
