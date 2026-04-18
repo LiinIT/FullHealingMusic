@@ -3,15 +3,28 @@ import 'package:dart_frog/dart_frog.dart';
 import 'package:mime/mime.dart';
 
 Future<Response> onRequest(RequestContext context, String path) async {
-  final filePath = 'public/$path';
-  final file = File(filePath);
+  // Try relative to CWD, then relative to script location
+  final candidates = [
+    'public/$path',
+    'build/public/$path',
+    '${File(Platform.script.toFilePath()).parent.parent.path}/public/$path',
+  ];
 
-  if (!file.existsSync()) {
+  File? found;
+  for (final candidate in candidates) {
+    final f = File(candidate);
+    if (f.existsSync()) {
+      found = f;
+      break;
+    }
+  }
+
+  if (found == null) {
     return Response(statusCode: 404, body: 'File not found: $path');
   }
 
-  final mimeType = lookupMimeType(filePath) ?? 'application/octet-stream';
-  final bytes = file.readAsBytesSync();
+  final mimeType = lookupMimeType(path) ?? 'application/octet-stream';
+  final bytes = found.readAsBytesSync();
 
   return Response.bytes(
     body: bytes,
