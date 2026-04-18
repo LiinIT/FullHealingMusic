@@ -1,9 +1,15 @@
+import 'dart:io';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:dotenv/dotenv.dart';
 
-final _env = DotEnv()..load();
+final _env = DotEnv();
 
 String _getEnv(String key) {
+  // Ưu tiên Railway system env vars
+  final fromSystem = Platform.environment[key];
+  if (fromSystem != null && fromSystem.isNotEmpty) return fromSystem;
+  // Fallback .env file (local dev)
+  try { _env.load(); } catch (_) {}
   final value = _env[key];
   if (value == null || value.isEmpty) {
     throw Exception('Missing env: $key');
