@@ -1,10 +1,10 @@
 id,title,artist_id,image_url,audio_url,rank,duration_seconds,play_count,created_at
-1,Sớm Mai Bình Yên,1,{SERVER_URL}/public/images/song/song_01.jpg,{SERVER_URL}/public/audios/00001.mp3,9,210,543210,2023-03-25 09:30:00
-2,Giấc Ngủ Nhẹ,1,{SERVER_URL}/public/images/song/song_02.jpg,{SERVER_URL}/public/audios/00002.mp3,8,195,987654,2023-03-20 14:15:00
-3,Tiếng Mưa Rừng,3,{SERVER_URL}/public/images/song/song_03.jpg,{SERVER_URL}/public/audios/00003.mp3,7,225,123456,2023-03-18 11:00:00
-4,Gió Chiều Thổi Nhẹ,5,{SERVER_URL}/public/images/song/song_04.jpg,{SERVER_URL}/public/audios/00004.mp3,10,205,876543,2023-03-15 16:20:00
-5,Ánh Trăng Thu,7,{SERVER_URL}/public/images/song/song_05.jpg,{SERVER_URL}/public/audios/00005.mp3,6,215,654321,2023-03-10 10:45:00
-6,Mùa Thu Tĩnh Lặng,8,{SERVER_URL}/public/images/song/song_06.jpg,{SERVER_URL}/public/audios/00006.mp3,5,198,345678,2023-03-05 13:30:00
-7,Sen Nở Bình Minh,10,{SERVER_URL}/public/images/song/song_07.jpg,{SERVER_URL}/public/audios/00007.mp3,4,185,789012,2023-02-28 09:15:00
-8,Hương Đất Sau Mưa,10,{SERVER_URL}/public/images/song/song_08.jpg,{SERVER_URL}/public/audios/00008.mp3,3,192,234567,2023-02-25 15:00:00
-9,Về Bên Thiên Nhiên,4,{SERVER_URL}/public/images/song/song_09.jpg,{SERVER_URL}/public/audios/00009.mp3,7,208,912345,2023-02-20 12:00:00
+1,Sớm Mai Bình Yên,1,https://fullhealingmusic-production.up.railway.app/public/images/song/song_01.jpg,https://fullhealingmusic-production.up.railway.app/public/audios/00001.mp3,9,210,543210,2023-03-25 09:30:00
+2,Giấc Ngủ Nhẹ,1,https://fullhealingmusic-production.up.railway.app/public/images/song/song_02.jpg,https://fullhealingmusic-production.up.railway.app/public/audios/00002.mp3,8,195,987654,2023-03-20 14:15:00
+3,Tiếng Mưa Rừng,3,https://fullhealingmusic-production.up.railway.app/public/images/song/song_03.jpg,https://fullhealingmusic-production.up.railway.app/public/audios/00003.mp3,7,225,123456,2023-03-18 11:00:00
+4,Gió Chiều Thổi Nhẹ,5,https://fullhealingmusic-production.up.railway.app/public/images/song/song_04.jpg,https://fullhealingmusic-production.up.railway.app/public/audios/00004.mp3,10,205,876543,2023-03-15 16:20:00
+5,Ánh Trăng Thu,7,https://fullhealingmusic-production.up.railway.app/public/images/song/song_05.jpg,https://fullhealingmusic-production.up.railway.app/public/audios/00005.mp3,6,215,654321,2023-03-10 10:45:00
+6,Mùa Thu Tĩnh Lặng,8,https://fullhealingmusic-production.up.railway.app/public/images/song/song_06.jpg,https://fullhealingmusic-production.up.railway.app/public/audios/00006.mp3,5,198,345678,2023-03-05 13:30:00
+7,Sen Nở Bình Minh,10,https://fullhealingmusic-production.up.railway.app/public/images/song/song_07.jpg,https://fullhealingmusic-production.up.railway.app/public/audios/00007.mp3,4,185,789012,2023-02-28 09:15:00
+8,Hương Đất Sau Mưa,10,https://fullhealingmusic-production.up.railway.app/public/images/song/song_08.jpg,https://fullhealingmusic-production.up.railway.app/public/audios/00008.mp3,3,192,234567,2023-02-25 15:00:00
+9,Về Bên Thiên Nhiên,4,https://fullhealingmusic-production.up.railway.app/public/images/song/song_09.jpg,https://fullhealingmusic-production.up.railway.app/public/audios/00009.mp3,7,208,912345,2023-02-20 12:00:00
