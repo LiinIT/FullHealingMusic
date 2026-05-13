@@ -1,11 +1,11 @@
 id,full_name,avatar_url,bio,follower_count,is_verified,created_at
-1,Mây Trắng Studio,https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80,Nhà sản xuất âm nhạc chuyên về thể loại Ambient và Healing Music giúp thư giãn tâm trí,15420,true,2023-01-15 08:30:00
-2,Sóng Biển,https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=500&q=80,Nghệ sĩ độc lập với những bản nhạc lấy cảm hứng từ thiên nhiên biển cả,8750,false,2023-02-20 10:15:00
-3,Rừng Xanh Collective,https://images.unsplash.com/photo-1448375240586-882707db888b?w=500&q=80,Nhóm nhạc sĩ sáng tác nhạc thiên nhiên và tiếng rừng,12340,false,2023-03-10 14:20:00
-4,Ánh Trăng,https://images.unsplash.com/photo-1532767153582-b1a0e5145009?w=500&q=80,Nghệ sĩ nhạc thiền định với phong cách nhẹ nhàng sâu lắng,9820,false,2023-01-05 09:45:00
-5,Gió Nhẹ,https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&q=80,Nhạc sĩ instrumental chuyên tạo ra không gian âm thanh bình yên,11250,false,2023-02-28 16:30:00
-6,Hơi Thở,https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=500&q=80,Nghệ sĩ âm nhạc thiền với các bài tập thở và thư giãn,7890,false,2023-03-15 11:00:00
-7,Bình Yên,https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500&q=80,Nhạc sĩ sáng tác với những giai điệu êm dịu và chữa lành,14560,true,2023-01-20 13:15:00
-8,Thiên Nhiên,https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=500&q=80,Producer chuyên về nhạc thiên nhiên và soundscape thư giãn,20450,true,2022-12-10 08:00:00
-9,Tĩnh Lặng,https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80,Nghệ sĩ âm nhạc tối giản với triết lý âm thanh chữa lành,38520,true,2022-11-05 10:30:00
-10,Hoa Sen,https://images.unsplash.com/photo-1490750967868-88df5691cc5d?w=500&q=80,Nhạc sĩ truyền thống kết hợp nhạc cụ dân tộc với âm thanh hiện đại,6540,false,2023-02-14 15:45:00
+1,Mây Trắng Studio,{SERVER_URL}/public/images/artist/artist_01.jpg,Nhà sản xuất âm nhạc chuyên về thể loại Ambient và Healing Music giúp thư giãn tâm trí,15420,true,2023-01-15 08:30:00
+2,Sóng Biển,{SERVER_URL}/public/images/artist/artist_02.jpg,Nghệ sĩ độc lập với những bản nhạc lấy cảm hứng từ thiên nhiên biển cả,8750,false,2023-02-20 10:15:00
+3,Rừng Xanh Collective,{SERVER_URL}/public/images/artist/artist_03.jpg,Nhóm nhạc sĩ sáng tác nhạc thiên nhiên và tiếng rừng,12340,false,2023-03-10 14:20:00
+4,Ánh Trăng,{SERVER_URL}/public/images/artist/artist_04.jpg,Nghệ sĩ nhạc thiền định với phong cách nhẹ nhàng sâu lắng,9820,false,2023-01-05 09:45:00
+5,Gió Nhẹ,{SERVER_URL}/public/images/artist/artist_05.jpg,Nhạc sĩ instrumental chuyên tạo ra không gian âm thanh bình yên,11250,false,2023-02-28 16:30:00
+6,Hơi Thở,{SERVER_URL}/public/images/artist/artist_06.jpg,Nghệ sĩ âm nhạc thiền với các bài tập thở và thư giãn,7890,false,2023-03-15 11:00:00
+7,Bình Yên,{SERVER_URL}/public/images/artist/artist_07.jpg,Nhạc sĩ sáng tác với những giai điệu êm dịu và chữa lành,14560,true,2023-01-20 13:15:00
+8,Thiên Nhiên,{SERVER_URL}/public/images/artist/artist_08.jpg,Producer chuyên về nhạc thiên nhiên và soundscape thư giãn,20450,true,2022-12-10 08:00:00
+9,Tĩnh Lặng,{SERVER_URL}/public/images/artist/artist_09.jpg,Nghệ sĩ âm nhạc tối giản với triết lý âm thanh chữa lành,38520,true,2022-11-05 10:30:00
+10,Hoa Sen,{SERVER_URL}/public/images/artist/artist_01.jpg,Nhạc sĩ truyền thống kết hợp nhạc cụ dân tộc với âm thanh hiện đại,6540,false,2023-02-14 15:45:00
