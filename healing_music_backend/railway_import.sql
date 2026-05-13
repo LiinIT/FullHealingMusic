@@ -196,46 +196,46 @@ INSERT INTO users (id,taguser,username,password,email,full_name,avatar_url,role,
 -- INSERT ARTISTS (10 rows)
 -- ============================================================
 INSERT INTO artists (id,full_name,avatar_url,bio,follower_count,is_verified,created_at) VALUES
-(1,'CaoTri Official','https://i.pravatar.cc/150?img=10','Nhà sản xuất âm nhạc và ca sĩ trẻ với nhiều sản phẩm Lofi chất lượng cao',15420,true,'2023-01-15 08:30:00'),
-(2,'Nguyễn Vĩ','https://i.pravatar.cc/150?img=11','Ca sĩ sở hữu giọng hát ấm áp thường xuyên hợp tác với CaoTri Official',8750,false,'2023-02-20 10:15:00'),
-(3,'F47','https://i.pravatar.cc/150?img=12','Nghệ sĩ cover với phong cách trẻ trung năng động',12340,false,'2023-03-10 14:20:00'),
-(4,'Đặng Thanh Tuyền','https://i.pravatar.cc/150?img=13','Giọng ca nội lực với nhiều bản cover được yêu thích',9820,false,'2023-01-05 09:45:00'),
-(5,'Yamix Hầu Ca','https://i.pravatar.cc/150?img=14','Rapper và nhạc sĩ với phong cách Lofi độc đáo',11250,false,'2023-02-28 16:30:00'),
-(6,'Gấu','https://i.pravatar.cc/150?img=15','Nữ ca sĩ trẻ với chất giọng ngọt ngào',7890,false,'2023-03-15 11:00:00'),
-(7,'Hùng Quân','https://i.pravatar.cc/150?img=16','Ca sĩ sáng tác với những ca khúc Lofi sâu lắng',14560,true,'2023-01-20 13:15:00'),
-(8,'Mr T','https://i.pravatar.cc/150?img=17','Rapper và producer với nhiều năm kinh nghiệm',20450,true,'2022-12-10 08:00:00'),
-(9,'Yanbi','https://i.pravatar.cc/150?img=18','Rapper nổi tiếng với phong cách âm nhạc đa dạng',38520,true,'2022-11-05 10:30:00'),
-(10,'Duy Khiêm','https://i.pravatar.cc/150?img=19','Ca sĩ trẻ với giọng hát truyền cảm',6540,false,'2023-02-14 15:45:00');
+(1,'Mây Trắng Studio','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_01.jpg','Nhà sản xuất âm nhạc chuyên về thể loại Ambient và Healing Music giúp thư giãn tâm trí',15420,true,'2023-01-15 08:30:00'),
+(2,'Sóng Biển','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_02.jpg','Nghệ sĩ độc lập với những bản nhạc lấy cảm hứng từ thiên nhiên biển cả',8750,false,'2023-02-20 10:15:00'),
+(3,'Rừng Xanh Collective','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_03.jpg','Nhóm nhạc sĩ sáng tác nhạc thiên nhiên và tiếng rừng',12340,false,'2023-03-10 14:20:00'),
+(4,'Ánh Trăng','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_04.jpg','Nghệ sĩ nhạc thiền định với phong cách nhẹ nhàng sâu lắng',9820,false,'2023-01-05 09:45:00'),
+(5,'Gió Nhẹ','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_05.jpg','Nhạc sĩ instrumental chuyên tạo ra không gian âm thanh bình yên',11250,false,'2023-02-28 16:30:00'),
+(6,'Hơi Thở','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_06.jpg','Nghệ sĩ âm nhạc thiền với các bài tập thở và thư giãn',7890,false,'2023-03-15 11:00:00'),
+(7,'Bình Yên','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_07.jpg','Nhạc sĩ sáng tác với những giai điệu êm dịu và chữa lành',14560,true,'2023-01-20 13:15:00'),
+(8,'Thiên Nhiên','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_08.jpg','Producer chuyên về nhạc thiên nhiên và soundscape thư giãn',20450,true,'2022-12-10 08:00:00'),
+(9,'Tĩnh Lặng','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_09.jpg','Nghệ sĩ âm nhạc tối giản với triết lý âm thanh chữa lành',38520,true,'2022-11-05 10:30:00'),
+(10,'Hoa Sen','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_01.jpg','Nhạc sĩ truyền thống kết hợp nhạc cụ dân tộc với âm thanh hiện đại',6540,false,'2023-02-14 15:45:00');
 
 -- ============================================================
 -- INSERT SONGS (9 rows)
 -- NOTE: thay YOUR_SERVER_URL bằng URL Railway sau khi deploy
 -- ============================================================
-INSERT INTO songs (id,title,artist_id,image_url,audio_url,duration_seconds,play_count,created_at) VALUES
-(1,'Có Mình Và Ta',1,'YOUR_SERVER_URL/public/images/song/40b825abe1245b6573c03a8f47cfea49.jpg','YOUR_SERVER_URL/public/audios/00001.mp3',210,543210,'2023-03-25 09:30:00'),
-(2,'Em Có Ổn Không',1,'YOUR_SERVER_URL/public/images/song/40096b96dd2369253bff23c0d86cbd07.jpg','YOUR_SERVER_URL/public/audios/00002.mp3',195,987654,'2023-03-20 14:15:00'),
-(3,'Khách Mời',3,'YOUR_SERVER_URL/public/images/song/ca31d0fa1a7cf6e7f7bc7e2b0bb7d2f5.jpg','YOUR_SERVER_URL/public/audios/00003.mp3',225,123456,'2023-03-18 11:00:00'),
-(4,'Lưới Phù Hoa',5,'YOUR_SERVER_URL/public/images/song/ab67616d0000b27352c7247d705ee97f4006c9c0.jpeg','YOUR_SERVER_URL/public/audios/00004.mp3',205,876543,'2023-03-15 16:20:00'),
-(5,'Ngày Em Biết Nhớ Thương Một Người',7,'YOUR_SERVER_URL/public/images/song/tiengphaotiengnguoi.jpeg','YOUR_SERVER_URL/public/audios/00005.mp3',215,654321,'2023-03-10 10:45:00'),
-(6,'Thu Cuối',8,'YOUR_SERVER_URL/public/images/song/artworks-000528353961-lo0sor-t500x500.jpg','YOUR_SERVER_URL/public/audios/00006.mp3',198,345678,'2023-03-05 13:30:00'),
-(7,'Ví Dầu Đưa Dâu',10,'YOUR_SERVER_URL/public/images/song/43327c3c1913b136d577905e93e29bd4.jpg','YOUR_SERVER_URL/public/audios/00007.mp3',185,789012,'2023-02-28 09:15:00'),
-(8,'Xin Má Rước Dâu',10,'YOUR_SERVER_URL/public/images/song/c44c3822217d8775780358df759f126d.jpg','YOUR_SERVER_URL/public/audios/00008.mp3',192,234567,'2023-02-25 15:00:00'),
-(9,'Yên Phận Đi Nhé',4,'YOUR_SERVER_URL/public/images/song/f04876c1657a88baf7a76f0c58c67513.jpg','YOUR_SERVER_URL/public/audios/00009.mp3',208,912345,'2023-02-20 12:00:00');
+INSERT INTO songs (id,title,artist_id,image_url,audio_url,rank,duration_seconds,play_count,created_at) VALUES
+(1,'Sớm Mai Bình Yên',1,'https://fullhealingmusic-production.up.railway.app/public/images/song/song_01.jpg','https://fullhealingmusic-production.up.railway.app/public/audios/00001.mp3',9,210,543210,'2023-03-25 09:30:00'),
+(2,'Giấc Ngủ Nhẹ',1,'https://fullhealingmusic-production.up.railway.app/public/images/song/song_02.jpg','https://fullhealingmusic-production.up.railway.app/public/audios/00002.mp3',8,195,987654,'2023-03-20 14:15:00'),
+(3,'Tiếng Mưa Rừng',3,'https://fullhealingmusic-production.up.railway.app/public/images/song/song_03.jpg','https://fullhealingmusic-production.up.railway.app/public/audios/00003.mp3',7,225,123456,'2023-03-18 11:00:00'),
+(4,'Gió Chiều Thổi Nhẹ',5,'https://fullhealingmusic-production.up.railway.app/public/images/song/song_04.jpg','https://fullhealingmusic-production.up.railway.app/public/audios/00004.mp3',10,205,876543,'2023-03-15 16:20:00'),
+(5,'Ánh Trăng Thu',7,'https://fullhealingmusic-production.up.railway.app/public/images/song/song_05.jpg','https://fullhealingmusic-production.up.railway.app/public/audios/00005.mp3',6,215,654321,'2023-03-10 10:45:00'),
+(6,'Mùa Thu Tĩnh Lặng',8,'https://fullhealingmusic-production.up.railway.app/public/images/song/song_06.jpg','https://fullhealingmusic-production.up.railway.app/public/audios/00006.mp3',5,198,345678,'2023-03-05 13:30:00'),
+(7,'Sen Nở Bình Minh',10,'https://fullhealingmusic-production.up.railway.app/public/images/song/song_07.jpg','https://fullhealingmusic-production.up.railway.app/public/audios/00007.mp3',4,185,789012,'2023-02-28 09:15:00'),
+(8,'Hương Đất Sau Mưa',10,'https://fullhealingmusic-production.up.railway.app/public/images/song/song_08.jpg','https://fullhealingmusic-production.up.railway.app/public/audios/00008.mp3',3,192,234567,'2023-02-25 15:00:00'),
+(9,'Về Bên Thiên Nhiên',4,'https://fullhealingmusic-production.up.railway.app/public/images/song/song_09.jpg','https://fullhealingmusic-production.up.railway.app/public/audios/00009.mp3',7,208,912345,'2023-02-20 12:00:00');
 
 -- ============================================================
 -- INSERT ARTIST ALBUMS (10 rows)
 -- ============================================================
 INSERT INTO artist_albums (id,artist_id,title,cover_url,album_type,release_date,created_at) VALUES
-(1,1,'Chill Lofi Vol.1','YOUR_SERVER_URL/public/images/artist/caotri.jpg','album','2023-03-25','2023-03-25 08:00:00'),
-(2,1,'Lofi Healing','YOUR_SERVER_URL/public/images/artist/caotri.jpg','album','2023-02-20','2023-02-20 10:00:00'),
-(3,3,'F47 Cover Collection','YOUR_SERVER_URL/public/images/artist/f47s.png','EP','2023-03-18','2023-03-18 14:00:00'),
-(4,5,'Phù Hoa','YOUR_SERVER_URL/public/images/artist/7d00355583c6571daabb6ec3e541af1c.jpg','single','2023-03-15','2023-03-15 09:00:00'),
-(5,7,'Lofi Tình Yêu','YOUR_SERVER_URL/public/images/artist/e2b19f291479da26e3cabf61ff637318.jpg','album','2023-03-10','2023-03-10 11:00:00'),
-(6,8,'Mùa Thu','YOUR_SERVER_URL/public/images/artist/IMG_2114_zing.jpg','EP','2023-03-05','2023-03-05 16:00:00'),
-(7,10,'Duy Khiêm Collection','YOUR_SERVER_URL/public/images/artist/channels4_profile.jpg','album','2023-02-28','2023-02-28 13:00:00'),
-(8,10,'Dân Ca Remix','YOUR_SERVER_URL/public/images/artist/channels4_profile.jpg','EP','2023-02-25','2023-02-25 15:00:00'),
-(9,4,'Yên Phận','YOUR_SERVER_URL/public/images/artist/16e3429b1d4e43e1996269f0cf40c0a2.jpg','single','2023-02-20','2023-02-20 12:00:00'),
-(10,1,'Best of CaoTri','YOUR_SERVER_URL/public/images/artist/caotri.jpg','compilation','2023-03-01','2023-03-01 08:00:00');
+(1,1,'Healing Lofi Vol.1','https://fullhealingmusic-production.up.railway.app/public/images/song/song_01.jpg','album','2023-03-25','2023-03-25 08:00:00'),
+(2,1,'Morning Calm','https://fullhealingmusic-production.up.railway.app/public/images/song/song_02.jpg','album','2023-02-20','2023-02-20 10:00:00'),
+(3,3,'Forest Sounds','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_03.jpg','EP','2023-03-18','2023-03-18 14:00:00'),
+(4,5,'Gentle Breeze','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_05.jpg','single','2023-03-15','2023-03-15 09:00:00'),
+(5,7,'Moonlight Meditation','https://fullhealingmusic-production.up.railway.app/public/images/song/song_05.jpg','album','2023-03-10','2023-03-10 11:00:00'),
+(6,8,'Autumn Silence','https://fullhealingmusic-production.up.railway.app/public/images/song/song_06.jpg','EP','2023-03-05','2023-03-05 16:00:00'),
+(7,10,'Lotus Garden','https://fullhealingmusic-production.up.railway.app/public/images/song/song_07.jpg','album','2023-02-28','2023-02-28 13:00:00'),
+(8,10,'Earth & Rain','https://fullhealingmusic-production.up.railway.app/public/images/song/song_08.jpg','EP','2023-02-25','2023-02-25 15:00:00'),
+(9,4,'Return to Nature','https://fullhealingmusic-production.up.railway.app/public/images/artist/artist_04.jpg','single','2023-02-20','2023-02-20 12:00:00'),
+(10,1,'Best of Healing','https://fullhealingmusic-production.up.railway.app/public/images/song/song_09.jpg','compilation','2023-03-01','2023-03-01 08:00:00');
 
 -- ============================================================
 -- INSERT ARTIST ALBUM SONGS (15 rows)
