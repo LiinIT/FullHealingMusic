@@ -1,11 +1,11 @@
 id,artist_id,title,cover_url,album_type,release_date,created_at
-1,1,Chill Lofi Vol.1,http://192.168.1.9:3000/public/images/artist/caotri.jpg,album,2023-03-25,2023-03-25 08:00:00
-2,1,Lofi Healing,http://192.168.1.9:3000/public/images/artist/caotri.jpg,album,2023-02-20,2023-02-20 10:00:00
-3,3,F47 Cover Collection,http://192.168.1.9:3000/public/images/artist/f47s.png,EP,2023-03-18,2023-03-18 14:00:00
-4,5,Phù Hoa,http://192.168.1.9:3000/public/images/artist/7d00355583c6571daabb6ec3e541af1c.jpg,single,2023-03-15,2023-03-15 09:00:00
-5,7,Lofi Tình Yêu,http://192.168.1.9:3000/public/images/artist/e2b19f291479da26e3cabf61ff637318.jpg,album,2023-03-10,2023-03-10 11:00:00
-6,8,Mùa Thu,http://192.168.1.9:3000/public/images/artist/IMG_2114_zing.jpg,EP,2023-03-05,2023-03-05 16:00:00
-7,10,Duy Khiêm Collection,http://192.168.1.9:3000/public/images/artist/channels4_profile.jpg,album,2023-02-28,2023-02-28 13:00:00
-8,10,Dân Ca Remix,http://192.168.1.9:3000/public/images/artist/channels4_profile.jpg,EP,2023-02-25,2023-02-25 15:00:00
-9,4,Yên Phận,http://192.168.1.9:3000/public/images/artist/16e3429b1d4e43e1996269f0cf40c0a2.jpg,single,2023-02-20,2023-02-20 12:00:00
-10,1,Best of CaoTri,http://192.168.1.9:3000/public/images/artist/caotri.jpg,compilation,2023-03-01,2023-03-01 08:00:00
+1,1,Healing Lofi Vol.1,https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=500&q=80,album,2023-03-25,2023-03-25 08:00:00
+2,1,Morning Calm,https://images.unsplash.com/photo-1455894127589-22f75500213a?w=500&q=80,album,2023-02-20,2023-02-20 10:00:00
+3,3,Forest Sounds,https://images.unsplash.com/photo-1448375240586-882707db888b?w=500&q=80,EP,2023-03-18,2023-03-18 14:00:00
+4,5,Gentle Breeze,https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&q=80,single,2023-03-15,2023-03-15 09:00:00
+5,7,Moonlight Meditation,https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500&q=80,album,2023-03-10,2023-03-10 11:00:00
+6,8,Autumn Silence,https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=500&q=80,EP,2023-03-05,2023-03-05 16:00:00
+7,10,Lotus Garden,https://images.unsplash.com/photo-1490750967868-88df5691cc5d?w=500&q=80,album,2023-02-28,2023-02-28 13:00:00
+8,10,Earth & Rain,https://images.unsplash.com/photo-1501854140801-50d01698950b?w=500&q=80,EP,2023-02-25,2023-02-25 15:00:00
+9,4,Return to Nature,https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80,single,2023-02-20,2023-02-20 12:00:00
+10,1,Best of Healing,https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=500&q=80,compilation,2023-03-01,2023-03-01 08:00:00
